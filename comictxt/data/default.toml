@@ -1,0 +1,156 @@
+# comictxt default configuration.
+# Every value can be overridden via CLI flags (--section.key value) or Python kwargs.
+# Model paths: leave empty ("") to auto-resolve from HuggingFace cache,
+# or set an explicit file path.
+
+[region]
+# yolo model size: n | s | m | l | x  (default x)
+model_size = "x"
+# backend: "onnx" | "ultralytics"
+backend = "ultralytics"
+# explicit paths ("" = auto-resolve). onnx_path used by backend="onnx",
+# pt_path used by backend="ultralytics".
+onnx_path = ""
+pt_path = ""
+# inference image size (square, letterboxed). int or [w, h].
+# 640 matches det_report/compare_yolo12.py (IMGSZ=640).
+imgsz = 640
+# confidence / NMS thresholds (iou=0.7 is the ultralytics default;
+# compare_yolo12.py relies on it by not passing iou).
+conf = 0.16
+iou = 0.70
+# IoU-NMS on the onnx backend (ultralytics always runs its internal NMS).
+# Ablation (ground_truth/, new detector): merge-only beats NMS+merge
+# (F1 0.865 vs 0.838, CER 0.186 vs 0.200), so NMS defaults OFF and
+# containment-merge does the dedup. Set true to re-enable NMS.
+nms = false
+max_det = 300
+# nested-box handling (catches nested regions that IoU-NMS misses):
+# "merge" unions a contained fragment into its container regardless of score
+# order (YOLO often scores the inner fragment higher); "drop" removes
+# fragments inside a higher-scored box; "keep" disables and returns raw
+# YOLO output (matches det_report/compare_yolo12.py). <=0 disables.
+contain_thresh = 0.80
+contain_action = "merge"  # "merge" | "drop" | "keep"
+# expand each region box by this ratio (0.05 = 5%) before cropping
+pad_ratio = 0.15
+# execution providers for onnxruntime
+providers = ["CPUExecutionProvider"]
+# device for ultralytics backend ("cpu" | "cuda" | "mps" | ...)
+device = "cpu"
+
+[lines]
+# run PP-OCR det inside each region crop (true) or feed region straight to recognizer (false)
+enable_line_stage = true
+# if a region yields zero lines, fall back to recognizing the whole region crop
+fallback_to_region_text = true
+# if no regions detected at all, run line detection on the full image
+run_lines_on_full_image_if_no_regions = false
+# explicit det model path ("" = auto-resolve)
+model_path = ""
+# use fp16 onnx if available (manga_det_v0.1_fp16.onnx)
+use_fp16 = false
+# preprocessing (Space scale policy): long side capped at det_long_side,
+# inputs smaller than det_min_side upscaled to it, snapped to 32 (min 64)
+det_long_side = 960
+det_min_side = 480
+# white-border margin (px) around the detection input so text touching the
+# crop edge still detects (subtracted after unclip, like the Space app)
+det_margin = 16
+# DB post-processing
+thresh = 0.15
+box_thresh = 0.25
+unclip_ratio = 1.4
+# minimum box side (image px) of the unclipped polygon
+min_short_side = 6
+# safety padding (px) around the minAreaRect final 4-point quad
+box_pad = 4.0
+max_candidates = 3000
+providers = ["CPUExecutionProvider"]
+# skip detected lines whose longest side is smaller than this (image px)
+min_line_px = 12.0
+# furigana (ruby) filter, ported from Kellenok's PP-OCR_manga Space app.
+furigana_filter = true
+furigana_size_ratio = 0.70
+furigana_proximity_ratio = 0.35
+furigana_overlap_ratio = 0.05
+furigana_max_thickness_px = 32.0
+furigana_length_ratio = 1.05
+furigana_char_size_ratio = 0.85
+furigana_proximity_min = 8.0
+furigana_proximity_max = 16.0
+furigana_max_chars = 8
+
+[rec]
+# backend: "onnx" (@hayaiocr_onnx_rec) | "torch" (@hayaiocr_rec) | "ppocr"
+# (Kellenok PP-OCRv6 manga rec, CTC — matches the line detector's Space app)
+backend = "torch"
+# explicit onnx dir containing hayai_encoder.onnx / hayai_decoder.onnx / tokenizer.json / position_base.npy
+# ("" = auto-resolve from HF cache)
+onnx_dir = ""
+# precision: "fp32" | "fp16" | "quant"
+precision = "fp32"
+providers = ["CPUExecutionProvider"]
+max_new_tokens = 128
+# padding (pixels) added around each line crop before recognition
+line_pad = 2
+# minimum crop size; smaller crops are upscaled/padded
+min_crop_size = 8
+# skip nearly-flat crops (grayscale std below this) to avoid hallucinations
+blank_std_thresh = 5.0
+# torch backend: explicit snapshot dir with model.safetensors ("" = auto-resolve,
+# refs/main target preferred)
+torch_model = ""
+torch_processor = ""
+device = "cpu"
+dtype = "float32"  # "float32" | "float16"
+# NaFlex patches per crop (256 standard; 384/512 dense panels)
+max_num_patches = 256
+# ppocr backend: explicit rec model / dict paths ("" = auto-resolve from
+# Kellenok/PP-OCRv6_manga HF cache: rec/manga_rec_v0.1[_fp16].onnx,
+# ppocrv6_dict.txt)
+ppocr_model = ""
+ppocr_dict = ""
+ppocr_use_fp16 = false
+# Otsu-projection furigana/margin trim on warped crops (Space behavior)
+ppocr_trim = true
+
+[preprocess]
+# optional image cleanup before detection/recognition (off by default):
+# values <= black_point become 0, >= white_point become 255 ("leveling"),
+# sharpen is an unsharp-mask amount (0 disables)
+enable = false
+black_point = 0
+white_point = 255
+sharpen = 0.0
+
+[pipeline]
+# orientation is layout-based (chimahon-style adjacency):
+# neighboring lines with x-gap < gap_ratio * width and y-overlap above
+# overlap_ratio => vertical; stacked lines with y-gap and x-overlap => horizontal.
+# single-line paragraphs fall back to the parent region-box aspect.
+layout_overlap_ratio = 0.5
+layout_gap_ratio = 0.75
+# clip all coordinates to image bounds
+clip_to_image = true
+# reading-order reorder at the end of the pipeline (Space column/row sort:
+# vertical reads right->left columns, horizontal reads top->bottom rows).
+# Both default ON.
+reorder_blocks = true
+reorder_lines = true
+
+[server]
+host = "0.0.0.0"
+port = 7331
+max_size = 1000000000
+# concurrent OCR requests (extra connections queue)
+max_workers = 2
+
+[general]
+log_level = "INFO"
+# parallel workers for batch CLI / per-region fan-out (<=0 = auto, min(4, cpu))
+workers = 0
+workers_mode = "threads"  # "threads" | "processes" (processes: batch CLI only)
+# offline mode: never hit the network; use only locally cached model files.
+# Also honored via HF_HUB_OFFLINE=1 / TRANSFORMERS_OFFLINE=1 env vars.
+offline = false

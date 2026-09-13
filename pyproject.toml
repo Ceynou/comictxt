@@ -1,0 +1,36 @@
+[project]
+name = "comictxt"
+version = "0.3.0"
+description = "Manga/comic OCR: AnimeText region detection + PP-OCRv6 line detection + Hayai recognition, with owocr-compatible JSON and websocket server"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "Pillow",
+    "opencv-python-headless",
+    "onnxruntime",
+    "tokenizers",
+    "pyclipper",
+    "websockets",
+    "pydantic>=2.0",
+]
+
+[project.optional-dependencies]
+ultralytics = ["ultralytics", "torch", "torchvision"]
+torch = ["torch", "transformers>=5", "safetensors", "accelerate"]
+all = ["ultralytics", "torch", "torchvision", "transformers>=5", "safetensors", "accelerate"]
+dev = ["pytest"]
+
+[project.scripts]
+comictxt = "comictxt.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["comictxt"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: needs model weights / GPU-ish compute"]
