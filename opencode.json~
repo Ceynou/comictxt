@@ -26,7 +26,7 @@
       "description": "neokuro folder"
     },
     "python_env": {
-      "path": "/home/user/.ocr/",
+      "path": "/home/user/.venv/",
       "description": "Access to python virtual environment"
     }
   },

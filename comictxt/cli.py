@@ -307,17 +307,71 @@ def _cmd_debug(args) -> int:
     return 0
 
 
+def _toml_value(value) -> str:
+    if isinstance(value, bool):
+        return "true" if value else "false"
+    if isinstance(value, str):
+        return json.dumps(value, ensure_ascii=False)
+    if isinstance(value, (list, tuple)):
+        return "[" + ", ".join(_toml_value(v) for v in value) + "]"
+    if isinstance(value, float):
+        return repr(value)
+    return repr(value)
+
+
+def _dump_effective_toml(cfg: ComictxtConfig) -> str:
+    lines = []
+    for section, values in cfg.model_dump().items():
+        lines.append(f"[{section}]")
+        if isinstance(values, dict):
+            for k, v in values.items():
+                lines.append(f"{k} = {_toml_value(v)}")
+        else:
+            lines.append(f"value = {_toml_value(values)}")
+        lines.append("")
+    return "\n".join(lines)
+
+
+def _describe_effective_source(args) -> tuple[str, "Path | None"]:
+    """Human-readable label + path of the active config source.
+
+    Never creates files. Mirrors _load_effective_config resolution:
+    explicit --config > $COMICTXT_CONFIG > user file > built-in defaults.
+    """
+    import os
+
+    explicit = getattr(args, "config", None)
+    if explicit:
+        p = Path(explicit).expanduser()
+        if not p.is_file():
+            raise SystemExit(f"Config file not found: {p}")
+        return (f"explicit --config {p}", p)
+    env = os.environ.get("COMICTXT_CONFIG")
+    found = resolve_config_file(None)
+    if found is not None:
+        if env:
+            return (f"$COMICTXT_CONFIG {found}", found)
+        return (f"user config {found}", found)
+    if env:
+        return ("built-in defaults "
+                "($COMICTXT_CONFIG is set but points at a missing file)", None)
+    u = user_config_path()
+    if u.is_file():
+        return (f"user config {u}", u)
+    return ("built-in defaults "
+            f"(no user config found at {u})", None)
+
+
+def _print_config_paths(args) -> None:
+    label, _ = _describe_effective_source(args)
+    print(f"default: {default_config_path()}")
+    u = user_config_path()
+    print(f"user: {u}{' (missing)' if not u.is_file() else ''}")
+    print(f"effective: {label}")
+
+
 def _cmd_config(args) -> int:
-    if args.print:
-        print(default_config_toml_text(), end="" if default_config_toml_text().endswith("\n") else "\n")
-        return 0
-    if args.path:
-        print(default_config_path())
-        print(user_config_path())
-        found = resolve_config_file(getattr(args, "config", None))
-        print(found if found is not None else "(no user config found; using built-in defaults)")
-        return 0
-    if args.init:
+    if getattr(args, "init", False):
         dest = user_config_path()
         if dest.is_file() and not args.force:
             print(f"User config already exists: {dest} (use --force to overwrite)", file=sys.stderr)
@@ -326,9 +380,30 @@ def _cmd_config(args) -> int:
         dest.write_text(default_config_toml_text(), encoding="utf-8")
         print(f"Wrote {dest}")
         return 0
-    # default: show paths + effective source
-    print(default_config_path())
-    print(user_config_path())
+    # --print (shipped defaults) and --effective can combine; --path is
+    # paths-only. Bare `config` shows labeled paths + source + effective TOML
+    # so the active user config is always visible. Never creates files here.
+    if getattr(args, "path", False) and not getattr(args, "print", False) \
+            and not getattr(args, "effective", False):
+        _print_config_paths(args)
+        return 0
+    if getattr(args, "print", False):
+        text = default_config_toml_text()
+        print(text, end="" if text.endswith("\n") else "\n")
+        if not getattr(args, "effective", False):
+            return 0
+        print("# ---- effective config (active source + --set overrides) ----")
+    if getattr(args, "effective", False):
+        cfg = _load_effective_config(args, create_user_config=False)
+        label, _ = _describe_effective_source(args)
+        print(f"# effective source: {label}")
+        print(_dump_effective_toml(cfg), end="\n")
+        return 0
+    # default: paths + source + effective TOML
+    _print_config_paths(args)
+    print("")
+    cfg = _load_effective_config(args, create_user_config=False)
+    print(_dump_effective_toml(cfg), end="\n")
     return 0
 
 
@@ -400,7 +475,8 @@ def build_parser() -> argparse.ArgumentParser:
     pc = sub.add_parser("config", help="Show or initialize configuration")
     _add_common_options(pc, is_sub=True)
     pc.add_argument("--print", action="store_true", help="Print the shipped default TOML")
-    pc.add_argument("--path", action="store_true", help="Show packaged default, user config, and effective config paths")
+    pc.add_argument("--effective", action="store_true", help="Print the effective TOML (active file + --config/--set overrides)")
+    pc.add_argument("--path", action="store_true", help="Show labeled default/user/effective config paths (no TOML)")
     pc.add_argument("--init", action="store_true", help="Write shipped defaults to the user config path")
     pc.add_argument("--force", action="store_true", help="Overwrite existing user config with --init")
     pc.set_defaults(func=_cmd_config)

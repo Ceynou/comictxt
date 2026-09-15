@@ -79,7 +79,13 @@ def infer_orientation(
         if h_maj and not v_maj:
             return False
         if v_maj and h_maj:
-            return v_good >= h_good
+            # Close call (staggered/tilted lines look adjacent both ways):
+            # defer to the parent region aspect instead of trusting a
+            # one-pair margin from inflated axis boxes.
+            if abs(v_good - h_good) <= max(1, pairs // 4):
+                pass  # fall through to region aspect below
+            else:
+                return v_good >= h_good
         # no majority: fall through to region aspect
     if region_xyxy is not None:
         x1, y1, x2, y2 = region_xyxy
@@ -97,7 +103,13 @@ def build_paragraph(
     layout_overlap_ratio: float = 0.5,
     layout_gap_ratio: float = 0.75,
 ) -> dict | None:
-    """lines: [{'text': str, 'xyxy': (x1,y1,x2,y2)}]. Returns owocr paragraph or None."""
+    """lines: [{'text': str, 'xyxy': (x1,y1,x2,y2)}]. Returns owocr paragraph or None.
+
+    Items may carry ``sort_wh`` (deskewed (w, h) in image px, from the
+    detector quad): axis boxes of tilted lines are inflated, which merges
+    distinct columns/rows in the Space sorter. The output ``bounding_box``
+    always stays axis-aligned; ``sort_wh`` only steers reading order.
+    """
     kept = [ln for ln in lines if ln.get("text", "").strip()]
     if not kept:
         return None
@@ -108,13 +120,20 @@ def build_paragraph(
     for ln in kept:
         x1, y1, x2, y2 = ln["xyxy"]
         bbox = normalized_bbox_dict(x1, y1, x2, y2, W, H)
-        line_objs.append(
-            {
-                "text": ln["text"],
-                "bounding_box": bbox,
-                "words": [{"text": ln["text"], "bounding_box": dict(bbox)}],
-            }
-        )
+        obj: dict = {
+            "text": ln["text"],
+            "bounding_box": bbox,
+            "words": [{"text": ln["text"], "bounding_box": dict(bbox)}],
+        }
+        swh = ln.get("sort_wh")
+        if swh is not None:
+            try:
+                sw, sh = float(swh[0]) / max(1, W), float(swh[1]) / max(1, H)
+            except (TypeError, ValueError):
+                sw, sh = 0.0, 0.0
+            if sw > 0 and sh > 0:
+                obj["_sort_wh"] = [sw, sh]
+        line_objs.append(obj)
     return {
         "bounding_box": normalized_bbox_dict(px1, py1, px2, py2, W, H),
         "lines": line_objs,
@@ -231,6 +250,30 @@ def reorder_paragraphs(paragraphs: list[dict]) -> list[dict]:
         list(paragraphs), box_of=lambda p: by_box[id(p)], is_vertical=vertical)
 
 
+def _sort_box(line: dict) -> dict:
+    """Space-style box for reading-order sorting of a paragraph line.
+
+    Uses the deskewed ``_sort_wh`` size when present (center still comes
+    from the axis-aligned ``bounding_box`` — rotation-invariant for
+    parallelograms — but tilted lines' inflated axis w/h would merge
+    distinct columns/rows).
+    """
+    b = _norm_box(line)
+    swh = line.get("_sort_wh")
+    if swh is not None:
+        try:
+            sw, sh = float(swh[0]), float(swh[1])
+        except (TypeError, ValueError):
+            sw, sh = 0.0, 0.0
+        if sw > 0 and sh > 0:
+            b = {
+                "xmin": b["cx"] - sw / 2.0, "xmax": b["cx"] + sw / 2.0,
+                "ymin": b["cy"] - sh / 2.0, "ymax": b["cy"] + sh / 2.0,
+                "cx": b["cx"], "cy": b["cy"],
+            }
+    return b
+
+
 def reorder_lines_in_paragraph(paragraph: dict) -> dict:
     """Sort a paragraph's lines in reading order (in place, also returned).
 
@@ -241,7 +284,7 @@ def reorder_lines_in_paragraph(paragraph: dict) -> dict:
     if len(lines) < 2:
         return paragraph
     vertical = _is_vertical_or_rtl(paragraph)
-    by_box = {id(ln): _norm_box(ln) for ln in lines}
+    by_box = {id(ln): _sort_box(ln) for ln in lines}
     ordered = sort_reading_order(
         list(lines), box_of=lambda ln: by_box[id(ln)], is_vertical=vertical)
     lines[:] = ordered

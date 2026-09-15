@@ -8,11 +8,31 @@ from typing import Union
 import numpy as np
 from PIL import Image
 
+try:
+    import pillow_jxl  # noqa: F401  (registers the .jxl handler on import)
+    _JXL_AVAILABLE = True
+except ImportError:
+    _JXL_AVAILABLE = False
+
+
+def _ensure_jxl(suffix: str) -> None:
+    if suffix == ".jxl" and not _JXL_AVAILABLE:
+        raise ImportError(
+            "JPEG-XL support requires the 'pillow-jxl-plugin' package "
+            "(pip install pillow-jxl-plugin)"
+        )
+
+
+def jxl_available() -> bool:
+    """True when the JPEG-XL Pillow plugin is importable."""
+    return _JXL_AVAILABLE
+
 
 def load_pil(image: Union[str, Path, bytes, Image.Image]) -> Image.Image:
     if isinstance(image, Image.Image):
         return image.convert("RGB")
     if isinstance(image, (str, Path)):
+        _ensure_jxl(Path(image).suffix.lower())
         return Image.open(str(image)).convert("RGB")
     if isinstance(image, (bytes, bytearray)):
         return Image.open(io.BytesIO(bytes(image))).convert("RGB")

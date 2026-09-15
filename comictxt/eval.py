@@ -145,7 +145,7 @@ def summarize(page_results: list[dict]) -> dict:
     }
 
 
-IMAGE_SUFFIXES = (".webp", ".png", ".jpg", ".jpeg")
+IMAGE_SUFFIXES = (".webp", ".png", ".jpg", ".jpeg", ".jxl")
 
 
 def find_image(gt_path: Path) -> Path | None:

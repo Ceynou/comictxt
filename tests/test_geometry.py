@@ -1,4 +1,7 @@
+import math
+
 import numpy as np
+import pytest
 
 from comictxt.geometry import (
     clip_box,
@@ -8,7 +11,9 @@ from comictxt.geometry import (
     merge_contained_boxes,
     normalized_bbox_dict,
     nms,
+    order_quad_corners,
     polygon_to_xyxy,
+    warp_quad_to_rect,
     xyxy_to_cxcywh,
 )
 
@@ -117,3 +122,62 @@ def test_merge_contained_empty():
         np.zeros((0, 4), dtype=np.float32), np.zeros((0,), dtype=np.float32), 0.8
     )
     assert len(merged) == 0 and len(mscores) == 0
+
+
+def _rotated_quad(cx=100.0, cy=100.0, w=20.0, h=100.0, deg=20.0):
+    a = math.radians(deg)
+    c, s = math.cos(a), math.sin(a)
+    return np.array(
+        [[cx + dx * c - dy * s, cy + dx * s + dy * c]
+         for dx, dy in ((-w / 2, -h / 2), (w / 2, -h / 2),
+                        (w / 2, h / 2), (-w / 2, h / 2))],
+        dtype=np.float32,
+    )
+
+
+def test_order_quad_corners():
+    quad = _rotated_quad()[::-1]  # shuffled order
+    rect = order_quad_corners(quad)
+    assert rect.shape == (4, 2)
+    # tl has min sum, br max sum
+    s = rect.sum(axis=1)
+    assert s[0] == s.min() and s[2] == s.max()
+
+
+def test_warp_quad_to_rect_deskews_rotated():
+    img = np.full((200, 200, 3), 255, dtype=np.uint8)
+    quad = _rotated_quad()
+    warped = warp_quad_to_rect(img, quad)
+    # deskewed to the true 20x100 line size ...
+    assert warped.shape == (100, 20, 3)
+    # ... not the inflated ~53x101 axis-aligned bbox
+    x1, y1, x2, y2 = polygon_to_xyxy(quad)
+    assert (x2 - x1) > 40 and (y2 - y1) > 100
+    # vertical stays vertical (no rotate-if-tall)
+    assert warped.shape[0] > warped.shape[1]
+
+
+def test_warp_quad_axis_aligned_is_identity_sized():
+    img = np.full((200, 200, 3), 255, dtype=np.uint8)
+    quad = np.array([[10, 10], [50, 10], [50, 30], [10, 30]], dtype=np.float32)
+    warped = warp_quad_to_rect(img, quad)
+    assert warped.shape == (20, 40, 3)
+
+
+def test_warp_quad_degenerate_falls_back():
+    img = np.full((200, 200, 3), 255, dtype=np.uint8)
+    quad = np.array([[5, 5], [5, 5], [5, 5], [5, 5]], dtype=np.float32)
+    warped = warp_quad_to_rect(img, quad)
+    assert warped.ndim == 3 and warped.shape[2] == 3
+
+
+def test_quad_true_size_is_rotation_invariant():
+    from comictxt.geometry import quad_true_size
+
+    axis = np.array([[10, 10], [30, 10], [30, 110], [10, 110]], dtype=np.float32)
+    w, h = quad_true_size(axis)
+    assert (w, h) == (20.0, 100.0)
+    rot = _rotated_quad(cx=100.0, cy=100.0, w=20.0, h=100.0, deg=30.0)
+    w, h = quad_true_size(rot)
+    assert w == pytest.approx(20.0, abs=1.0)
+    assert h == pytest.approx(100.0, abs=1.0)

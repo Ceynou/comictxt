@@ -111,3 +111,46 @@ def test_apply_reading_order_flags_off():
 def test_single_paragraph_untouched():
     p = _para(0.5, 0.5)
     assert reorder_paragraphs([p]) == [p]
+
+
+def test_tilted_lines_use_deskewed_size_for_columns():
+    """Ground-truth 032 region0: three ~30deg-tilted lines whose inflated
+    axis boxes collapse into one column (wrong ymin order); the deskewed
+    _sort_wh sizes must split them into right-to-left columns."""
+    para = _para(0.5, 0.5, direction="TOP_TO_BOTTOM",
+                 texts=("mid", "left", "right"))
+    axis = [
+        (0.131, 0.357, 0.083, 0.079),  # mid
+        (0.109, 0.347, 0.078, 0.076),  # left
+        (0.167, 0.351, 0.044, 0.033),  # right
+    ]
+    for ln, (cx, cy, w, h) in zip(para["lines"], axis):
+        ln["bounding_box"].update(center_x=cx, center_y=cy, width=w, height=h)
+        ln["_sort_wh"] = [0.022, 0.077]
+    reorder_lines_in_paragraph(para)
+    assert [ln["text"] for ln in para["lines"]] == ["right", "mid", "left"]
+
+
+def test_tilted_lines_axis_boxes_alone_merge_columns():
+    """Sanity: without _sort_wh the same boxes collapse (documents why the
+    deskewed size is needed)."""
+    para = _para(0.5, 0.5, direction="TOP_TO_BOTTOM",
+                 texts=("mid", "left", "right"))
+    axis = [
+        (0.131, 0.357, 0.083, 0.079),
+        (0.109, 0.347, 0.078, 0.076),
+        (0.167, 0.351, 0.044, 0.033),
+    ]
+    for ln, (cx, cy, w, h) in zip(para["lines"], axis):
+        ln["bounding_box"].update(center_x=cx, center_y=cy, width=w, height=h)
+    reorder_lines_in_paragraph(para)
+    assert [ln["text"] for ln in para["lines"]] != ["right", "mid", "left"]
+
+
+def test_lines_without_sort_wh_fall_back_to_axis_boxes():
+    para = _para(0.5, 0.5, direction="TOP_TO_BOTTOM",
+                 texts=("left", "right"))
+    para["lines"][0]["bounding_box"]["center_x"] = 0.3
+    para["lines"][1]["bounding_box"]["center_x"] = 0.7
+    reorder_lines_in_paragraph(para)
+    assert [ln["text"] for ln in para["lines"]] == ["right", "left"]

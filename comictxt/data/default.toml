@@ -13,7 +13,6 @@ backend = "ultralytics"
 onnx_path = ""
 pt_path = ""
 # inference image size (square, letterboxed). int or [w, h].
-# 640 matches det_report/compare_yolo12.py (IMGSZ=640).
 imgsz = 640
 # confidence / NMS thresholds (iou=0.7 is the ultralytics default;
 # compare_yolo12.py relies on it by not passing iou).

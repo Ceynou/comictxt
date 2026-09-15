@@ -181,3 +181,55 @@ def test_nonblank_crop_recognized():
     ImageDraw.Draw(img).rectangle([10, 10, 50, 50], fill=(0, 0, 0))
     out = pipe.process_pil(img)
     assert out["paragraphs"][0]["lines"][0]["text"] == "hello"
+
+
+def test_hayai_line_path_deskews_rotated_quad():
+    """Rotated quads must reach the recognizer deskewed, not as axis bboxes.
+
+    A 20x100 line rotated 20deg has a ~53x101 axis bbox; the recognizer
+    must see the tight 20x100 warp (plus line_pad border), while the output
+    box stays the tight quad xyxy.
+    """
+    import math
+
+    from PIL import Image, ImageDraw
+
+    cfg = ComictxtConfig().with_overrides(
+        {"rec.blank_std_thresh": 0, "rec.line_pad": 0, "rec.min_crop_size": 0}
+    )
+    a = math.radians(20.0)
+    c, s = math.cos(a), math.sin(a)
+    quad = np.array(
+        [[100 + dx * c - dy * s, 100 + dx * s + dy * c]
+         for dx, dy in ((-10, -50), (10, -50), (10, 50), (-10, 50))],
+        dtype=np.float32,
+    )
+    seen: dict = {}
+
+    class CapRec:
+        def ocr_pil(self, img):
+            seen["size"] = img.size
+            return "x"
+
+        def ensure_loaded(self):
+            pass
+
+    pipe = StubPipeline(cfg, boxes=[[10, 10, 190, 190]],
+                        polys_per_region=[[quad]], texts=[])
+    pipe._rec_stub = CapRec()
+
+    @property
+    def _rec_prop(self):
+        return self._rec_stub
+
+    # swap the rec property on the instance's class for this test only
+    type(pipe).rec = _rec_prop
+    try:
+        img = Image.new("RGB", (200, 200), (255, 255, 255))
+        ImageDraw.Draw(img).rectangle([80, 40, 120, 160], fill=(0, 0, 0))
+        out = pipe.process_pil(img)
+    finally:
+        delattr(type(pipe), "rec")
+    assert out["paragraphs"][0]["lines"][0]["text"] == "x"
+    # deskewed crop, not the inflated axis bbox
+    assert seen["size"] == (20, 100)

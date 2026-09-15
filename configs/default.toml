@@ -13,7 +13,6 @@ backend = "ultralytics"
 onnx_path = ""
 pt_path = ""
 # inference image size (square, letterboxed). int or [w, h].
-# 640 matches det_report/compare_yolo12.py (IMGSZ=640).
 imgsz = 640
 # confidence / NMS thresholds (iou=0.7 is the ultralytics default;
 # compare_yolo12.py relies on it by not passing iou).
@@ -60,7 +59,7 @@ det_margin = 16
 # DB post-processing
 thresh = 0.15
 box_thresh = 0.25
-unclip_ratio = 2.0
+unclip_ratio = 1.4
 # minimum box side (image px) of the unclipped polygon
 min_short_side = 6
 # safety padding (px) around the minAreaRect final 4-point quad

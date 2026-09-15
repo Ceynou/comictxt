@@ -236,7 +236,7 @@ class RecConfig(BaseModel):
     precision: Literal["fp32", "fp16", "quant"] = "fp32"
     providers: list[str] = Field(default_factory=lambda: ["CPUExecutionProvider"])
     max_new_tokens: int = 128
-    line_pad: int = 3
+    line_pad: int = 2
     min_crop_size: int = 8
     # skip crops that are nearly flat (grayscale std below this): blank bubble
     # areas make the recognizer hallucinate. <=0 disables.

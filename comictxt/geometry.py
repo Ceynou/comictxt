@@ -51,6 +51,85 @@ def polygon_to_xyxy(poly: np.ndarray) -> tuple[float, float, float, float]:
     return (float(xs.min()), float(ys.min()), float(xs.max()), float(ys.max()))
 
 
+def order_quad_corners(quad: np.ndarray) -> np.ndarray:
+    """Order 4 points as (tl, tr, br, bl) via sum/diff heuristic.
+
+    Same convention as the PP-OCR Space app's ``get_rotate_crop_image``.
+    """
+    pts = np.asarray(quad, dtype=np.float32).reshape(-1, 2)
+    rect = np.zeros((4, 2), dtype=np.float32)
+    s = pts.sum(axis=1)
+    rect[0] = pts[np.argmin(s)]
+    rect[2] = pts[np.argmax(s)]
+    diff = np.diff(pts, axis=1)
+    rect[1] = pts[np.argmin(diff)]
+    rect[3] = pts[np.argmax(diff)]
+    return rect
+
+
+def quad_true_size(quad: np.ndarray) -> tuple[float, float]:
+    """Deskewed (w, h) of a detector quad from its edge lengths.
+
+    Axis-aligned ``polygon_to_xyxy`` boxes inflate tilted lines (a 21px-wide
+    line at 30deg measures ~53px wide), which breaks width-based thresholds
+    in reading-order sorting and furigana geometry. Edge lengths are
+    rotation-invariant: w = mean(top, bottom), h = mean(left, right).
+    """
+    rect = order_quad_corners(np.asarray(quad, dtype=np.float32).reshape(-1, 2))
+    tl, tr, br, bl = rect
+    top = float(np.linalg.norm(tr - tl))
+    bottom = float(np.linalg.norm(br - bl))
+    left = float(np.linalg.norm(bl - tl))
+    right = float(np.linalg.norm(br - tr))
+    return ((top + bottom) / 2.0, (left + right) / 2.0)
+
+
+def warp_quad_to_rect(
+    img_bgr: np.ndarray, quad: np.ndarray, border_value: tuple[int, int, int] | None = None
+) -> np.ndarray:
+    """Perspective-warp a detector quad to a tight upright rectangle.
+
+    Generic (recognizer-agnostic) deskew for rotated ``minAreaRect`` quads:
+    unlike ``rec_ppocr.warp_quad`` there is no Otsu trim and no
+    rotate-if-tall — vertical crops stay vertical for Hayai's 2D-RoPE.
+    Falls back to an axis-aligned crop when the quad is degenerate.
+    """
+    import cv2
+
+    pts = np.asarray(quad, dtype=np.float32).reshape(-1, 2)
+    if pts.shape[0] != 4 or img_bgr.size == 0:
+        x1, y1, x2, y2 = polygon_to_xyxy(pts.reshape(-1, 2)) if pts.size else (0, 0, 0, 0)
+        H, W = img_bgr.shape[:2]
+        ix1, iy1, ix2, iy2 = clip_box(x1, y1, x2, y2, W, H)
+        if ix2 <= ix1 or iy2 <= iy1:
+            return np.zeros((8, 8, 3), dtype=np.uint8)
+        return img_bgr[iy1:iy2, ix1:ix2].copy()
+    rect = order_quad_corners(pts)
+    (tl, tr, br, bl) = rect
+    width_a = float(np.linalg.norm(br - bl))
+    width_b = float(np.linalg.norm(tr - tl))
+    height_a = float(np.linalg.norm(tr - br))
+    height_b = float(np.linalg.norm(tl - bl))
+    max_width = max(int(round(width_a)), int(round(width_b)))
+    max_height = max(int(round(height_a)), int(round(height_b)))
+    if max_width <= 0 or max_height <= 0:
+        return np.zeros((8, 8, 3), dtype=np.uint8)
+    # Keep output bounded: detector quads are line-sized; cap at 1024px
+    # to avoid pathological memory use on bad detections.
+    max_width = min(max_width, 1024)
+    max_height = min(max_height, 1024)
+    dst = np.array(
+        [[0, 0], [max_width - 1, 0], [max_width - 1, max_height - 1], [0, max_height - 1]],
+        dtype=np.float32,
+    )
+    M = cv2.getPerspectiveTransform(rect, dst)
+    kwargs: dict = {"borderMode": cv2.BORDER_REPLICATE, "flags": cv2.INTER_LINEAR}
+    if border_value is not None:
+        kwargs = {"borderMode": cv2.BORDER_CONSTANT, "borderValue": border_value,
+                  "flags": cv2.INTER_LINEAR}
+    return cv2.warpPerspective(img_bgr, M, (max_width, max_height), **kwargs)
+
+
 def box_iou(a: np.ndarray, b: np.ndarray) -> float:
     ix1 = max(a[0], b[0])
     iy1 = max(a[1], b[1])

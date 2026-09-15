@@ -38,7 +38,24 @@ def _filter_box(line: dict) -> tuple:
     Space's thickness ratios for borderline ruby — the Space filters on
     tight detection boxes, so we do the same (``det_xyxy`` falls back to
     ``xyxy`` for region-text items that have no detection box).
+
+    When the detector ``quad`` is present, the box is deskewed to its true
+    size around the same center: axis boxes of tilted lines are inflated,
+    which otherwise flips the thickness ratio for ruby beside tilted text.
     """
+    quad = line.get("quad")
+    if quad is not None:
+        try:
+            from comictxt.geometry import quad_true_size
+
+            tw, th = quad_true_size(quad)
+            base = line.get("det_xyxy", line["xyxy"])
+            x1, y1, x2, y2 = (float(v) for v in base)
+            cx, cy = (x1 + x2) / 2.0, (y1 + y2) / 2.0
+            if tw > 0 and th > 0:
+                return (cx - tw / 2.0, cy - th / 2.0, cx + tw / 2.0, cy + th / 2.0)
+        except (TypeError, ValueError):
+            pass
     return line.get("det_xyxy", line["xyxy"])
 
 

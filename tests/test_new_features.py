@@ -83,7 +83,8 @@ def test_preprocess_scale_policy_no_weights():
     # _preprocess needs no model session: margin pad + cap/floor + snap32.
     from comictxt.lines_ppocr import LineDetector
 
-    det = LineDetector(model_path="/nonexistent/model.onnx", det_margin=16)
+    det = LineDetector(model_path="/nonexistent/model.onnx", det_margin=16,
+                       det_min_side=480)
     arr = np.zeros((100, 200, 3), dtype=np.uint8)
     inp, W, H, pW, pH, tw, th = det._preprocess(arr)
     assert (W, H) == (200, 100)

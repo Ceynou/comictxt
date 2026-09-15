@@ -19,7 +19,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 from comictxt.furigana import explain_filter
-from comictxt.geometry import expand_box, polygon_to_xyxy
+from comictxt.geometry import expand_box, polygon_to_xyxy, quad_true_size
 from comictxt.grouping import build_paragraph
 from comictxt.io_utils import load_pil
 
@@ -223,7 +223,7 @@ def run_debug(
         linfo = _lines_debug(pipe, det_crop)
         use_ppocr = cfg.rec.backend == "ppocr"
         img_bgr = None
-        if use_ppocr:
+        if linfo.get("kept"):
             img_bgr = np.array(img.convert("RGB"))[:, :, ::-1]
 
         # draw line candidates on the crop: raw contour (gray) -> unclipped
@@ -295,9 +295,13 @@ def run_debug(
                 line_rows.append({"quad": _poly_to_list(quad),
                                   "quad_xyxy": _round_box(xyxy), "score": k.get("score"),
                                   "text": text, "backend": "ppocr"})
-                line_items.append({"text": text, "xyxy": xyxy})
+                line_items.append({"text": text, "xyxy": xyxy,
+                                   "det_xyxy": _round_box(polygon_to_xyxy(quad)),
+                                   "quad": np.asarray(quad, dtype=np.float32).tolist(),
+                                   "sort_wh": quad_true_size(np.asarray(quad, dtype=np.float32))})
                 continue
-            gx1, gy1, gx2, gy2 = polygon_to_xyxy(quad)
+            det_xyxy = polygon_to_xyxy(quad)
+            gx1, gy1, gx2, gy2 = det_xyxy
             longest = max(gx2 - gx1, gy2 - gy1)
             if min_px > 0 and longest < min_px:
                 line_rows.append({"quad_xyxy": _round_box([gx1, gy1, gx2, gy2]),
@@ -305,16 +309,23 @@ def run_debug(
                                   "text": ""})
                 continue
             try:
-                text, xyxy = pipe._recognize_box(img, gx1, gy1, gx2, gy2)
+                assert img_bgr is not None
+                # Deskewed free-quad crop (same as pipeline Hayai path).
+                text, xyxy = pipe._recognize_warped_quad(img_bgr, quad)
             except Exception as e:  # noqa: BLE001
                 line_rows.append({"quad_xyxy": _round_box([gx1, gy1, gx2, gy2]),
                                   "score": k.get("score"), "skipped": f"recognizer error: {e}",
                                   "text": ""})
                 continue
-            # save the exact crop sent to the recognizer
-            ix1, iy1, ix2, iy2 = (int(v) for v in xyxy)
+            # save the exact deskewed crop sent to the recognizer
             try:
-                img.crop((ix1, iy1, ix2, iy2)).save(crops / f"{tag}_line{ki}.png")
+                from comictxt.geometry import warp_quad_to_rect
+
+                assert img_bgr is not None
+                warped = warp_quad_to_rect(
+                    img_bgr, np.asarray(quad, dtype=np.float32))
+                Image.fromarray(warped[:, :, ::-1]).save(
+                    crops / f"{tag}_line{ki}.png")
             except Exception:
                 pass
             if not text:
@@ -324,8 +335,10 @@ def run_debug(
                 continue
             line_rows.append({"quad_xyxy": _round_box([gx1, gy1, gx2, gy2]),
                               "crop_xyxy": _round_box(xyxy), "score": k.get("score"),
-                              "text": text})
-            line_items.append({"text": text, "xyxy": xyxy})
+                              "text": text, "backend": cfg.rec.backend})
+            line_items.append({"text": text, "xyxy": xyxy, "det_xyxy": det_xyxy,
+                               "quad": np.asarray(quad, dtype=np.float32).tolist(),
+                               "sort_wh": quad_true_size(np.asarray(quad, dtype=np.float32))})
         if not line_items and bool(cfg.lines.fallback_to_region_text) and bool(cfg.lines.enable_line_stage):
             try:
                 text, xyxy = pipe._recognize_box(img, float(rx1), float(ry1), float(rx2), float(ry2))

@@ -10,7 +10,7 @@ from PIL import Image
 
 from comictxt.config import ComictxtConfig, resolve_workers
 from comictxt.furigana import filter_furigana
-from comictxt.geometry import clip_box, expand_box, polygon_to_xyxy
+from comictxt.geometry import clip_box, expand_box, polygon_to_xyxy, quad_true_size, warp_quad_to_rect
 from comictxt.grouping import apply_reading_order, build_paragraph
 from comictxt.io_utils import load_pil
 from comictxt.lines_ppocr import LineDetector
@@ -223,6 +223,51 @@ class ComicTxtPipeline:
         # crops (dropped below), unlike VLMs which hallucinate.
         return text.strip(), polygon_to_xyxy(np.asarray(new_quad, dtype=np.float32))
 
+    def _recognize_warped_quad(
+        self, img_bgr: np.ndarray, quad: np.ndarray
+    ) -> tuple[str, tuple[float, float, float, float]]:
+        """Hayai (onnx/torch) path: deskew the rotated detector quad.
+
+        The old code fed ``polygon_to_xyxy(quad)`` (axis-aligned bbox) to
+        ``_recognize_box`` — for rotated quads that bbox includes background
+        and neighbor characters, causing repeated/hallucinated text. This
+        warps the free quad to a tight upright rectangle instead (vertical
+        stays vertical: no rotate-if-tall, unlike the PP-OCR CTC path).
+        Returns (text, tight quad xyxy); padding is recognition context only
+        and is not folded into the output box.
+        """
+        import cv2
+
+        q = np.asarray(quad, dtype=np.float32)
+        det_xyxy = polygon_to_xyxy(q)
+        warped = warp_quad_to_rect(img_bgr, q)
+        if warped.size == 0 or warped.shape[0] < 2 or warped.shape[1] < 2:
+            return "", det_xyxy
+        pad = int(self.cfg.rec.line_pad)
+        if pad > 0:
+            warped = cv2.copyMakeBorder(
+                warped, pad, pad, pad, pad, cv2.BORDER_REPLICATE)
+        min_s = int(self.cfg.rec.min_crop_size)
+        if min_s > 0 and (warped.shape[0] < min_s or warped.shape[1] < min_s):
+            scale = max(min_s / max(1, warped.shape[0]),
+                        min_s / max(1, warped.shape[1]))
+            # cap runaway upscales on degenerate 1-2px warps
+            scale = min(scale, 8.0)
+            warped = cv2.resize(
+                warped, None, fx=scale, fy=scale, interpolation=cv2.INTER_LINEAR)
+        # BGR -> RGB PIL for cleanup + recognizer
+        crop = Image.fromarray(warped[:, :, ::-1])
+        crop = self._cleanup_pil(crop)
+        blank_thresh = float(self.cfg.rec.blank_std_thresh)
+        if blank_thresh > 0:
+            gray = np.asarray(crop.convert("L"), dtype=np.float32)
+            if float(gray.std()) < blank_thresh:
+                return "", det_xyxy
+        # NOTE: no 90-degree rotation for Hayai (2D-RoPE VLM handles vertical
+        # natively; rotation is a PP-OCR CTC convention and hurts accuracy).
+        text = self.rec.ocr_pil(crop)
+        return text.strip(), det_xyxy
+
     # -- per-region work (line-det + rec; thread-safe, order restored by caller)
     def _process_region(self, img: Image.Image, box: tuple) -> tuple[tuple, list[dict]]:
         cfg = self.cfg
@@ -238,29 +283,33 @@ class ComicTxtPipeline:
         img_bgr = None
         if cfg.lines.enable_line_stage:
             quads = self.lines.detect_pil(region_crop)
-            if use_ppocr and quads:
+            if quads:
                 img_bgr = np.array(img.convert("RGB"))[:, :, ::-1]
             for quad in quads:
                 q = np.asarray(quad, dtype=np.float32)
                 q[:, 0] += rx1
                 q[:, 1] += ry1
                 det_xyxy = polygon_to_xyxy(q)  # tight box for furigana rules
+                sort_wh = quad_true_size(q)  # deskewed size for reading order
                 if use_ppocr:
                     assert img_bgr is not None
                     text, xyxy = self._recognize_quad(img_bgr, q)
                     if not text:
                         continue
                     line_items.append(
-                        {"text": text, "xyxy": xyxy, "det_xyxy": det_xyxy})
+                        {"text": text, "xyxy": xyxy, "det_xyxy": det_xyxy,
+                         "quad": q.tolist(), "sort_wh": sort_wh})
                     continue
                 px1, py1, px2, py2 = det_xyxy
                 if min_px > 0 and max(px2 - px1, py2 - py1) < min_px:
                     continue
-                text, xyxy = self._recognize_box(img, px1, py1, px2, py2)
+                assert img_bgr is not None
+                text, xyxy = self._recognize_warped_quad(img_bgr, q)
                 if not text:
                     continue
                 line_items.append(
-                    {"text": text, "xyxy": xyxy, "det_xyxy": det_xyxy})
+                    {"text": text, "xyxy": xyxy, "det_xyxy": det_xyxy,
+                     "quad": q.tolist(), "sort_wh": sort_wh})
             if not line_items and cfg.lines.fallback_to_region_text:
                 text, xyxy = self._recognize_box(img, float(rx1), float(ry1), float(rx2), float(ry2))
                 if text:
@@ -286,26 +335,30 @@ class ComicTxtPipeline:
             min_px = float(cfg.lines.min_line_px)
             use_ppocr = cfg.rec.backend == "ppocr"
             img_bgr = None
-            if use_ppocr and quads:
+            if quads:
                 img_bgr = np.array(img.convert("RGB"))[:, :, ::-1]
             for quad in quads:
                 q = np.asarray(quad, dtype=np.float32)
                 det_xyxy = polygon_to_xyxy(q)  # tight box for furigana rules
+                sort_wh = quad_true_size(q)  # deskewed size for reading order
                 if use_ppocr:
                     assert img_bgr is not None
                     text, xyxy = self._recognize_quad(img_bgr, q)
                     if not text:
                         continue
                     items.append(
-                        {"text": text, "xyxy": xyxy, "det_xyxy": det_xyxy})
+                        {"text": text, "xyxy": xyxy, "det_xyxy": det_xyxy,
+                         "quad": q.tolist(), "sort_wh": sort_wh})
                     continue
                 x1, y1, x2, y2 = det_xyxy
                 if min_px > 0 and max(x2 - x1, y2 - y1) < min_px:
                     continue
-                text, xyxy = self._recognize_box(img, x1, y1, x2, y2)
+                assert img_bgr is not None
+                text, xyxy = self._recognize_warped_quad(img_bgr, q)
                 if not text:
                     continue
-                items.append({"text": text, "xyxy": xyxy, "det_xyxy": det_xyxy})
+                items.append({"text": text, "xyxy": xyxy, "det_xyxy": det_xyxy,
+                              "quad": q.tolist(), "sort_wh": sort_wh})
             for item in self._maybe_defurigana(items):
                 para = build_paragraph(
                     [item], W, H, None,

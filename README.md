@@ -30,6 +30,7 @@ comictxt infer page.jpg
 comictxt infer page.jpg -o page.json --pretty
 
 # batch directory (threaded by default, auto workers)
+# inputs: jpg jpeg png webp avif jxl bmp gif tif tiff
 comictxt infer ./pages/ -o ./out/ --pretty
 
 # batch with 4 processes (each loads its own models)
@@ -66,8 +67,10 @@ comictxt eval ground_truth/ --pretty -o eval/results.json
 comictxt debug page.jpg -o debug/page/
 
 # configuration
+comictxt config                  # labeled paths + active source + effective TOML
 comictxt config --print          # print shipped defaults
-comictxt config --path           # show packaged / user / effective paths
+comictxt config --effective      # print effective TOML (active file + --config/--set)
+comictxt config --path           # show labeled default / user / effective paths
 comictxt config --init           # write defaults to ~/.config/comictxt/config.toml
 ```
 
@@ -81,7 +84,7 @@ ported from Kellenok's [PP-OCR_manga Space](https://huggingface.co/spaces/Kellen
 stage with before/after images.
 
 - **Line detection** (`lines.*`): white `det_margin` border (default 16px, subtracted after unclip), Space scale policy (`det_long_side` cap 960 / `det_min_side` floor 480, snap 32), box-score filter, pyclipper unclip of the largest path (`unclip_ratio`, default 1.4), 6px minimum (`min_short_side`), then `minAreaRect` + `box_pad` (default 4.0) 4-point quads.
-- **Recognition** (`rec.backend = torch|onnx|ppocr`): `ppocr` runs the Space's CTC recognizer (`rec/manga_rec_v0.1.onnx` + `ppocrv6_dict.txt`) with perspective warp of the detector quad, Otsu-projection furigana/margin trim (`rec.ppocr_trim`) and height-48 CTC decode. Hayai backends (`onnx`/`torch`) keep the axis-aligned crop path with no rotation.
+- **Recognition** (`rec.backend = torch|onnx|ppocr`): `ppocr` runs the Space's CTC recognizer (`rec/manga_rec_v0.1.onnx` + `ppocrv6_dict.txt`) with perspective warp of the detector quad, Otsu-projection furigana/margin trim (`rec.ppocr_trim`) and height-48 CTC decode. Hayai backends (`onnx`/`torch`) perspective-warp each rotated detector quad to a tight upright crop (vertical stays vertical — no rotate-if-tall, which hurts Hayai accuracy); `line_pad`/`min_crop_size` add recognition context without inflating the output box.
 - **Preprocessing** (`[preprocess]`, off by default): levels stretch (`black_point`/`white_point`) + unsharp mask (`sharpen`), applied to line-detection inputs and recognition crops.
 - **Orientation** is layout-based, not aspect-ratio based: neighboring lines with a small x-gap and strong y-overlap vote vertical (`TOP_TO_BOTTOM`); stacked lines vote horizontal. Single-line paragraphs fall back to the parent region-box aspect. Tunables: `pipeline.layout_overlap_ratio`, `pipeline.layout_gap_ratio`.
 - **Reading order** (`pipeline.reorder_blocks` / `pipeline.reorder_lines`, both default on): Space column/row sort — vertical reads right-to-left columns (top-to-bottom within), horizontal reads top-to-bottom rows (left-to-right within) — applied to paragraphs (global area-weighted vote) and to lines within each paragraph. Disable with `--no-reorder`.
@@ -99,7 +102,7 @@ stage with before/after images.
 
 ## Eval
 
-`comictxt eval <gt_dir>` runs the pipeline over `*.webp`+`*.json` mokuro pairs and reports block precision/recall (IoU≥0.5), writing-direction accuracy, and line CER. Current numbers on `ground_truth/` (009/010/083/131, region onnx size n): Hayai backend P=0.914 R=0.821 F1=0.865 CER=0.151; ppocr backend F1=0.865 CER=0.184.
+`comictxt eval <gt_dir>` runs the pipeline over `*.webp`+`*.json` mokuro pairs and reports block precision/recall (IoU≥0.5), writing-direction accuracy, and line CER. Current numbers on all 10 `ground_truth/` pages (deliberately hard: tilted SFX, tiny ruby, adjacent columns): Hayai-torch backend (defaults, ultralytics/x) P=0.928 R=0.939 F1=0.933 vert=0.987 CER=0.214; ppocr backend (onnx/n) P=0.959 R=0.854 F1=0.903 vert=1.000 CER=0.166.
 
 ## Python API
 

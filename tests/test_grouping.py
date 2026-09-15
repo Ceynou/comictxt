@@ -70,6 +70,20 @@ def test_single_line_uses_region_aspect_not_line_aspect():
     assert para["writing_direction"] == "LEFT_TO_RIGHT"
 
 
+def test_close_call_orientation_defers_to_region_aspect():
+    # ground-truth 032 staggered tilted lines: pairwise vote is 1-vs-2
+    # (ambiguous), so the tall parent region must win -> vertical.
+    boxes = [
+        (248, 845, 293, 910),
+        (268, 830, 301, 886),
+        (244, 888, 290, 946),
+    ]
+    assert infer_orientation(boxes, (244, 825, 301, 946)) is True
+    # ... but a decisive horizontal vote still wins over the region aspect.
+    rows = [(0, 0, 200, 20), (0, 40, 200, 60), (0, 80, 200, 100)]
+    assert infer_orientation(rows, (0, 0, 210, 110)) is False
+
+
 def test_single_line_without_region_falls_back_to_merged_aspect():
     para = build_paragraph([{"text": "あ", "xyxy": (0, 0, 20, 100)}], 200, 200)
     assert para is not None
