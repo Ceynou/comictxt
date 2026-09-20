@@ -42,6 +42,18 @@ class StatelessStub(ComicTxtPipeline):
             def ocr_pil(self, img):
                 return f"w{img.size[0]}"
 
+            def ocr_quad(self, img_bgr, quad):
+                import numpy as np
+                from PIL import Image
+
+                q = np.asarray(quad, dtype=np.float32)
+                x1 = max(0, int(q[:, 0].min()))
+                y1 = max(0, int(q[:, 1].min()))
+                x2 = int(q[:, 0].max()) + 1
+                y2 = int(q[:, 1].max()) + 1
+                crop = img_bgr[y1:y2, x1:x2]
+                return self.ocr_pil(Image.fromarray(crop[:, :, ::-1])), q
+
             def ensure_loaded(self):
                 pass
 
@@ -59,7 +71,7 @@ def _img():
 
 
 def test_inner_fanout_preserves_region_order():
-    cfg = ComictxtConfig()  # workers auto -> inner parallel on (3 boxes)
+    cfg = ComictxtConfig().with_overrides({"lines.orphan_sweep": False})  # workers auto -> inner parallel on (3 boxes)
     out = StatelessStub(cfg).process_pil(_img())
     assert len(out["paragraphs"]) == 3
     texts = [p["lines"][0]["text"] for p in out["paragraphs"]]
@@ -88,7 +100,9 @@ def test_batch_threads_order_and_isolation(tmp_path, monkeypatch):
         _img().save(tmp_path / f"{i}.png")
     imgs = [tmp_path / f"{i}.png" for i in range(3)]
     monkeypatch.setattr(pipe_mod, "ComicTxtPipeline", StatelessStub)
-    results = _infer_batch_threads(ComictxtConfig(), imgs, workers=2)
+    results = _infer_batch_threads(
+        ComictxtConfig().with_overrides({"lines.orphan_sweep": False}), imgs, workers=2
+    )
     assert [p.name for p, _ in results] == ["0.png", "1.png", "2.png"]
     for _, res in results:
         assert not isinstance(res, Exception)

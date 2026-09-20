@@ -181,3 +181,50 @@ def test_quad_true_size_is_rotation_invariant():
     w, h = quad_true_size(rot)
     assert w == pytest.approx(20.0, abs=1.0)
     assert h == pytest.approx(100.0, abs=1.0)
+
+
+def test_ink_size_measures_ink_not_box():
+    from comictxt.geometry import ink_size
+
+    img = np.full((100, 100, 3), 255, dtype=np.uint8)
+    # fat black stripe down the middle of a 40px-wide area
+    img[10:90, 44:56, :] = 0
+    quad = np.array([[40, 5], [60, 5], [60, 95], [40, 95]], dtype=np.float32)
+    w, h = ink_size(img, quad)
+    assert w == pytest.approx(12, abs=1)
+    assert h == pytest.approx(80, abs=1)
+
+
+def test_ink_size_blank_returns_none():
+    from comictxt.geometry import ink_size
+
+    img = np.full((100, 100, 3), 255, dtype=np.uint8)
+    quad = np.array([[40, 5], [60, 5], [60, 95], [40, 95]], dtype=np.float32)
+    assert ink_size(img, quad) is None
+
+
+def test_expand_box_modes():
+    # proportional: each axis by its own length (w 20->30, h 100->150)
+    assert expand_box(40, 0, 60, 100, 0.5, 1000, 1000, mode="proportional") == (35, 0, 65, 125)
+    # uniform: smallest side grows by the same absolute amount as the biggest
+    # (w=20,h=100 -> pad=0.5*100=50 -> 70 x 150)
+    assert expand_box(40, 0, 60, 100, 0.5, 1000, 1000, mode="uniform") == (15, 0, 85, 125)
+    # max: pad = ratio*max on every side (w 20->120, h 100->200)
+    assert expand_box(40, 0, 60, 100, 0.5, 1000, 1000, mode="max") == (0, 0, 110, 150)
+
+
+def test_expand_region_boxes_auto_fallback():
+    from comictxt.geometry import expand_region_boxes
+
+    isolated_long = (0, 0, 20, 100)
+    # no neighbors: auto -> uniform
+    out = expand_region_boxes([isolated_long], 0.5, "auto", 1000, 1000)
+    assert out == [expand_box(*isolated_long, 0.5, 1000, 1000, mode="uniform")]
+    # neighbor nearby: auto -> proportional (would swallow the neighbor)
+    near = (30, 0, 50, 100)
+    out = expand_region_boxes([isolated_long, near], 0.5, "auto", 1000, 1000)
+    assert out[0] == expand_box(*isolated_long, 0.5, 1000, 1000, mode="proportional")
+    # not elongated: auto -> proportional even when isolated
+    square = (0, 0, 100, 100)
+    out = expand_region_boxes([square], 0.5, "auto", 1000, 1000)
+    assert out == [expand_box(*square, 0.5, 1000, 1000, mode="proportional")]

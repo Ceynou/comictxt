@@ -24,11 +24,39 @@ def clip_box(x1: float, y1: float, x2: float, y2: float, W: int, H: int) -> tupl
 
 
 def expand_box(
-    x1: float, y1: float, x2: float, y2: float, ratio: float, W: int, H: int
+    x1: float,
+    y1: float,
+    x2: float,
+    y2: float,
+    ratio: float,
+    W: int,
+    H: int,
+    mode: str = "uniform",
 ) -> tuple[int, int, int, int]:
+    """Expand a box by ``ratio``.
+
+    ``mode="proportional"`` grows each axis by its own length
+    (w*(1+r), h*(1+r)): tight long-line crops stay tight across their
+    narrow side — the length soaks up all the padding.
+
+    ``mode="uniform"`` (default) expands the smallest side by the same
+    absolute amount as the biggest side (pad = ratio * max(w, h) on both
+    axes), so a tall narrow line region gains real context left/right
+    instead of only along its length.
+
+    ``mode="max"`` adds pad = ratio * max(w, h) to every side (the
+    biggest-side rate on all four sides).
+    """
     w, h = x2 - x1, y2 - y1
     cx, cy = (x1 + x2) / 2.0, (y1 + y2) / 2.0
-    nw, nh = w * (1.0 + ratio), h * (1.0 + ratio)
+    if mode == "proportional":
+        nw, nh = w * (1.0 + ratio), h * (1.0 + ratio)
+    elif mode == "max":
+        pad = ratio * max(w, h)
+        nw, nh = w + 2.0 * pad, h + 2.0 * pad
+    else:  # uniform
+        pad = ratio * max(w, h)
+        nw, nh = w + pad, h + pad
     return clip_box(cx - nw / 2.0, cy - nh / 2.0, cx + nw / 2.0, cy + nh / 2.0, W, H)
 
 
@@ -43,6 +71,43 @@ def normalized_bbox_dict(
         "height": h / max(1, H),
         "rotation_z": float(rotation_z),
     }
+
+
+def box_overlap(a, b) -> float:
+    """Overlap area of two xyxy boxes (0.0 when disjoint)."""
+    ix1, iy1 = max(float(a[0]), float(b[0])), max(float(a[1]), float(b[1]))
+    ix2, iy2 = min(float(a[2]), float(b[2])), min(float(a[3]), float(b[3]))
+    if ix2 <= ix1 or iy2 <= iy1:
+        return 0.0
+    return (ix2 - ix1) * (iy2 - iy1)
+
+
+def expand_region_boxes(
+    boxes: list, ratio: float, mode: str, W: int, H: int, min_aspect: float = 2.0
+) -> list[tuple]:
+    """Expand a list of region boxes per ``region.pad_mode``.
+
+    ``auto`` (default): strongly elongated, isolated regions (the tight
+    long-line case) expand ``uniform`` — the smallest side grows by the
+    same absolute amount as the biggest side, so the crop gains real
+    context left/right instead of only along its length. Anything less
+    elongated than ``min_aspect`` (or whose uniform box would reach into
+    another detected region) falls back to ``proportional``, so adjacent
+    bubbles/columns are not swallowed into each other's crops.
+    """
+    out: list[tuple] = []
+    for i, b in enumerate(boxes):
+        x1, y1, x2, y2 = (float(v) for v in b)
+        w, h = x2 - x1, y2 - y1
+        m = mode
+        if mode == "auto":
+            elongated = max(w, h) >= min_aspect * max(1.0, min(w, h))
+            wide = expand_box(x1, y1, x2, y2, ratio, W, H, mode="uniform")
+            others = [boxes[j] for j in range(len(boxes)) if j != i]
+            blocked = any(box_overlap(wide, o) > 0.0 for o in others)
+            m = "uniform" if elongated and not blocked else "proportional"
+        out.append(expand_box(x1, y1, x2, y2, ratio, W, H, mode=m))
+    return out
 
 
 def polygon_to_xyxy(poly: np.ndarray) -> tuple[float, float, float, float]:
@@ -82,6 +147,28 @@ def quad_true_size(quad: np.ndarray) -> tuple[float, float]:
     left = float(np.linalg.norm(bl - tl))
     right = float(np.linalg.norm(br - tr))
     return ((top + bottom) / 2.0, (left + right) / 2.0)
+
+
+def ink_size(img_bgr: np.ndarray, quad: np.ndarray) -> tuple[float, float] | None:
+    """Ink (w, h) inside a detector quad, via warp + Otsu bbox.
+
+    Detector quads carry ``box_pad`` inflation and minAreaRect slack, so
+    box thickness ratios are noisy for furigana decisions; the actual ink
+    extent is stable (ruby ink is reliably ~50-60% of the main line's,
+    while det boxes wander up to ~0.85). Returns None when no ink is found.
+    """
+    import cv2
+
+    warped = warp_quad_to_rect(img_bgr, np.asarray(quad, dtype=np.float32))
+    if warped is None or warped.size == 0 or warped.shape[0] < 2 or warped.shape[1] < 2:
+        return None
+    gray = cv2.cvtColor(warped, cv2.COLOR_BGR2GRAY)
+    _, binv = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+    rows = np.where(binv.sum(axis=1) > 0)[0]
+    cols = np.where(binv.sum(axis=0) > 0)[0]
+    if len(rows) == 0 or len(cols) == 0:
+        return None
+    return (float(cols[-1] - cols[0] + 1), float(rows[-1] - rows[0] + 1))
 
 
 def warp_quad_to_rect(

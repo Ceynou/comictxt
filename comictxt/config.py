@@ -168,6 +168,15 @@ class RegionConfig(BaseModel):
     contain_thresh: float = 0.80
     contain_action: Literal["drop", "keep", "merge"] = "merge"
     pad_ratio: float = 0.15
+    # how pad_ratio is applied when expanding region crops:
+    # "auto" — uniform for isolated regions (the smallest side grows by the
+    #   same absolute amount as the biggest side: tight long-line crops gain
+    #   real context left/right), proportional when the widened box would
+    #   reach into another region (adjacent bubbles/columns stay separate)
+    # "uniform" — always expand the smallest side like the biggest side
+    # "proportional" — each axis grows by its own length (w*(1+r))
+    # "max" — pad = ratio * max(w, h) on EVERY side
+    pad_mode: Literal["auto", "uniform", "proportional", "max"] = "auto"
     providers: list[str] = Field(default_factory=lambda: ["CPUExecutionProvider"])
     device: str = "cpu"
 
@@ -192,6 +201,13 @@ class LinesConfig(BaseModel):
     enable_line_stage: bool = True
     fallback_to_region_text: bool = True
     run_lines_on_full_image_if_no_regions: bool = False
+    # Second full-image detection pass that adopts lines the per-region flow
+    # missed (region-detector misses, small SFX, captions). Duplicates are
+    # removed by matching recognized lines; survivors are clustered into
+    # paragraphs and furigana-filtered.
+    orphan_sweep: bool = True
+    # orphan text needs >= this many alphanumeric chars (junk gate); 0 = off
+    orphan_min_chars: int = 2
     model_path: str = ""
     use_fp16: bool = False
     # Space scale policy: long side capped at det_long_side, inputs smaller
@@ -214,9 +230,16 @@ class LinesConfig(BaseModel):
     providers: list[str] = Field(default_factory=lambda: ["CPUExecutionProvider"])
     # skip detected lines whose longest side is smaller than this (image px).
     min_line_px: float = 12.0
-    # furigana (ruby) filter, ported from Kellenok's PP-OCR_manga Space app
+    # lines whose text is a single alphanumeric letter are usually junk
+    # fragments on artwork (T, キ, ち) that widen paragraph boxes; lines of
+    # punctuation marks (ー, !!) always pass. 0 disables.
+    min_line_chars: int = 2
+    # furigana (ruby) filter, ported from Kellenok's PP-OCR_manga Space app.
+    # size_ratio 0.75 + ink correction (box_pad subtraction): large-drawn
+    # ruby measures ~0.75 on padded quads; parallel dialogue is rejected by
+    # the char-size law anyway.
     furigana_filter: bool = True
-    furigana_size_ratio: float = 0.70
+    furigana_size_ratio: float = 0.75
     furigana_proximity_ratio: float = 0.35
     furigana_overlap_ratio: float = 0.05
     furigana_max_thickness_px: float = 32.0
@@ -231,7 +254,11 @@ class LinesConfig(BaseModel):
 
 
 class RecConfig(BaseModel):
-    backend: Literal["onnx", "torch", "ppocr"] = "torch"
+    # Default "ppocr" (Kellenok manga CTC, ~20MB): ~7x faster than Hayai on
+    # CPU with close accuracy; "torch" (Hayai OCR v2 VLM) is the
+    # high-accuracy option (better CER on stylized SFX), "onnx" the Hayai
+    # ONNX port.
+    backend: Literal["onnx", "torch", "ppocr"] = "ppocr"
     onnx_dir: str = ""
     precision: Literal["fp32", "fp16", "quant"] = "fp32"
     providers: list[str] = Field(default_factory=lambda: ["CPUExecutionProvider"])
@@ -241,8 +268,13 @@ class RecConfig(BaseModel):
     # skip crops that are nearly flat (grayscale std below this): blank bubble
     # areas make the recognizer hallucinate. <=0 disables.
     blank_std_thresh: float = 5.0
-    # torch backend (@hayaiocr_rec): explicit snapshot dir ("" = auto-resolve)
+    # torch backend (@hayaiocr_rec): explicit snapshot dir ("" = auto-resolve
+    # from the repo revision below)
     torch_model: str = ""
+    # hayai-ocr-v2 repo branch/revision to use (e.g. "main", "nova-alpha",
+    # "nova-preview-4"). Resolved via the local HF cache's refs; downloads
+    # the revision when missing (unless offline).
+    torch_revision: str = "main"
     torch_processor: str = ""
     device: str = "cpu"
     dtype: Literal["float32", "float16"] = "float32"
@@ -262,7 +294,7 @@ class RecConfig(BaseModel):
     def resolved_torch_model(self) -> Path:
         from comictxt.rec_hayai_torch import resolve_rec_torch
 
-        return resolve_rec_torch(self.torch_model)
+        return resolve_rec_torch(self.torch_model, self.torch_revision)
 
     def resolved_ppocr_model(self) -> Path:
         from comictxt.rec_ppocr import resolve_ppocr_model

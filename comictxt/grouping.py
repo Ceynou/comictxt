@@ -95,6 +95,46 @@ def infer_orientation(
     return (py2 - py1) > (px2 - px1)
 
 
+def _cluster_adjacent(
+    boxes: list[tuple], layout_overlap_ratio: float = 0.5, layout_gap_ratio: float = 0.75
+) -> list[list[int]]:
+    """Union-find clustering of boxes into adjacent groups (transitive).
+
+    Same pair rules as ``infer_orientation``: vertical text lines are
+    horizontally adjacent (x-gap < gap_ratio * mean width + y-overlap >=
+    overlap_ratio); horizontal lines are vertically adjacent (y-gap <
+    1.5 * height + x-overlap). Used to keep fragmented SFX lines in one
+    paragraph during the orphan sweep. Returns lists of input indices.
+    """
+    n = len(boxes)
+    parent = list(range(n))
+
+    def find(i: int) -> int:
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    def union(i: int, j: int) -> None:
+        ri, rj = find(i), find(j)
+        if ri != rj:
+            parent[rj] = ri
+
+    for i in range(n):
+        for j in range(i + 1, n):
+            a, b = boxes[i], boxes[j]
+            w = ((a[2] - a[0]) + (b[2] - b[0])) / 2.0
+            h = max(a[3] - a[1], b[3] - b[1])
+            if (_h_gap(a, b) < w * layout_gap_ratio and _y_overlap(a, b) >= layout_overlap_ratio) or (
+                _v_gap(a, b) < h * 1.5 and _x_overlap(a, b) >= layout_overlap_ratio
+            ):
+                union(i, j)
+    groups: dict[int, list[int]] = {}
+    for i in range(n):
+        groups.setdefault(find(i), []).append(i)
+    return [sorted(idxs) for _, idxs in sorted(groups.items(), key=lambda kv: kv[1][0])]
+
+
 def build_paragraph(
     lines: list[dict],
     W: int,

@@ -66,6 +66,21 @@ class StubPipeline(ComicTxtPipeline):
                     return self.outer._texts[i]
                 return "text"
 
+            def ocr_quad(self, img_bgr, quad):
+                # ppocr-path stub: crop the quad bbox, delegate to ocr_pil
+                q = np.asarray(quad, dtype=np.float32)
+                x1 = max(0, int(q[:, 0].min()))
+                y1 = max(0, int(q[:, 1].min()))
+                x2 = int(q[:, 0].max()) + 1
+                y2 = int(q[:, 1].max()) + 1
+                crop = img_bgr[y1:y2, x1:x2]
+                from PIL import Image as _Image
+
+                i = self.outer._ti
+                self.outer._ti += 1
+                t = self.outer._texts[i] if i < len(self.outer._texts) else "text"
+                return t, q
+
             def ensure_loaded(self):
                 pass
 
@@ -144,9 +159,10 @@ def test_owocr_shape_compatible_with_neokuro_converter():
 def test_min_line_px_skips_specks():
     import numpy as np
 
-    cfg = ComictxtConfig()  # min_line_px=12 default
+    # Hayai path: min_line_px gates the recognizer (ppocr path has no gate)
+    cfg = ComictxtConfig().with_overrides({"rec.backend": "onnx"})
     tiny = np.array([[0, 0], [5, 0], [5, 5], [0, 5]], dtype=np.float32)
-    pipe = StubPipeline(cfg, boxes=[[10, 10, 100, 100]], polys_per_region=[[tiny]], texts=["x"])
+    pipe = StubPipeline(cfg, boxes=[[10, 10, 100, 100]], polys_per_region=[[tiny]], texts=["xy"])
     out = pipe.process_pil(_img(ink=False))
     # tiny poly skipped, then fallback rec on white region -> blank gate -> nothing
     assert out["paragraphs"] == []
@@ -155,9 +171,11 @@ def test_min_line_px_skips_specks():
 def test_min_line_px_disabled_at_zero():
     import numpy as np
 
-    cfg = ComictxtConfig().with_overrides({"lines.min_line_px": 0, "rec.blank_std_thresh": 0})
+    cfg = ComictxtConfig().with_overrides(
+        {"rec.backend": "onnx", "lines.min_line_px": 0, "rec.blank_std_thresh": 0}
+    )
     tiny = np.array([[0, 0], [5, 0], [5, 5], [0, 5]], dtype=np.float32)
-    pipe = StubPipeline(cfg, boxes=[[10, 10, 100, 100]], polys_per_region=[[tiny]], texts=["x"])
+    pipe = StubPipeline(cfg, boxes=[[10, 10, 100, 100]], polys_per_region=[[tiny]], texts=["xy"])
     out = pipe.process_pil(_img())
     assert len(out["paragraphs"]) == 1
 
@@ -195,7 +213,8 @@ def test_hayai_line_path_deskews_rotated_quad():
     from PIL import Image, ImageDraw
 
     cfg = ComictxtConfig().with_overrides(
-        {"rec.blank_std_thresh": 0, "rec.line_pad": 0, "rec.min_crop_size": 0}
+        {"rec.backend": "onnx",  # Hayai warped-quad path (rec is stubbed)
+         "rec.blank_std_thresh": 0, "rec.line_pad": 0, "rec.min_crop_size": 0}
     )
     a = math.radians(20.0)
     c, s = math.cos(a), math.sin(a)
@@ -209,7 +228,7 @@ def test_hayai_line_path_deskews_rotated_quad():
     class CapRec:
         def ocr_pil(self, img):
             seen["size"] = img.size
-            return "x"
+            return "xy"  # 2 chars: single-letter lines hit the junk gate
 
         def ensure_loaded(self):
             pass
@@ -223,13 +242,104 @@ def test_hayai_line_path_deskews_rotated_quad():
         return self._rec_stub
 
     # swap the rec property on the instance's class for this test only
+    # (restore afterwards: delattr would leave later tests falling through
+    # to the real lazy-loading ComicTxtPipeline.rec)
+    _orig_rec = type(pipe).rec
     type(pipe).rec = _rec_prop
     try:
         img = Image.new("RGB", (200, 200), (255, 255, 255))
         ImageDraw.Draw(img).rectangle([80, 40, 120, 160], fill=(0, 0, 0))
         out = pipe.process_pil(img)
     finally:
-        delattr(type(pipe), "rec")
-    assert out["paragraphs"][0]["lines"][0]["text"] == "x"
+        type(pipe).rec = _orig_rec
+    assert out["paragraphs"][0]["lines"][0]["text"] == "xy"
     # deskewed crop, not the inflated axis bbox
     assert seen["size"] == (20, 100)
+
+
+def test_orphan_sweep_recovers_missed_region():
+    """Region flow finds one line; the sweep adopts a second, orphan line."""
+    region_quad = np.array([[5, 5], [50, 5], [50, 20], [5, 20]], dtype=np.float32)
+    orphan_quad = np.array([[120, 120], [160, 120], [160, 140], [120, 140]], dtype=np.float32)
+
+    class SweepStub(StubPipeline):
+        @property
+        def lines(self):
+            outer = self
+
+            class L:
+                def __init__(self):
+                    self.calls = 0
+
+                def detect_pil(self, img):
+                    idx = self.calls
+                    self.calls += 1
+                    if idx == 0:
+                        return [region_quad]
+                    return [orphan_quad]  # full-page sweep call
+
+                def ensure_loaded(self):
+                    pass
+
+            if not hasattr(self, "_sweep_lines"):
+                self._sweep_lines = L()
+            return self._sweep_lines
+
+    pipe = SweepStub(ComictxtConfig(), boxes=[[10, 10, 100, 100]], texts=["こんにちは"])
+    out = pipe.process_pil(_img())
+    texts = [ln["text"] for p in out["paragraphs"] for ln in p["lines"]]
+    assert "こんにちは" in texts
+    assert any(t.startswith("text") for t in texts)  # orphan recognized
+
+
+def test_orphan_sweep_disabled():
+    region_quad = np.array([[5, 5], [50, 5], [50, 20], [5, 20]], dtype=np.float32)
+    orphan_quad = np.array([[120, 120], [160, 120], [160, 140], [120, 140]], dtype=np.float32)
+
+    class SweepStub(StubPipeline):
+        @property
+        def lines(self):
+            outer = self
+
+            class L:
+                def __init__(self):
+                    self.calls = 0
+
+                def detect_pil(self, img):
+                    idx = self.calls
+                    self.calls += 1
+                    if idx == 0:
+                        return [region_quad]
+                    return [orphan_quad]
+
+                def ensure_loaded(self):
+                    pass
+
+            if not hasattr(self, "_sweep_lines"):
+                self._sweep_lines = L()
+            return self._sweep_lines
+
+    cfg = ComictxtConfig().with_overrides({"lines.orphan_sweep": False})
+    pipe = SweepStub(cfg, boxes=[[10, 10, 100, 100]], texts=["こんにちは"])
+    out = pipe.process_pil(_img())
+    texts = [ln["text"] for p in out["paragraphs"] for ln in p["lines"]]
+    assert texts == ["こんにちは"]
+
+
+def test_single_letter_lines_gated():
+    # single alphanumeric letters (T, キ) are junk that widens paragraph
+    # boxes; they are dropped, punctuation-only lines are not
+    quads = [
+        np.array([[5, 5], [50, 5], [50, 20], [5, 20]], dtype=np.float32),
+        np.array([[5, 30], [20, 30], [20, 45], [5, 45]], dtype=np.float32),
+    ]
+    pipe = StubPipeline(
+        ComictxtConfig(),
+        boxes=[[10, 10, 100, 100]],
+        polys_per_region=[quads],
+        texts=["でも", "T"],
+    )
+    out = pipe.process_pil(_img())
+    texts = [ln["text"] for p in out["paragraphs"] for ln in p["lines"]]
+    assert "T" not in texts
+    assert "でも" in texts

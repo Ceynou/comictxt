@@ -12,7 +12,7 @@ def test_resolve_torch_snapshot():
 
 def test_torch_config_defaults():
     cfg = ComictxtConfig()
-    assert cfg.rec.backend == "torch"
+    assert cfg.rec.backend == "ppocr"
     cfg2 = cfg.with_overrides({"rec.backend": "onnx", "rec.device": "cpu"})
     assert cfg2.rec.backend == "onnx"
 
@@ -32,3 +32,22 @@ def test_torch_transcribes_synthetic_crop():
     ImageDraw.Draw(img).text((20, 20), "Hello", fill=(0, 0, 0))
     text = rec.ocr_pil(img)
     assert isinstance(text, str) and "Hello" in text
+
+
+def test_resolve_torch_revision_pinning(monkeypatch):
+    """The resolver must pin the requested revision, not the newest snapshot.
+
+    Downloading another branch (e.g. nova-alpha) used to silently re-pin
+    the default model via the mtime heuristic.
+    """
+    from pathlib import Path
+
+    base = Path(resolve_rec_torch(""))  # any cached snapshot root
+    monkeypatch.setenv("HF_HUB_OFFLINE", "1")
+    snap = resolve_rec_torch("", revision="nova-alpha")
+    assert snap.parent.parent == base.parent.parent  # same repo
+    ref = (snap.parent.parent / "refs" / "nova-alpha").read_text().strip()
+    assert snap.name == ref
+    # unknown revision falls back to the newest complete snapshot
+    fallback = resolve_rec_torch("", revision="no-such-branch")
+    assert (fallback / "model.safetensors").exists()

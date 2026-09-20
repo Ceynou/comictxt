@@ -98,8 +98,15 @@ def is_furigana_pair(
     proximity_min: float = 8.0,
     proximity_max: float = 16.0,
     max_chars: int = 8,
+    box_pad: float = 4.0,
 ) -> bool:
-    """Whether sub_line is ruby furigana belonging to main_line (Space port)."""
+    """Whether sub_line is ruby furigana belonging to main_line (Space port).
+
+    ``box_pad`` compensates the detector quad's ``minAreaRect + box_pad``
+    safety inflation before comparing thickness: the pad adds a constant to
+    both lines, which inflates the sub/main thickness ratio for small ruby
+    (e.g. real 0.67 reads as 0.75) and lets ruby escape the filter.
+    """
     text_sub = (sub_line.get("text") or "").strip()
     text_main = (main_line.get("text") or "").strip()
     if not text_sub or not text_main:
@@ -108,8 +115,15 @@ def is_furigana_pair(
     # Rule 1: furigana itself holds no kanji or dialogue punctuation, and is short.
     if contains_kanji(text_sub):
         return False
-    if any(p in text_sub for p in _FURIGANA_FORBIDDEN_PUNCT):
+    if any(p in text_sub for p in _FURIGANA_FORBIDDEN_PUNCT if p != "ー"):
         return False
+    elif "ー" in text_sub:
+        # The long-vowel mark is forbidden dialogue punctuation, but real
+        # katakana ruby readings contain it (エキスパート, ショー). Allow it
+        # when the rest of the ruby is katakana; pure ー marks stay kept.
+        stripped = text_sub.replace("ー", "")
+        if not stripped or not all("\u30a0" <= ch <= "\u30ff" for ch in stripped):
+            return False
     if len(text_sub) > max_chars:
         return False
 
@@ -125,29 +139,64 @@ def is_furigana_pair(
     main_w = box_main["xmax"] - box_main["xmin"]
     main_h = box_main["ymax"] - box_main["ymin"]
 
-    sub_thickness = min(sub_w, sub_h)
-    main_thickness = min(main_w, main_h)
+    # Ink geometry: detector quads carry box_pad inflation and minAreaRect
+    # slack; the measured ink extent (warp + Otsu bbox) is far more stable
+    # for ruby ratios (det-box ratios wander 0.5-0.85 for true ruby).
+    ink_sub = sub_line.get("ink_wh")
+    ink_main = main_line.get("ink_wh")
+    if ink_sub and ink_main:
+        try:
+            sub_thickness = float(min(ink_sub))
+            main_thickness = float(min(ink_main))
+            sub_len = float(max(ink_sub))
+            main_len = float(max(ink_main))
+            ink_ok = True
+        except (TypeError, ValueError):
+            ink_ok = False
+    else:
+        ink_ok = False
+    if not ink_ok:
+        sub_thickness = min(sub_w, sub_h)
+        main_thickness = min(main_w, main_h)
+        # Ink correction: detector quads carry a constant box_pad inflation
+        # on every side dimension; thickness ratios on raw boxes are biased
+        # up for small ruby (the pad is a bigger fraction of a thin line).
+        if box_pad > 0:
+            sub_thickness = max(1.0, sub_thickness - box_pad)
+            main_thickness = max(1.0, main_thickness - box_pad)
+        sub_len = max(sub_w, sub_h)
+        main_len = max(main_w, main_h)
 
-    # 1. Physical scale limit: ruby stays small even in high-res scans.
-    if sub_thickness > max_thickness_px:
-        return False
-
-    # 2. Ruby is significantly thinner than the main line.
-    if sub_thickness > main_thickness * size_ratio:
-        return False
-
-    # 3. Length law: ruby annotates a word, never outgrows the main text.
-    sub_len = max(sub_w, sub_h)
-    main_len = max(main_w, main_h)
-    if sub_len > main_len * length_ratio:
-        return False
-
-    # 4. Character size law: parallel dialogue shares char size; ruby is ~half.
-    if len(text_sub) >= 3:
+    # 4. Character size law FIRST: parallel dialogue shares char size, ruby
+    #    is ~half. For >=2-char candidates this is the most reliable
+    #    discriminator (some styles draw chunky ruby at ~0.85 thickness).
+    char_size_confirmed = False
+    if len(text_sub) >= 2:
         char_size_sub = sub_len / max(1, len(text_sub))
         char_size_main = main_len / max(1, len(text_main))
         if char_size_sub >= char_size_main * char_size_ratio:
             return False
+        char_size_confirmed = True
+
+    # Thickness law: strict by default; when the char-size law already
+    # confirmed ruby, only require the ruby to not be FATTER than the main
+    # (chunky hand-drawn ruby exists; dialogue is excluded by rule 4).
+    eff_size_ratio = 0.95 if char_size_confirmed else size_ratio
+
+    # 1. Physical scale limit: ruby stays small even in high-res scans.
+    #    After the relative rule below, an absolute cap tighter than
+    #    eff_size_ratio * main can only reject large-font pages' ruby, so
+    #    the effective cap never drops below the relative bound.
+    if sub_thickness > max(max_thickness_px, main_thickness * eff_size_ratio):
+        return False
+
+    # 2. Ruby is significantly thinner than the main line.
+    if sub_thickness > main_thickness * eff_size_ratio:
+        return False
+
+    # 3. Length law: ruby annotates a word, never outgrows the main text.
+    if sub_len > main_len * length_ratio:
+        return False
 
     proximity_limit = min(proximity_max, max(proximity_min, main_thickness * proximity_ratio))
 
@@ -185,6 +234,7 @@ def filter_furigana(
     proximity_max: float = 16.0,
     max_chars: int = 8,
     is_vertical=None,
+    box_pad: float = 4.0,
 ) -> list[dict]:
     """Drop ruby lines. Never drops the last remaining line."""
     kept, _events = explain_filter(
@@ -199,6 +249,7 @@ def filter_furigana(
         proximity_max=proximity_max,
         max_chars=max_chars,
         is_vertical=is_vertical,
+        box_pad=box_pad,
     )
     return kept
 
@@ -215,6 +266,7 @@ def explain_filter(
     proximity_max: float = 16.0,
     max_chars: int = 8,
     is_vertical=None,
+    box_pad: float = 4.0,
 ) -> tuple[list[dict], list[dict]]:
     """Like filter_furigana but also returns per-line drop explanations.
 
@@ -253,6 +305,7 @@ def explain_filter(
                 proximity_min=proximity_min,
                 proximity_max=proximity_max,
                 max_chars=max_chars,
+                box_pad=box_pad,
             ):
                 drop[j] = True
                 matched = True

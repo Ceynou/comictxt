@@ -171,11 +171,14 @@ def resolve_rec_processor(explicit: str = "") -> Path:
     )
 
 
-def resolve_rec_torch(explicit: str = "") -> Path:
-    """Resolve the PyTorch Hayai snapshot dir.
+def resolve_rec_torch(explicit: str = "", revision: str = "main") -> Path:
+    """Resolve the PyTorch Hayai snapshot dir for a repo ``revision``.
 
-    Prefers release snapshots (ones shipping README.md — the looping
-    `finetuned` ref target is explicitly avoided), newest first.
+    Resolution order: explicit path > local snapshot for the revision's
+    commit (``refs/<revision>``) > download of that revision (unless
+    offline) > newest complete README-bearing snapshot. The mtime
+    heuristic alone is not deterministic — downloading another branch
+    (e.g. ``nova-alpha``) silently re-pinned the default model.
     """
     if explicit:
         p = Path(explicit)
@@ -183,6 +186,13 @@ def resolve_rec_torch(explicit: str = "") -> Path:
             raise FileNotFoundError(f"torch Hayai model not found in: {p}")
         return p
     import os
+
+    def complete(d: Path) -> bool:
+        return (
+            (d / "model.safetensors").exists()
+            and (d / "tokenizer.json").exists()
+            and (d / "modeling_hayai.py").exists()
+        )
 
     roots: list[Path] = []
     env = os.environ.get("HF_HUB_CACHE") or os.environ.get("HUGGINGFACE_HUB_CACHE")
@@ -202,12 +212,25 @@ def resolve_rec_torch(explicit: str = "") -> Path:
             "Could not find hayai-ocr-v2 in HF cache. Set rec.torch_model explicitly."
         )
 
-    def complete(d: Path) -> bool:
-        return (
-            (d / "model.safetensors").exists()
-            and (d / "tokenizer.json").exists()
-            and (d / "modeling_hayai.py").exists()
-        )
+    # exact snapshot for the requested revision, when cached
+    if revision:
+        ref_file = base / "refs" / revision
+        if ref_file.is_file():
+            commit = ref_file.read_text(encoding="utf-8").strip()
+            snap = base / "snapshots" / commit
+            if complete(snap):
+                return snap
+        # not cached: try to fetch it (no-op offline / already up to date)
+        if not os.environ.get("HF_HUB_OFFLINE") and not os.environ.get("TRANSFORMERS_OFFLINE"):
+            try:
+                from huggingface_hub import snapshot_download
+
+                snap = Path(snapshot_download(
+                    "JustANormalTinkerer/hayai-ocr-v2", revision=revision))
+                if complete(snap):
+                    return snap
+            except Exception:  # noqa: BLE001 - offline / network failure: fall through
+                pass
 
     snaps = base / "snapshots"
     cands = [d for d in snaps.iterdir() if d.is_dir() and complete(d)] if snaps.is_dir() else []

@@ -20,9 +20,9 @@ def test_defaults():
     assert cfg.lines.min_line_px == 12.0
     assert cfg.lines.box_pad == 4.0
     assert cfg.rec.line_pad == 2
-    assert cfg.lines.furigana_size_ratio == 0.70
+    assert cfg.lines.furigana_size_ratio == 0.75
     assert cfg.rec.precision == "fp32"
-    assert cfg.rec.backend == "torch"
+    assert cfg.rec.backend == "ppocr"
     assert cfg.rec.ppocr_trim is True
     assert cfg.preprocess.enable is False
     assert cfg.server.port == 7331

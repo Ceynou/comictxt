@@ -183,10 +183,10 @@ def run_debug(
     # -- stage 02: padding ----------------------------------------------------
     pad_ratio = float(cfg.region.pad_ratio)
     padded_list = []
-    for b in boxes.tolist():
-        rx1, ry1, rx2, ry2 = expand_box(float(b[0]), float(b[1]), float(b[2]), float(b[3]),
-                                        pad_ratio, W, H)
-        padded_list.append([rx1, ry1, rx2, ry2])
+    from comictxt.geometry import expand_region_boxes
+
+    padded_list = expand_region_boxes(
+        boxes.tolist(), pad_ratio, cfg.region.pad_mode, W, H)
     _save_json(stages / "02_padding.json",
                {"pad_ratio": pad_ratio, "padded_boxes": [_round_box(b) for b in padded_list]})
     canvas = img.copy()
@@ -381,6 +381,7 @@ def run_debug(
                 proximity_min=lc_cfg.furigana_proximity_min,
                 proximity_max=lc_cfg.furigana_proximity_max,
                 max_chars=lc_cfg.furigana_max_chars,
+                box_pad=lc_cfg.box_pad,
             )
         else:
             kept_items, events = list(line_items), [

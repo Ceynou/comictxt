@@ -33,6 +33,12 @@ contain_thresh = 0.80
 contain_action = "merge"  # "merge" | "drop" | "keep"
 # expand each region box by this ratio (0.05 = 5%) before cropping
 pad_ratio = 0.15
+# how pad_ratio is applied: "auto" (default) uses "uniform" for isolated
+# regions (the smallest side grows by the same absolute amount as the
+# biggest side — tight long-line crops gain context left/right) but falls
+# back to "proportional" when the widened box would reach another region;
+# "uniform"/"proportional"/"max" force one behavior
+pad_mode = "auto"
 # execution providers for onnxruntime
 providers = ["CPUExecutionProvider"]
 # device for ultralytics backend ("cpu" | "cuda" | "mps" | ...)
@@ -45,6 +51,12 @@ enable_line_stage = true
 fallback_to_region_text = true
 # if no regions detected at all, run line detection on the full image
 run_lines_on_full_image_if_no_regions = false
+# second full-image detection pass adopting lines OUTSIDE every region box
+# (recovers small SFX/captions the region stage missed; clustered into
+# paragraphs and furigana-filtered)
+orphan_sweep = true
+# orphan text needs >= this many alphanumeric chars (junk gate); 0 = off
+orphan_min_chars = 2
 # explicit det model path ("" = auto-resolve)
 model_path = ""
 # use fp16 onnx if available (manga_det_v0.1_fp16.onnx)
@@ -68,9 +80,12 @@ max_candidates = 3000
 providers = ["CPUExecutionProvider"]
 # skip detected lines whose longest side is smaller than this (image px)
 min_line_px = 12.0
+# drop single-alphanumeric-letter lines (artwork junk like T / キ);
+# punctuation-only lines (ー, !!) always pass. 0 disables.
+min_line_chars = 2
 # furigana (ruby) filter, ported from Kellenok's PP-OCR_manga Space app.
 furigana_filter = true
-furigana_size_ratio = 0.70
+furigana_size_ratio = 0.75
 furigana_proximity_ratio = 0.35
 furigana_overlap_ratio = 0.05
 furigana_max_thickness_px = 32.0
@@ -81,9 +96,11 @@ furigana_proximity_max = 16.0
 furigana_max_chars = 8
 
 [rec]
-# backend: "onnx" (@hayaiocr_onnx_rec) | "torch" (@hayaiocr_rec) | "ppocr"
-# (Kellenok PP-OCRv6 manga rec, CTC — matches the line detector's Space app)
-backend = "torch"
+# backend: "ppocr" (Kellenok PP-OCRv6 manga rec, CTC — matches the line
+# detector's Space app; ~7x faster than Hayai on CPU) | "torch"
+# (@hayaiocr_rec, Hayai OCR v2 VLM — highest accuracy on stylized SFX) |
+# "onnx" (@hayaiocr_onnx_rec)
+backend = "ppocr"
 # explicit onnx dir containing hayai_encoder.onnx / hayai_decoder.onnx / tokenizer.json / position_base.npy
 # ("" = auto-resolve from HF cache)
 onnx_dir = ""
@@ -97,9 +114,10 @@ line_pad = 2
 min_crop_size = 8
 # skip nearly-flat crops (grayscale std below this) to avoid hallucinations
 blank_std_thresh = 5.0
-# torch backend: explicit snapshot dir with model.safetensors ("" = auto-resolve,
-# refs/main target preferred)
+# torch backend: explicit snapshot dir with model.safetensors ("" = auto-resolve)
 torch_model = ""
+# hayai-ocr-v2 repo revision to use ("main", "nova-alpha", ...)
+torch_revision = "main"
 torch_processor = ""
 device = "cpu"
 dtype = "float32"  # "float32" | "float16"
