@@ -4,8 +4,9 @@
 # or set an explicit file path.
 
 [region]
-# yolo model size: n | s | m | l | x  (default x)
-model_size = "x"
+# yolo model size: n | s | m | l | x  (ablation winner: m, F1 0.889 onnx /
+# 0.884 ultralytics on ground_truth/; x 0.885 at ~2.7x the cost, l 0.873)
+model_size = "m"
 # backend: "onnx" | "ultralytics"
 backend = "ultralytics"
 # explicit paths ("" = auto-resolve). onnx_path used by backend="onnx",
@@ -14,9 +15,8 @@ onnx_path = ""
 pt_path = ""
 # inference image size (square, letterboxed). int or [w, h].
 imgsz = 640
-# confidence / NMS thresholds (iou=0.7 is the ultralytics default;
-# compare_yolo12.py relies on it by not passing iou).
-conf = 0.16
+# confidence threshold (ablation: 0.30-0.40 plateau for m on ground_truth/)
+conf = 0.40
 iou = 0.70
 # IoU-NMS on the onnx backend (ultralytics always runs its internal NMS).
 # Ablation (ground_truth/, new detector): merge-only beats NMS+merge
@@ -68,12 +68,14 @@ det_min_side = 480
 # white-border margin (px) around the detection input so text touching the
 # crop edge still detects (subtracted after unclip, like the Space app)
 det_margin = 16
-# DB post-processing
-thresh = 0.15
+# DB post-processing (ablation on ground_truth/ lines: unclip 1.8 raises box
+# IoU without recall loss; min_short_side 18 is the ruby-exclusion knee —
+# drops furigana-sized fragments, 24+ starts killing small text)
+thresh = 0.20
 box_thresh = 0.25
-unclip_ratio = 1.4
+unclip_ratio = 1.8
 # minimum box side (image px) of the unclipped polygon
-min_short_side = 6
+min_short_side = 18
 # safety padding (px) around the minAreaRect final 4-point quad
 box_pad = 4.0
 max_candidates = 3000
@@ -96,41 +98,28 @@ furigana_proximity_max = 16.0
 furigana_max_chars = 8
 
 [rec]
-# backend: "ppocr" (Kellenok PP-OCRv6 manga rec, CTC — matches the line
-# detector's Space app; ~7x faster than Hayai on CPU) | "torch"
-# (@hayaiocr_rec, Hayai OCR v2 VLM — highest accuracy on stylized SFX) |
-# "onnx" (@hayaiocr_onnx_rec)
-backend = "ppocr"
-# explicit onnx dir containing hayai_encoder.onnx / hayai_decoder.onnx / tokenizer.json / position_base.npy
-# ("" = auto-resolve from HF cache)
-onnx_dir = ""
-# precision: "fp32" | "fp16" | "quant"
-precision = "fp32"
-providers = ["CPUExecutionProvider"]
+# Hayai OCR v2.5 Nova (JustANormalTinkerer/hayai-ocr-v2.5-nova, PyTorch) —
+# the only recognizer: SigLIP2 NaFlex + 12-layer decoder, handles vertical
+# and stylized text natively.
 max_new_tokens = 128
-# padding (pixels) added around each line crop before recognition
-line_pad = 2
+# padding (pixels) added around each line crop before recognition.
+# Text-only ablation: 0 beats 2/4 at every patch budget — extra context pulls
+# in neighbor glyphs/artwork and hurts CER.
+line_pad = 0
 # minimum crop size; smaller crops are upscaled/padded
 min_crop_size = 8
 # skip nearly-flat crops (grayscale std below this) to avoid hallucinations
 blank_std_thresh = 5.0
-# torch backend: explicit snapshot dir with model.safetensors ("" = auto-resolve)
+# explicit model snapshot dir with model.safetensors ("" = auto-resolve)
 torch_model = ""
-# hayai-ocr-v2 repo revision to use ("main", "nova-alpha", ...)
+# repo revision to use (branch of hayai-ocr-v2.5-nova)
 torch_revision = "main"
+# explicit SigLIP2 NaFlex processor dir ("" = auto-resolve)
 torch_processor = ""
 device = "cpu"
 dtype = "float32"  # "float32" | "float16"
-# NaFlex patches per crop (256 standard; 384/512 dense panels)
-max_num_patches = 256
-# ppocr backend: explicit rec model / dict paths ("" = auto-resolve from
-# Kellenok/PP-OCRv6_manga HF cache: rec/manga_rec_v0.1[_fp16].onnx,
-# ppocrv6_dict.txt)
-ppocr_model = ""
-ppocr_dict = ""
-ppocr_use_fp16 = false
-# Otsu-projection furigana/margin trim on warped crops (Space behavior)
-ppocr_trim = true
+# NaFlex patches per crop: 256 (throughput) / 384 (balanced) / 512 (quality)
+max_num_patches = 512
 
 [preprocess]
 # optional image cleanup before detection/recognition (off by default):

@@ -221,7 +221,6 @@ def run_debug(
         if det_crop is not crop:
             det_crop.save(crops / f"{tag}_crop_preprocessed.png")
         linfo = _lines_debug(pipe, det_crop)
-        use_ppocr = cfg.rec.backend == "ppocr"
         img_bgr = None
         if linfo.get("kept"):
             img_bgr = np.array(img.convert("RGB"))[:, :, ::-1]
@@ -264,7 +263,7 @@ def run_debug(
                            "green", width=lw, label=f"{ki}")
         lc.save(stages / f"03_{tag}_lines.png")
 
-        # recognize each kept line (ppocr warp path or min_line_px -> rec)
+        # recognize each kept line (min_line_px gate -> warped-quad rec)
         min_px = float(cfg.lines.min_line_px)
         line_rows = []
         line_items: list[dict] = []
@@ -274,32 +273,6 @@ def run_debug(
             if linfo.get("candidates"):
                 quad[:, 0] += rx1
                 quad[:, 1] += ry1
-            if use_ppocr and img_bgr is not None:
-                try:
-                    text, xyxy = pipe._recognize_quad(img_bgr, quad)
-                except Exception as e:  # noqa: BLE001
-                    line_rows.append({"quad": _poly_to_list(quad),
-                                      "score": k.get("score"),
-                                      "skipped": f"recognizer error: {e}", "text": ""})
-                    continue
-                ix1, iy1, ix2, iy2 = (int(v) for v in xyxy)
-                try:
-                    img.crop((ix1, iy1, ix2, iy2)).save(crops / f"{tag}_line{ki}.png")
-                except Exception:
-                    pass
-                if not text:
-                    line_rows.append({"quad": _poly_to_list(quad),
-                                      "quad_xyxy": _round_box(xyxy), "score": k.get("score"),
-                                      "skipped": "empty OCR text (dropped)", "text": ""})
-                    continue
-                line_rows.append({"quad": _poly_to_list(quad),
-                                  "quad_xyxy": _round_box(xyxy), "score": k.get("score"),
-                                  "text": text, "backend": "ppocr"})
-                line_items.append({"text": text, "xyxy": xyxy,
-                                   "det_xyxy": _round_box(polygon_to_xyxy(quad)),
-                                   "quad": np.asarray(quad, dtype=np.float32).tolist(),
-                                   "sort_wh": quad_true_size(np.asarray(quad, dtype=np.float32))})
-                continue
             det_xyxy = polygon_to_xyxy(quad)
             gx1, gy1, gx2, gy2 = det_xyxy
             longest = max(gx2 - gx1, gy2 - gy1)
@@ -335,7 +308,7 @@ def run_debug(
                 continue
             line_rows.append({"quad_xyxy": _round_box([gx1, gy1, gx2, gy2]),
                               "crop_xyxy": _round_box(xyxy), "score": k.get("score"),
-                              "text": text, "backend": cfg.rec.backend})
+                              "text": text, "backend": "hayai-torch"})
             line_items.append({"text": text, "xyxy": xyxy, "det_xyxy": det_xyxy,
                                "quad": np.asarray(quad, dtype=np.float32).tolist(),
                                "sort_wh": quad_true_size(np.asarray(quad, dtype=np.float32))})
@@ -353,7 +326,7 @@ def run_debug(
             "params": linfo.get("params", {}),
             "n_contours": linfo.get("n_contours"),
             "unclip_ratio": float(cfg.lines.unclip_ratio),
-            "rec_backend": cfg.rec.backend,
+            "rec_backend": "hayai-torch",
             "min_line_px": min_px,
             "candidates": cand_json,
             "recognized": line_rows,

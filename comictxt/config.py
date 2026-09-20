@@ -50,19 +50,6 @@ def _find_snapshot_file(repo_id_dashed: str, relative: str) -> Optional[Path]:
     return None
 
 
-def _find_snapshot_dir(repo_id_dashed: str, relative_dir: str) -> Optional[Path]:
-    for root in _hf_hub_roots():
-        base = root / repo_id_dashed
-        snaps = base / "snapshots"
-        if not snaps.is_dir():
-            continue
-        for sha_dir in sorted(snaps.iterdir()):
-            cand = sha_dir / relative_dir
-            if cand.is_dir():
-                return cand
-    return None
-
-
 def resolve_region_onnx(model_size: str, explicit: str = "") -> Path:
     if explicit:
         p = Path(explicit)
@@ -131,29 +118,16 @@ def resolve_lines_model(explicit: str = "", use_fp16: bool = False) -> Path:
     return found
 
 
-def resolve_rec_onnx_dir(explicit: str = "") -> Path:
-    if explicit:
-        p = Path(explicit)
-        if not p.is_dir():
-            raise FileNotFoundError(f"rec onnx_dir not found: {p}")
-        return p
-    found = _find_snapshot_dir(
-        "models--JustANormalTinkerer--hayai-ocr-v2-onnx", "onnx"
-    )
-    if found is None:
-        raise FileNotFoundError(
-            "Could not auto-resolve Hayai onnx dir in HF cache. Set rec.onnx_dir explicitly."
-        )
-    return found
-
-
 class RegionConfig(BaseModel):
-    model_size: Literal["n", "s", "m", "l", "x"] = "x"
+    # Ablation (benchmarks/bench_region.py, ground_truth/ block F1 @ IoU 0.5):
+    # m@640 conf 0.40 merge@0.8 -> F1 0.889 onnx / 0.884 ultralytics; x -> 0.885,
+    # l -> 0.873, s -> 0.883, n@960 -> 0.872. imgsz 960/1280 never beat 640.
+    model_size: Literal["n", "s", "m", "l", "x"] = "m"
     backend: Literal["onnx", "ultralytics"] = "ultralytics"
     onnx_path: str = ""
     pt_path: str = ""
     imgsz: Union[int, list[int]] = 640
-    conf: float = 0.16
+    conf: float = 0.40
     iou: float = 0.7
     max_det: int = 300
     # IoU-NMS on the onnx backend (ultralytics always runs its internal NMS).
@@ -217,12 +191,14 @@ class LinesConfig(BaseModel):
     # White-border margin (px) around the detection input: text touching the
     # crop edge still detects (subtracted after unclip, like the Space app).
     det_margin: int = 16
-    thresh: float = 0.15
+    thresh: float = 0.20
     box_thresh: float = 0.25
-    unclip_ratio: float = 1.4
+    unclip_ratio: float = 1.8
     # Minimum box side (image px) of the unclipped polygon; smaller kills
     # speck/noise detections before the (hallucination-prone) recognizer.
-    min_short_side: int = 6
+    # Line-det ablation knee (benchmarks/bench_lines.py): 18px drops ruby-sized
+    # fragments (rubyFP 87->19) at a small recall cost; 24+ kills small text.
+    min_short_side: int = 18
     # Safety padding (px, net scale) added around the minAreaRect before the
     # final 4-point quad (Space: +4.0).
     box_pad: float = 4.0
@@ -254,57 +230,37 @@ class LinesConfig(BaseModel):
 
 
 class RecConfig(BaseModel):
-    # Default "ppocr" (Kellenok manga CTC, ~20MB): ~7x faster than Hayai on
-    # CPU with close accuracy; "torch" (Hayai OCR v2 VLM) is the
-    # high-accuracy option (better CER on stylized SFX), "onnx" the Hayai
-    # ONNX port.
-    backend: Literal["onnx", "torch", "ppocr"] = "ppocr"
-    onnx_dir: str = ""
-    precision: Literal["fp32", "fp16", "quant"] = "fp32"
-    providers: list[str] = Field(default_factory=lambda: ["CPUExecutionProvider"])
+    """Recognition: Hayai OCR v2.5 Nova (PyTorch, trust_remote_code VLM).
+
+    The only supported recognizer; couples SigLIP2 NaFlex with a 12-layer
+    decoder and handles vertical/stylized text natively (no rotation).
+    """
+
     max_new_tokens: int = 128
-    line_pad: int = 2
+    # Text-only ablation (benchmarks/bench_rec.py, GT line quads): line_pad 0
+    # beats 2/4 on every patch budget (extra context pulls in neighbor
+    # glyphs/artwork); 512 patches = best text CER (0.069 vs 0.079 @256).
+    line_pad: int = 0
     min_crop_size: int = 8
     # skip crops that are nearly flat (grayscale std below this): blank bubble
     # areas make the recognizer hallucinate. <=0 disables.
     blank_std_thresh: float = 5.0
-    # torch backend (@hayaiocr_rec): explicit snapshot dir ("" = auto-resolve
-    # from the repo revision below)
+    # explicit snapshot dir ("" = auto-resolve from the HF cache)
     torch_model: str = ""
-    # hayai-ocr-v2 repo branch/revision to use (e.g. "main", "nova-alpha",
-    # "nova-preview-4"). Resolved via the local HF cache's refs; downloads
-    # the revision when missing (unless offline).
+    # repo revision to use (only branch of hayai-ocr-v2.5-nova). Resolved via
+    # the local HF cache's refs; downloads the revision when missing (unless
+    # offline).
     torch_revision: str = "main"
     torch_processor: str = ""
     device: str = "cpu"
     dtype: Literal["float32", "float16"] = "float32"
-    # NaFlex patches per crop (256 standard; 384/512 dense panels per card)
-    max_num_patches: int = 256
-    # ppocr backend (Kellenok PP-OCRv6 manga rec): explicit model/dict paths
-    # ("" = auto-resolve from HF cache). trim enables the Otsu-projection
-    # furigana/margin trim on warped crops (Space: get_rotate_crop_image).
-    ppocr_model: str = ""
-    ppocr_dict: str = ""
-    ppocr_use_fp16: bool = False
-    ppocr_trim: bool = True
-
-    def resolved_onnx_dir(self) -> Path:
-        return resolve_rec_onnx_dir(self.onnx_dir)
+    # NaFlex patches per crop (256 throughput / 384 balanced / 512 quality)
+    max_num_patches: int = 512
 
     def resolved_torch_model(self) -> Path:
         from comictxt.rec_hayai_torch import resolve_rec_torch
 
         return resolve_rec_torch(self.torch_model, self.torch_revision)
-
-    def resolved_ppocr_model(self) -> Path:
-        from comictxt.rec_ppocr import resolve_ppocr_model
-
-        return resolve_ppocr_model(self.ppocr_model, self.ppocr_use_fp16)
-
-    def resolved_ppocr_dict(self) -> Path:
-        from comictxt.rec_ppocr import resolve_ppocr_dict
-
-        return resolve_ppocr_dict(self.ppocr_dict)
 
 
 class PipelineConfig(BaseModel):

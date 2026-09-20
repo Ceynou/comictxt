@@ -22,7 +22,6 @@ from comictxt.grouping import _cluster_adjacent, apply_reading_order, build_para
 from comictxt.io_utils import load_pil
 from comictxt.lines_ppocr import LineDetector
 from comictxt.preprocess import cleanup as cleanup_image
-from comictxt.rec_hayai import HayaiRecognizer
 from comictxt.region_yolo import RegionDetector
 
 log = logging.getLogger(__name__)
@@ -120,46 +119,22 @@ class ComicTxtPipeline:
         return self._lines
 
     @property
-    def rec(self):  # Union[HayaiRecognizer, TorchHayaiRecognizer, PpocrRecognizer]
+    def rec(self):
+        """Hayai OCR v2.5 Nova (torch)."""
         if self._rec is None:
+            from comictxt.config import is_offline
+            from comictxt.rec_hayai_torch import TorchHayaiRecognizer, resolve_rec_processor
+
             rc = self.cfg.rec
-            if rc.backend == "torch":
-                from comictxt.rec_hayai_torch import TorchHayaiRecognizer, resolve_rec_processor
-
-                from comictxt.config import is_offline
-
-                self._rec = TorchHayaiRecognizer(
-                    model_path=rc.resolved_torch_model(),
-                    processor_path=resolve_rec_processor(rc.torch_processor),
-                    device=rc.device,
-                    dtype=rc.dtype,
-                    max_new_tokens=rc.max_new_tokens,
-                    max_num_patches=rc.max_num_patches,
-                    offline=is_offline(self.cfg),
-                ).load()
-            elif rc.backend == "ppocr":
-                from comictxt.rec_ppocr import PpocrRecognizer
-
-                pc = self.cfg.preprocess
-                self._rec = PpocrRecognizer(
-                    model_path=rc.resolved_ppocr_model(),
-                    dict_path=rc.resolved_ppocr_dict(),
-                    providers=list(rc.providers),
-                    trim=rc.ppocr_trim,
-                    preprocess={
-                        "enable": pc.enable,
-                        "black_point": pc.black_point,
-                        "white_point": pc.white_point,
-                        "sharpen": pc.sharpen,
-                    },
-                ).load()
-            else:
-                self._rec = HayaiRecognizer(
-                    onnx_dir=rc.resolved_onnx_dir(),
-                    precision=rc.precision,
-                    providers=list(rc.providers),
-                    max_new_tokens=rc.max_new_tokens,
-                ).load()
+            self._rec = TorchHayaiRecognizer(
+                model_path=rc.resolved_torch_model(),
+                processor_path=resolve_rec_processor(rc.torch_processor),
+                device=rc.device,
+                dtype=rc.dtype,
+                max_new_tokens=rc.max_new_tokens,
+                max_num_patches=rc.max_num_patches,
+                offline=is_offline(self.cfg),
+            ).load()
         return self._rec
 
     def warmup(self) -> None:
@@ -247,23 +222,10 @@ class ComicTxtPipeline:
             box_pad=lc.box_pad,  # undo detector quad inflation in thickness ratios
         )
 
-    def _recognize_quad(
-        self, img_bgr: np.ndarray, quad: np.ndarray
-    ) -> tuple[str, tuple[float, float, float, float]]:
-        """PP-OCR path: perspective-warp the detector quad and decode.
-
-        Returns (text, updated quad xyxy) — the box comes back from the warp
-        corners, exactly like the Space app.
-        """
-        text, new_quad = self.rec.ocr_quad(img_bgr, np.asarray(quad, dtype=np.float32))
-        # NOTE: no blank-std gate here on purpose — CTC emits "" on blank
-        # crops (dropped below), unlike VLMs which hallucinate.
-        return text.strip(), polygon_to_xyxy(np.asarray(new_quad, dtype=np.float32))
-
     def _recognize_warped_quad(
         self, img_bgr: np.ndarray, quad: np.ndarray
     ) -> tuple[str, tuple[float, float, float, float]]:
-        """Hayai (onnx/torch) path: deskew the rotated detector quad.
+        """Hayai path: deskew the rotated detector quad.
 
         The old code fed ``polygon_to_xyxy(quad)`` (axis-aligned bbox) to
         ``_recognize_box`` — for rotated quads that bbox includes background
@@ -342,7 +304,6 @@ class ComicTxtPipeline:
         line_items: list[dict] = []
         min_px = float(cfg.lines.min_line_px)
         min_chars = int(cfg.lines.min_line_chars)
-        use_ppocr = cfg.rec.backend == "ppocr"
         img_bgr = None
         if cfg.lines.enable_line_stage:
             quads = self.lines.detect_pil(region_crop)
@@ -355,17 +316,6 @@ class ComicTxtPipeline:
                 det_xyxy = polygon_to_xyxy(q)  # tight box for furigana rules
                 sort_wh = quad_true_size(q)  # deskewed size for reading order
                 ink_wh = ink_size(img_bgr, q) if img_bgr is not None else None
-                if use_ppocr:
-                    assert img_bgr is not None
-                    text, xyxy = self._recognize_quad(img_bgr, q)
-                    if not text:
-                        continue
-                    if min_chars > 1 and self._junk_single_char(text):
-                        continue
-                    line_items.append(
-                        {"text": text, "xyxy": xyxy, "det_xyxy": det_xyxy,
-                         "quad": q.tolist(), "sort_wh": sort_wh, "ink_wh": ink_wh})
-                    continue
                 px1, py1, px2, py2 = det_xyxy
                 if min_px > 0 and max(px2 - px1, py2 - py1) < min_px:
                     continue
@@ -417,7 +367,6 @@ class ComicTxtPipeline:
             return []
         min_px = float(cfg.lines.min_line_px)
         min_chars = int(cfg.lines.orphan_min_chars)
-        use_ppocr = cfg.rec.backend == "ppocr"
         img_bgr = None
 
         def _iou(a, b) -> float:
@@ -446,16 +395,13 @@ class ComicTxtPipeline:
             ):
                 continue  # duplicate of an already-recognized line
             sort_wh = quad_true_size(q)
-            if not use_ppocr and min_px > 0:
+            if min_px > 0:
                 px1, py1, px2, py2 = det_xyxy
                 if max(px2 - px1, py2 - py1) < min_px:
                     continue
             if img_bgr is None:
                 img_bgr = np.array(img.convert("RGB"))[:, :, ::-1]
-            if use_ppocr:
-                text, xyxy = self._recognize_quad(img_bgr, q)
-            else:
-                text, xyxy = self._recognize_warped_quad(img_bgr, q)
+            text, xyxy = self._recognize_warped_quad(img_bgr, q)
             if not text:
                 continue
             if min_chars > 0 and sum(1 for ch in text if ch.isalnum()) < min_chars:
@@ -519,7 +465,6 @@ class ComicTxtPipeline:
             quads = self.lines.detect_pil(self._cleanup_pil(img))
             items: list[dict] = []
             min_px = float(cfg.lines.min_line_px)
-            use_ppocr = cfg.rec.backend == "ppocr"
             img_bgr = None
             if quads:
                 img_bgr = np.array(img.convert("RGB"))[:, :, ::-1]
@@ -527,15 +472,6 @@ class ComicTxtPipeline:
                 q = np.asarray(quad, dtype=np.float32)
                 det_xyxy = polygon_to_xyxy(q)  # tight box for furigana rules
                 sort_wh = quad_true_size(q)  # deskewed size for reading order
-                if use_ppocr:
-                    assert img_bgr is not None
-                    text, xyxy = self._recognize_quad(img_bgr, q)
-                    if not text:
-                        continue
-                    items.append(
-                        {"text": text, "xyxy": xyxy, "det_xyxy": det_xyxy,
-                         "quad": q.tolist(), "sort_wh": sort_wh})
-                    continue
                 x1, y1, x2, y2 = det_xyxy
                 if min_px > 0 and max(x2 - x1, y2 - y1) < min_px:
                     continue

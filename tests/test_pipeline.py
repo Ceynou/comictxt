@@ -66,21 +66,6 @@ class StubPipeline(ComicTxtPipeline):
                     return self.outer._texts[i]
                 return "text"
 
-            def ocr_quad(self, img_bgr, quad):
-                # ppocr-path stub: crop the quad bbox, delegate to ocr_pil
-                q = np.asarray(quad, dtype=np.float32)
-                x1 = max(0, int(q[:, 0].min()))
-                y1 = max(0, int(q[:, 1].min()))
-                x2 = int(q[:, 0].max()) + 1
-                y2 = int(q[:, 1].max()) + 1
-                crop = img_bgr[y1:y2, x1:x2]
-                from PIL import Image as _Image
-
-                i = self.outer._ti
-                self.outer._ti += 1
-                t = self.outer._texts[i] if i < len(self.outer._texts) else "text"
-                return t, q
-
             def ensure_loaded(self):
                 pass
 
@@ -159,8 +144,8 @@ def test_owocr_shape_compatible_with_neokuro_converter():
 def test_min_line_px_skips_specks():
     import numpy as np
 
-    # Hayai path: min_line_px gates the recognizer (ppocr path has no gate)
-    cfg = ComictxtConfig().with_overrides({"rec.backend": "onnx"})
+    # min_line_px gates the recognizer before the warp/recognition step
+    cfg = ComictxtConfig()
     tiny = np.array([[0, 0], [5, 0], [5, 5], [0, 5]], dtype=np.float32)
     pipe = StubPipeline(cfg, boxes=[[10, 10, 100, 100]], polys_per_region=[[tiny]], texts=["xy"])
     out = pipe.process_pil(_img(ink=False))
@@ -172,7 +157,7 @@ def test_min_line_px_disabled_at_zero():
     import numpy as np
 
     cfg = ComictxtConfig().with_overrides(
-        {"rec.backend": "onnx", "lines.min_line_px": 0, "rec.blank_std_thresh": 0}
+        {"lines.min_line_px": 0, "rec.blank_std_thresh": 0}
     )
     tiny = np.array([[0, 0], [5, 0], [5, 5], [0, 5]], dtype=np.float32)
     pipe = StubPipeline(cfg, boxes=[[10, 10, 100, 100]], polys_per_region=[[tiny]], texts=["xy"])
@@ -213,8 +198,7 @@ def test_hayai_line_path_deskews_rotated_quad():
     from PIL import Image, ImageDraw
 
     cfg = ComictxtConfig().with_overrides(
-        {"rec.backend": "onnx",  # Hayai warped-quad path (rec is stubbed)
-         "rec.blank_std_thresh": 0, "rec.line_pad": 0, "rec.min_crop_size": 0}
+        {"rec.blank_std_thresh": 0, "rec.line_pad": 0, "rec.min_crop_size": 0}
     )
     a = math.radians(20.0)
     c, s = math.cos(a), math.sin(a)

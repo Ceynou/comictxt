@@ -3,7 +3,8 @@
 Port of the detection half of Kellenok's PP-OCR_manga Space app
 (``Kellenok/PP-OCRv6_manga`` Spaces ``app.py::run_ocr``): white-margin pad,
 scale policy (cap long side, floor short inputs), threshold + contour +
-box-score + pyclipper unclip (largest path wins), 6px minimum, then
+box-score + pyclipper unclip (largest path wins), ``min_short_side``
+minimum (18px — ruby-exclusion knee from the line ablation), then
 ``minAreaRect + box_pad`` 4-point quads.
 
 Returns quads in input-image pixel coordinates.
@@ -178,36 +179,22 @@ class LineDetector:
         """Detect lines. Returns 4-point quads in img pixels."""
         return [c["quad"] for c in self.detect_bgr_debug(img_bgr)["kept"]]
 
-    def detect_bgr_debug(self, img_bgr: np.ndarray) -> dict:
-        """Detect lines with per-candidate diagnostics.
-
-        Returns ``{"params": {...}, "n_contours": int, "candidates": [...],
-        "kept": [{"score": float, "quad": (4,2)}]}``. Each candidate records
-        the raw contour (``poly_pre``), the unclipped polygon
-        (``poly_unclipped``) and the final quad — all in image pixels.
-        """
+    def _forward(self, img_bgr: np.ndarray):
+        """Run the DB net. Returns (pred_map, W, H, pW, pH, tw, th)."""
         self.ensure_loaded()
         assert self._sess is not None
-        info: dict = {
-            "params": {
-                "det_long_side": self.det_long_side,
-                "det_min_side": self.det_min_side,
-                "det_margin": max(0, self.det_margin),
-                "thresh": self.thresh,
-                "box_thresh": self.box_thresh,
-                "unclip_ratio": self.unclip_ratio,
-                "min_short_side": self.min_short_side,
-                "box_pad": self.box_pad,
-                "max_candidates": self.max_candidates,
-            },
-            "n_contours": 0,
-            "candidates": [],
-            "kept": [],
-        }
-        if img_bgr.size == 0:
-            return info
         inp, W, H, pW, pH, tw, th = self._preprocess(img_bgr)
         pred_map = self._sess.run(None, {self._input_name: inp})[0][0, 0]
+        return pred_map, W, H, pW, pH, tw, th
+
+    def _postprocess(self, pred_map: np.ndarray, W: int, H: int, pW: int, pH: int,
+                     tw: int, th: int) -> dict:
+        """DB post-processing (thresh -> contours -> box score -> unclip -> quad).
+
+        Returns the ``detect_bgr_debug`` info dict (without params)."""
+        info: dict = {"n_contours": 0, "candidates": [], "kept": []}
+        if pred_map.size == 0:
+            return info
         mask = pred_map > self.thresh
         contours, _ = cv2.findContours(
             (mask.astype(np.uint8)) * 255, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE
@@ -264,6 +251,34 @@ class LineDetector:
             info["truncated"] = len(scored) - self.max_candidates
             scored = scored[: self.max_candidates]
         info["kept"] = [{"score": float(s), "quad": q, "poly": q} for s, q in scored]
+        return info
+
+    def detect_bgr_debug(self, img_bgr: np.ndarray) -> dict:
+        """Detect lines with per-candidate diagnostics.
+
+        Returns ``{"params": {...}, "n_contours": int, "candidates": [...],
+        "kept": [{"score": float, "quad": (4,2)}]}``. Each candidate records
+        the raw contour (``poly_pre``), the unclipped polygon
+        (``poly_unclipped``) and the final quad — all in image pixels.
+        """
+        info: dict = {
+            "params": {
+                "det_long_side": self.det_long_side,
+                "det_min_side": self.det_min_side,
+                "det_margin": max(0, self.det_margin),
+                "thresh": self.thresh,
+                "box_thresh": self.box_thresh,
+                "unclip_ratio": self.unclip_ratio,
+                "min_short_side": self.min_short_side,
+                "box_pad": self.box_pad,
+                "max_candidates": self.max_candidates,
+            },
+        }
+        if img_bgr.size == 0:
+            info.update({"n_contours": 0, "candidates": [], "kept": []})
+            return info
+        pred_map, W, H, pW, pH, tw, th = self._forward(img_bgr)
+        info.update(self._postprocess(pred_map, W, H, pW, pH, tw, th))
         return info
 
     def detect_pil(self, img: Image.Image) -> list[np.ndarray]:

@@ -9,12 +9,8 @@
       "path": "/home/user/.cache/huggingface/hub/models--Kellenok--PP-OCRv6_manga",
       "description": "ppocrv6 manga huggingface folder"
     },
-    "hayaiocr_onnx_rec": {
-      "path": "/home/user/.cache/huggingface/hub/models--JustANormalTinkerer--hayai-ocr-v2-onnx",
-      "description": "hayai ocr onnx huggingface folder"
-    },
     "hayaiocr_rec": {
-      "path": "/home/user/.cache/huggingface/hub/models--JustANormalTinkerer--hayai-ocr-v2",
+      "path": "/home/user/.cache/huggingface/hub/models--JustANormalTinkerer--hayai-ocr-v2.5-nova",
       "description": "hayai ocr huggingface folder"
     },
     "animetext_det": {
@@ -26,7 +22,7 @@
       "description": "neokuro folder"
     },
     "python_env": {
-      "path": "/home/user/.venv/",
+      "path": "/home/user/.ocr/",
       "description": "Access to python virtual environment"
     }
   },

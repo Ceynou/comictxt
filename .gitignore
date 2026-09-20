@@ -218,3 +218,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# benchmark scratch (logs, large sweep dumps)
+benchmarks/results/*.log
+benchmarks/results/*sweep*.json

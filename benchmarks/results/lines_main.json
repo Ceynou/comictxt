@@ -1,0 +1,6914 @@
+[
+  {
+    "scale": 960,
+    "thresh": 0.1,
+    "box_thresh": 0.2,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 106,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 19,
+        "precision": 0.6478,
+        "recall": 0.8986,
+        "f1": 0.7529,
+        "precision_excl_ruby": 0.9112,
+        "f1_excl_ruby": 0.9049,
+        "mean_matched_iou": 0.7111
+      },
+      "full": {
+        "tp": 191,
+        "fp": 101,
+        "fn": 26,
+        "ruby_fp": 61,
+        "other_fp": 40,
+        "precision": 0.6541,
+        "recall": 0.8802,
+        "f1": 0.7505,
+        "precision_excl_ruby": 0.8268,
+        "f1_excl_ruby": 0.8527,
+        "mean_matched_iou": 0.806
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.1,
+    "box_thresh": 0.2,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 106,
+        "fn": 20,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6502,
+        "recall": 0.9078,
+        "f1": 0.7577,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7566
+      },
+      "full": {
+        "tp": 191,
+        "fp": 104,
+        "fn": 26,
+        "ruby_fp": 66,
+        "other_fp": 38,
+        "precision": 0.6475,
+        "recall": 0.8802,
+        "f1": 0.7461,
+        "precision_excl_ruby": 0.8341,
+        "f1_excl_ruby": 0.8565,
+        "mean_matched_iou": 0.8139
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.1,
+    "box_thresh": 0.2,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 88,
+        "other_fp": 17,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9206,
+        "f1_excl_ruby": 0.9142,
+        "mean_matched_iou": 0.8001
+      },
+      "full": {
+        "tp": 192,
+        "fp": 105,
+        "fn": 25,
+        "ruby_fp": 67,
+        "other_fp": 38,
+        "precision": 0.6465,
+        "recall": 0.8848,
+        "f1": 0.7471,
+        "precision_excl_ruby": 0.8348,
+        "f1_excl_ruby": 0.8591,
+        "mean_matched_iou": 0.8069
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.1,
+    "box_thresh": 0.2,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 104,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 17,
+        "precision": 0.6545,
+        "recall": 0.9078,
+        "f1": 0.7606,
+        "precision_excl_ruby": 0.9206,
+        "f1_excl_ruby": 0.9142,
+        "mean_matched_iou": 0.8266
+      },
+      "full": {
+        "tp": 194,
+        "fp": 104,
+        "fn": 23,
+        "ruby_fp": 67,
+        "other_fp": 37,
+        "precision": 0.651,
+        "recall": 0.894,
+        "f1": 0.7534,
+        "precision_excl_ruby": 0.8398,
+        "f1_excl_ruby": 0.8661,
+        "mean_matched_iou": 0.7857
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.1,
+    "box_thresh": 0.25,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 106,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 19,
+        "precision": 0.6478,
+        "recall": 0.8986,
+        "f1": 0.7529,
+        "precision_excl_ruby": 0.9112,
+        "f1_excl_ruby": 0.9049,
+        "mean_matched_iou": 0.7111
+      },
+      "full": {
+        "tp": 191,
+        "fp": 97,
+        "fn": 26,
+        "ruby_fp": 60,
+        "other_fp": 37,
+        "precision": 0.6632,
+        "recall": 0.8802,
+        "f1": 0.7564,
+        "precision_excl_ruby": 0.8377,
+        "f1_excl_ruby": 0.8584,
+        "mean_matched_iou": 0.806
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.1,
+    "box_thresh": 0.25,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 106,
+        "fn": 20,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6502,
+        "recall": 0.9078,
+        "f1": 0.7577,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7566
+      },
+      "full": {
+        "tp": 191,
+        "fp": 99,
+        "fn": 26,
+        "ruby_fp": 64,
+        "other_fp": 35,
+        "precision": 0.6586,
+        "recall": 0.8802,
+        "f1": 0.7535,
+        "precision_excl_ruby": 0.8451,
+        "f1_excl_ruby": 0.8623,
+        "mean_matched_iou": 0.8139
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.1,
+    "box_thresh": 0.25,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 88,
+        "other_fp": 17,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9206,
+        "f1_excl_ruby": 0.9142,
+        "mean_matched_iou": 0.8001
+      },
+      "full": {
+        "tp": 192,
+        "fp": 99,
+        "fn": 25,
+        "ruby_fp": 64,
+        "other_fp": 35,
+        "precision": 0.6598,
+        "recall": 0.8848,
+        "f1": 0.7559,
+        "precision_excl_ruby": 0.8458,
+        "f1_excl_ruby": 0.8649,
+        "mean_matched_iou": 0.8069
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.1,
+    "box_thresh": 0.25,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 104,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 17,
+        "precision": 0.6545,
+        "recall": 0.9078,
+        "f1": 0.7606,
+        "precision_excl_ruby": 0.9206,
+        "f1_excl_ruby": 0.9142,
+        "mean_matched_iou": 0.8266
+      },
+      "full": {
+        "tp": 194,
+        "fp": 97,
+        "fn": 23,
+        "ruby_fp": 63,
+        "other_fp": 34,
+        "precision": 0.6667,
+        "recall": 0.894,
+        "f1": 0.7638,
+        "precision_excl_ruby": 0.8509,
+        "f1_excl_ruby": 0.8719,
+        "mean_matched_iou": 0.7857
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.1,
+    "box_thresh": 0.3,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 106,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 19,
+        "precision": 0.6478,
+        "recall": 0.8986,
+        "f1": 0.7529,
+        "precision_excl_ruby": 0.9112,
+        "f1_excl_ruby": 0.9049,
+        "mean_matched_iou": 0.7111
+      },
+      "full": {
+        "tp": 191,
+        "fp": 93,
+        "fn": 26,
+        "ruby_fp": 58,
+        "other_fp": 35,
+        "precision": 0.6725,
+        "recall": 0.8802,
+        "f1": 0.7625,
+        "precision_excl_ruby": 0.8451,
+        "f1_excl_ruby": 0.8623,
+        "mean_matched_iou": 0.806
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.1,
+    "box_thresh": 0.3,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 106,
+        "fn": 20,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6502,
+        "recall": 0.9078,
+        "f1": 0.7577,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7566
+      },
+      "full": {
+        "tp": 191,
+        "fp": 95,
+        "fn": 26,
+        "ruby_fp": 62,
+        "other_fp": 33,
+        "precision": 0.6678,
+        "recall": 0.8802,
+        "f1": 0.7594,
+        "precision_excl_ruby": 0.8527,
+        "f1_excl_ruby": 0.8662,
+        "mean_matched_iou": 0.8139
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.1,
+    "box_thresh": 0.3,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 88,
+        "other_fp": 17,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9206,
+        "f1_excl_ruby": 0.9142,
+        "mean_matched_iou": 0.8001
+      },
+      "full": {
+        "tp": 192,
+        "fp": 95,
+        "fn": 25,
+        "ruby_fp": 62,
+        "other_fp": 33,
+        "precision": 0.669,
+        "recall": 0.8848,
+        "f1": 0.7619,
+        "precision_excl_ruby": 0.8533,
+        "f1_excl_ruby": 0.8688,
+        "mean_matched_iou": 0.8069
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.1,
+    "box_thresh": 0.3,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 104,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 17,
+        "precision": 0.6545,
+        "recall": 0.9078,
+        "f1": 0.7606,
+        "precision_excl_ruby": 0.9206,
+        "f1_excl_ruby": 0.9142,
+        "mean_matched_iou": 0.8266
+      },
+      "full": {
+        "tp": 194,
+        "fp": 93,
+        "fn": 23,
+        "ruby_fp": 61,
+        "other_fp": 32,
+        "precision": 0.676,
+        "recall": 0.894,
+        "f1": 0.7698,
+        "precision_excl_ruby": 0.8584,
+        "f1_excl_ruby": 0.8758,
+        "mean_matched_iou": 0.7857
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.1,
+    "box_thresh": 0.4,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 104,
+        "fn": 22,
+        "ruby_fp": 86,
+        "other_fp": 18,
+        "precision": 0.6522,
+        "recall": 0.8986,
+        "f1": 0.7558,
+        "precision_excl_ruby": 0.9155,
+        "f1_excl_ruby": 0.907,
+        "mean_matched_iou": 0.7111
+      },
+      "full": {
+        "tp": 190,
+        "fp": 89,
+        "fn": 27,
+        "ruby_fp": 56,
+        "other_fp": 33,
+        "precision": 0.681,
+        "recall": 0.8756,
+        "f1": 0.7661,
+        "precision_excl_ruby": 0.852,
+        "f1_excl_ruby": 0.8636,
+        "mean_matched_iou": 0.8071
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.1,
+    "box_thresh": 0.4,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 104,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 17,
+        "precision": 0.6545,
+        "recall": 0.9078,
+        "f1": 0.7606,
+        "precision_excl_ruby": 0.9206,
+        "f1_excl_ruby": 0.9142,
+        "mean_matched_iou": 0.7566
+      },
+      "full": {
+        "tp": 190,
+        "fp": 90,
+        "fn": 27,
+        "ruby_fp": 59,
+        "other_fp": 31,
+        "precision": 0.6786,
+        "recall": 0.8756,
+        "f1": 0.7646,
+        "precision_excl_ruby": 0.8597,
+        "f1_excl_ruby": 0.8676,
+        "mean_matched_iou": 0.815
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.1,
+    "box_thresh": 0.4,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 103,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 16,
+        "precision": 0.6567,
+        "recall": 0.9078,
+        "f1": 0.7621,
+        "precision_excl_ruby": 0.9249,
+        "f1_excl_ruby": 0.9163,
+        "mean_matched_iou": 0.8001
+      },
+      "full": {
+        "tp": 191,
+        "fp": 89,
+        "fn": 26,
+        "ruby_fp": 59,
+        "other_fp": 30,
+        "precision": 0.6821,
+        "recall": 0.8802,
+        "f1": 0.7686,
+        "precision_excl_ruby": 0.8643,
+        "f1_excl_ruby": 0.8721,
+        "mean_matched_iou": 0.808
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.1,
+    "box_thresh": 0.4,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 102,
+        "fn": 20,
+        "ruby_fp": 86,
+        "other_fp": 16,
+        "precision": 0.6589,
+        "recall": 0.9078,
+        "f1": 0.7636,
+        "precision_excl_ruby": 0.9249,
+        "f1_excl_ruby": 0.9163,
+        "mean_matched_iou": 0.8266
+      },
+      "full": {
+        "tp": 193,
+        "fp": 87,
+        "fn": 24,
+        "ruby_fp": 58,
+        "other_fp": 29,
+        "precision": 0.6893,
+        "recall": 0.8894,
+        "f1": 0.7767,
+        "precision_excl_ruby": 0.8694,
+        "f1_excl_ruby": 0.8793,
+        "mean_matched_iou": 0.7869
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.15,
+    "box_thresh": 0.2,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 107,
+        "fn": 22,
+        "ruby_fp": 88,
+        "other_fp": 19,
+        "precision": 0.6457,
+        "recall": 0.8986,
+        "f1": 0.7514,
+        "precision_excl_ruby": 0.9112,
+        "f1_excl_ruby": 0.9049,
+        "mean_matched_iou": 0.7047
+      },
+      "full": {
+        "tp": 191,
+        "fp": 106,
+        "fn": 26,
+        "ruby_fp": 61,
+        "other_fp": 45,
+        "precision": 0.6431,
+        "recall": 0.8802,
+        "f1": 0.7432,
+        "precision_excl_ruby": 0.8093,
+        "f1_excl_ruby": 0.8433,
+        "mean_matched_iou": 0.8008
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.15,
+    "box_thresh": 0.2,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7508
+      },
+      "full": {
+        "tp": 191,
+        "fp": 111,
+        "fn": 26,
+        "ruby_fp": 64,
+        "other_fp": 47,
+        "precision": 0.6325,
+        "recall": 0.8802,
+        "f1": 0.736,
+        "precision_excl_ruby": 0.8025,
+        "f1_excl_ruby": 0.8396,
+        "mean_matched_iou": 0.813
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.15,
+    "box_thresh": 0.2,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 107,
+        "fn": 20,
+        "ruby_fp": 88,
+        "other_fp": 19,
+        "precision": 0.648,
+        "recall": 0.9078,
+        "f1": 0.7562,
+        "precision_excl_ruby": 0.912,
+        "f1_excl_ruby": 0.9099,
+        "mean_matched_iou": 0.7947
+      },
+      "full": {
+        "tp": 191,
+        "fp": 111,
+        "fn": 26,
+        "ruby_fp": 66,
+        "other_fp": 45,
+        "precision": 0.6325,
+        "recall": 0.8802,
+        "f1": 0.736,
+        "precision_excl_ruby": 0.8093,
+        "f1_excl_ruby": 0.8433,
+        "mean_matched_iou": 0.8111
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.15,
+    "box_thresh": 0.2,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 86,
+        "other_fp": 19,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.912,
+        "f1_excl_ruby": 0.9099,
+        "mean_matched_iou": 0.8225
+      },
+      "full": {
+        "tp": 193,
+        "fp": 111,
+        "fn": 24,
+        "ruby_fp": 67,
+        "other_fp": 44,
+        "precision": 0.6349,
+        "recall": 0.8894,
+        "f1": 0.7409,
+        "precision_excl_ruby": 0.8143,
+        "f1_excl_ruby": 0.8502,
+        "mean_matched_iou": 0.7926
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.15,
+    "box_thresh": 0.25,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 106,
+        "fn": 22,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6478,
+        "recall": 0.8986,
+        "f1": 0.7529,
+        "precision_excl_ruby": 0.9155,
+        "f1_excl_ruby": 0.907,
+        "mean_matched_iou": 0.7047
+      },
+      "full": {
+        "tp": 191,
+        "fp": 102,
+        "fn": 26,
+        "ruby_fp": 61,
+        "other_fp": 41,
+        "precision": 0.6519,
+        "recall": 0.8802,
+        "f1": 0.749,
+        "precision_excl_ruby": 0.8233,
+        "f1_excl_ruby": 0.8508,
+        "mean_matched_iou": 0.8008
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.15,
+    "box_thresh": 0.25,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 104,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 17,
+        "precision": 0.6545,
+        "recall": 0.9078,
+        "f1": 0.7606,
+        "precision_excl_ruby": 0.9206,
+        "f1_excl_ruby": 0.9142,
+        "mean_matched_iou": 0.7508
+      },
+      "full": {
+        "tp": 191,
+        "fp": 106,
+        "fn": 26,
+        "ruby_fp": 63,
+        "other_fp": 43,
+        "precision": 0.6431,
+        "recall": 0.8802,
+        "f1": 0.7432,
+        "precision_excl_ruby": 0.8162,
+        "f1_excl_ruby": 0.847,
+        "mean_matched_iou": 0.813
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.15,
+    "box_thresh": 0.25,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7947
+      },
+      "full": {
+        "tp": 191,
+        "fp": 106,
+        "fn": 26,
+        "ruby_fp": 65,
+        "other_fp": 41,
+        "precision": 0.6431,
+        "recall": 0.8802,
+        "f1": 0.7432,
+        "precision_excl_ruby": 0.8233,
+        "f1_excl_ruby": 0.8508,
+        "mean_matched_iou": 0.8111
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.15,
+    "box_thresh": 0.25,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 103,
+        "fn": 20,
+        "ruby_fp": 85,
+        "other_fp": 18,
+        "precision": 0.6567,
+        "recall": 0.9078,
+        "f1": 0.7621,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.8225
+      },
+      "full": {
+        "tp": 193,
+        "fp": 106,
+        "fn": 24,
+        "ruby_fp": 66,
+        "other_fp": 40,
+        "precision": 0.6455,
+        "recall": 0.8894,
+        "f1": 0.7481,
+        "precision_excl_ruby": 0.8283,
+        "f1_excl_ruby": 0.8578,
+        "mean_matched_iou": 0.7926
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.15,
+    "box_thresh": 0.3,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 106,
+        "fn": 22,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6478,
+        "recall": 0.8986,
+        "f1": 0.7529,
+        "precision_excl_ruby": 0.9155,
+        "f1_excl_ruby": 0.907,
+        "mean_matched_iou": 0.7047
+      },
+      "full": {
+        "tp": 191,
+        "fp": 98,
+        "fn": 26,
+        "ruby_fp": 60,
+        "other_fp": 38,
+        "precision": 0.6609,
+        "recall": 0.8802,
+        "f1": 0.7549,
+        "precision_excl_ruby": 0.8341,
+        "f1_excl_ruby": 0.8565,
+        "mean_matched_iou": 0.8008
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.15,
+    "box_thresh": 0.3,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 104,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 17,
+        "precision": 0.6545,
+        "recall": 0.9078,
+        "f1": 0.7606,
+        "precision_excl_ruby": 0.9206,
+        "f1_excl_ruby": 0.9142,
+        "mean_matched_iou": 0.7508
+      },
+      "full": {
+        "tp": 191,
+        "fp": 102,
+        "fn": 26,
+        "ruby_fp": 62,
+        "other_fp": 40,
+        "precision": 0.6519,
+        "recall": 0.8802,
+        "f1": 0.749,
+        "precision_excl_ruby": 0.8268,
+        "f1_excl_ruby": 0.8527,
+        "mean_matched_iou": 0.813
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.15,
+    "box_thresh": 0.3,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7947
+      },
+      "full": {
+        "tp": 191,
+        "fp": 102,
+        "fn": 26,
+        "ruby_fp": 64,
+        "other_fp": 38,
+        "precision": 0.6519,
+        "recall": 0.8802,
+        "f1": 0.749,
+        "precision_excl_ruby": 0.8341,
+        "f1_excl_ruby": 0.8565,
+        "mean_matched_iou": 0.8111
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.15,
+    "box_thresh": 0.3,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 103,
+        "fn": 20,
+        "ruby_fp": 85,
+        "other_fp": 18,
+        "precision": 0.6567,
+        "recall": 0.9078,
+        "f1": 0.7621,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.8225
+      },
+      "full": {
+        "tp": 193,
+        "fp": 102,
+        "fn": 24,
+        "ruby_fp": 65,
+        "other_fp": 37,
+        "precision": 0.6542,
+        "recall": 0.8894,
+        "f1": 0.7539,
+        "precision_excl_ruby": 0.8391,
+        "f1_excl_ruby": 0.8635,
+        "mean_matched_iou": 0.7926
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.15,
+    "box_thresh": 0.4,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 104,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 17,
+        "precision": 0.6522,
+        "recall": 0.8986,
+        "f1": 0.7558,
+        "precision_excl_ruby": 0.9198,
+        "f1_excl_ruby": 0.9091,
+        "mean_matched_iou": 0.7047
+      },
+      "full": {
+        "tp": 190,
+        "fp": 91,
+        "fn": 27,
+        "ruby_fp": 58,
+        "other_fp": 33,
+        "precision": 0.6762,
+        "recall": 0.8756,
+        "f1": 0.7631,
+        "precision_excl_ruby": 0.852,
+        "f1_excl_ruby": 0.8636,
+        "mean_matched_iou": 0.8016
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.15,
+    "box_thresh": 0.4,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 102,
+        "fn": 20,
+        "ruby_fp": 86,
+        "other_fp": 16,
+        "precision": 0.6589,
+        "recall": 0.9078,
+        "f1": 0.7636,
+        "precision_excl_ruby": 0.9249,
+        "f1_excl_ruby": 0.9163,
+        "mean_matched_iou": 0.7508
+      },
+      "full": {
+        "tp": 190,
+        "fp": 93,
+        "fn": 27,
+        "ruby_fp": 60,
+        "other_fp": 33,
+        "precision": 0.6714,
+        "recall": 0.8756,
+        "f1": 0.76,
+        "precision_excl_ruby": 0.852,
+        "f1_excl_ruby": 0.8636,
+        "mean_matched_iou": 0.8139
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.15,
+    "box_thresh": 0.4,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 103,
+        "fn": 20,
+        "ruby_fp": 86,
+        "other_fp": 17,
+        "precision": 0.6567,
+        "recall": 0.9078,
+        "f1": 0.7621,
+        "precision_excl_ruby": 0.9206,
+        "f1_excl_ruby": 0.9142,
+        "mean_matched_iou": 0.7947
+      },
+      "full": {
+        "tp": 190,
+        "fp": 93,
+        "fn": 27,
+        "ruby_fp": 62,
+        "other_fp": 31,
+        "precision": 0.6714,
+        "recall": 0.8756,
+        "f1": 0.76,
+        "precision_excl_ruby": 0.8597,
+        "f1_excl_ruby": 0.8676,
+        "mean_matched_iou": 0.812
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.15,
+    "box_thresh": 0.4,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 101,
+        "fn": 20,
+        "ruby_fp": 84,
+        "other_fp": 17,
+        "precision": 0.6611,
+        "recall": 0.9078,
+        "f1": 0.765,
+        "precision_excl_ruby": 0.9206,
+        "f1_excl_ruby": 0.9142,
+        "mean_matched_iou": 0.8225
+      },
+      "full": {
+        "tp": 192,
+        "fp": 93,
+        "fn": 25,
+        "ruby_fp": 63,
+        "other_fp": 30,
+        "precision": 0.6737,
+        "recall": 0.8848,
+        "f1": 0.7649,
+        "precision_excl_ruby": 0.8649,
+        "f1_excl_ruby": 0.8747,
+        "mean_matched_iou": 0.7933
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.2,
+    "box_thresh": 0.2,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 104,
+        "fn": 21,
+        "ruby_fp": 85,
+        "other_fp": 19,
+        "precision": 0.6533,
+        "recall": 0.9032,
+        "f1": 0.7582,
+        "precision_excl_ruby": 0.9116,
+        "f1_excl_ruby": 0.9074,
+        "mean_matched_iou": 0.6985
+      },
+      "full": {
+        "tp": 189,
+        "fp": 103,
+        "fn": 28,
+        "ruby_fp": 58,
+        "other_fp": 45,
+        "precision": 0.6473,
+        "recall": 0.871,
+        "f1": 0.7426,
+        "precision_excl_ruby": 0.8077,
+        "f1_excl_ruby": 0.8381,
+        "mean_matched_iou": 0.8003
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.2,
+    "box_thresh": 0.2,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 106,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 19,
+        "precision": 0.6502,
+        "recall": 0.9078,
+        "f1": 0.7577,
+        "precision_excl_ruby": 0.912,
+        "f1_excl_ruby": 0.9099,
+        "mean_matched_iou": 0.7461
+      },
+      "full": {
+        "tp": 191,
+        "fp": 111,
+        "fn": 26,
+        "ruby_fp": 65,
+        "other_fp": 46,
+        "precision": 0.6325,
+        "recall": 0.8802,
+        "f1": 0.736,
+        "precision_excl_ruby": 0.8059,
+        "f1_excl_ruby": 0.8414,
+        "mean_matched_iou": 0.8095
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.2,
+    "box_thresh": 0.2,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 106,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 19,
+        "precision": 0.6502,
+        "recall": 0.9078,
+        "f1": 0.7577,
+        "precision_excl_ruby": 0.912,
+        "f1_excl_ruby": 0.9099,
+        "mean_matched_iou": 0.7896
+      },
+      "full": {
+        "tp": 193,
+        "fp": 110,
+        "fn": 24,
+        "ruby_fp": 66,
+        "other_fp": 44,
+        "precision": 0.637,
+        "recall": 0.8894,
+        "f1": 0.7423,
+        "precision_excl_ruby": 0.8143,
+        "f1_excl_ruby": 0.8502,
+        "mean_matched_iou": 0.8096
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.2,
+    "box_thresh": 0.2,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 86,
+        "other_fp": 19,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.912,
+        "f1_excl_ruby": 0.9099,
+        "mean_matched_iou": 0.8215
+      },
+      "full": {
+        "tp": 193,
+        "fp": 112,
+        "fn": 24,
+        "ruby_fp": 67,
+        "other_fp": 45,
+        "precision": 0.6328,
+        "recall": 0.8894,
+        "f1": 0.7395,
+        "precision_excl_ruby": 0.8109,
+        "f1_excl_ruby": 0.8484,
+        "mean_matched_iou": 0.7973
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.2,
+    "box_thresh": 0.25,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 104,
+        "fn": 21,
+        "ruby_fp": 85,
+        "other_fp": 19,
+        "precision": 0.6533,
+        "recall": 0.9032,
+        "f1": 0.7582,
+        "precision_excl_ruby": 0.9116,
+        "f1_excl_ruby": 0.9074,
+        "mean_matched_iou": 0.6985
+      },
+      "full": {
+        "tp": 189,
+        "fp": 101,
+        "fn": 28,
+        "ruby_fp": 58,
+        "other_fp": 43,
+        "precision": 0.6517,
+        "recall": 0.871,
+        "f1": 0.7456,
+        "precision_excl_ruby": 0.8147,
+        "f1_excl_ruby": 0.8419,
+        "mean_matched_iou": 0.8003
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.2,
+    "box_thresh": 0.25,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 106,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 19,
+        "precision": 0.6502,
+        "recall": 0.9078,
+        "f1": 0.7577,
+        "precision_excl_ruby": 0.912,
+        "f1_excl_ruby": 0.9099,
+        "mean_matched_iou": 0.7461
+      },
+      "full": {
+        "tp": 191,
+        "fp": 109,
+        "fn": 26,
+        "ruby_fp": 65,
+        "other_fp": 44,
+        "precision": 0.6367,
+        "recall": 0.8802,
+        "f1": 0.7389,
+        "precision_excl_ruby": 0.8128,
+        "f1_excl_ruby": 0.8451,
+        "mean_matched_iou": 0.8095
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.2,
+    "box_thresh": 0.25,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 106,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 19,
+        "precision": 0.6502,
+        "recall": 0.9078,
+        "f1": 0.7577,
+        "precision_excl_ruby": 0.912,
+        "f1_excl_ruby": 0.9099,
+        "mean_matched_iou": 0.7896
+      },
+      "full": {
+        "tp": 193,
+        "fp": 108,
+        "fn": 24,
+        "ruby_fp": 66,
+        "other_fp": 42,
+        "precision": 0.6412,
+        "recall": 0.8894,
+        "f1": 0.7452,
+        "precision_excl_ruby": 0.8213,
+        "f1_excl_ruby": 0.854,
+        "mean_matched_iou": 0.8096
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.2,
+    "box_thresh": 0.25,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 86,
+        "other_fp": 19,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.912,
+        "f1_excl_ruby": 0.9099,
+        "mean_matched_iou": 0.8215
+      },
+      "full": {
+        "tp": 193,
+        "fp": 110,
+        "fn": 24,
+        "ruby_fp": 67,
+        "other_fp": 43,
+        "precision": 0.637,
+        "recall": 0.8894,
+        "f1": 0.7423,
+        "precision_excl_ruby": 0.8178,
+        "f1_excl_ruby": 0.8521,
+        "mean_matched_iou": 0.7973
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.2,
+    "box_thresh": 0.3,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 103,
+        "fn": 21,
+        "ruby_fp": 85,
+        "other_fp": 18,
+        "precision": 0.6555,
+        "recall": 0.9032,
+        "f1": 0.7597,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.6985
+      },
+      "full": {
+        "tp": 189,
+        "fp": 98,
+        "fn": 28,
+        "ruby_fp": 58,
+        "other_fp": 40,
+        "precision": 0.6585,
+        "recall": 0.871,
+        "f1": 0.75,
+        "precision_excl_ruby": 0.8253,
+        "f1_excl_ruby": 0.8475,
+        "mean_matched_iou": 0.8003
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.2,
+    "box_thresh": 0.3,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7461
+      },
+      "full": {
+        "tp": 191,
+        "fp": 106,
+        "fn": 26,
+        "ruby_fp": 65,
+        "other_fp": 41,
+        "precision": 0.6431,
+        "recall": 0.8802,
+        "f1": 0.7432,
+        "precision_excl_ruby": 0.8233,
+        "f1_excl_ruby": 0.8508,
+        "mean_matched_iou": 0.8095
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.2,
+    "box_thresh": 0.3,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7896
+      },
+      "full": {
+        "tp": 193,
+        "fp": 105,
+        "fn": 24,
+        "ruby_fp": 66,
+        "other_fp": 39,
+        "precision": 0.6477,
+        "recall": 0.8894,
+        "f1": 0.7495,
+        "precision_excl_ruby": 0.8319,
+        "f1_excl_ruby": 0.8597,
+        "mean_matched_iou": 0.8096
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.2,
+    "box_thresh": 0.3,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 104,
+        "fn": 20,
+        "ruby_fp": 86,
+        "other_fp": 18,
+        "precision": 0.6545,
+        "recall": 0.9078,
+        "f1": 0.7606,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.8215
+      },
+      "full": {
+        "tp": 193,
+        "fp": 107,
+        "fn": 24,
+        "ruby_fp": 67,
+        "other_fp": 40,
+        "precision": 0.6433,
+        "recall": 0.8894,
+        "f1": 0.7466,
+        "precision_excl_ruby": 0.8283,
+        "f1_excl_ruby": 0.8578,
+        "mean_matched_iou": 0.7973
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.2,
+    "box_thresh": 0.4,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 103,
+        "fn": 21,
+        "ruby_fp": 85,
+        "other_fp": 18,
+        "precision": 0.6555,
+        "recall": 0.9032,
+        "f1": 0.7597,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.6985
+      },
+      "full": {
+        "tp": 189,
+        "fp": 96,
+        "fn": 28,
+        "ruby_fp": 57,
+        "other_fp": 39,
+        "precision": 0.6632,
+        "recall": 0.871,
+        "f1": 0.753,
+        "precision_excl_ruby": 0.8289,
+        "f1_excl_ruby": 0.8494,
+        "mean_matched_iou": 0.8003
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.2,
+    "box_thresh": 0.4,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7461
+      },
+      "full": {
+        "tp": 191,
+        "fp": 101,
+        "fn": 26,
+        "ruby_fp": 64,
+        "other_fp": 37,
+        "precision": 0.6541,
+        "recall": 0.8802,
+        "f1": 0.7505,
+        "precision_excl_ruby": 0.8377,
+        "f1_excl_ruby": 0.8584,
+        "mean_matched_iou": 0.8095
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.2,
+    "box_thresh": 0.4,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7896
+      },
+      "full": {
+        "tp": 193,
+        "fp": 100,
+        "fn": 24,
+        "ruby_fp": 65,
+        "other_fp": 35,
+        "precision": 0.6587,
+        "recall": 0.8894,
+        "f1": 0.7569,
+        "precision_excl_ruby": 0.8465,
+        "f1_excl_ruby": 0.8674,
+        "mean_matched_iou": 0.8096
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.2,
+    "box_thresh": 0.4,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 104,
+        "fn": 20,
+        "ruby_fp": 86,
+        "other_fp": 18,
+        "precision": 0.6545,
+        "recall": 0.9078,
+        "f1": 0.7606,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.8215
+      },
+      "full": {
+        "tp": 193,
+        "fp": 102,
+        "fn": 24,
+        "ruby_fp": 66,
+        "other_fp": 36,
+        "precision": 0.6542,
+        "recall": 0.8894,
+        "f1": 0.7539,
+        "precision_excl_ruby": 0.8428,
+        "f1_excl_ruby": 0.8655,
+        "mean_matched_iou": 0.7973
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.3,
+    "box_thresh": 0.2,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 105,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.65,
+        "recall": 0.8986,
+        "f1": 0.7544,
+        "precision_excl_ruby": 0.9155,
+        "f1_excl_ruby": 0.907,
+        "mean_matched_iou": 0.6916
+      },
+      "full": {
+        "tp": 191,
+        "fp": 92,
+        "fn": 26,
+        "ruby_fp": 56,
+        "other_fp": 36,
+        "precision": 0.6749,
+        "recall": 0.8802,
+        "f1": 0.764,
+        "precision_excl_ruby": 0.8414,
+        "f1_excl_ruby": 0.8604,
+        "mean_matched_iou": 0.7924
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.3,
+    "box_thresh": 0.2,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 106,
+        "fn": 21,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.649,
+        "recall": 0.9032,
+        "f1": 0.7553,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.7415
+      },
+      "full": {
+        "tp": 194,
+        "fp": 93,
+        "fn": 23,
+        "ruby_fp": 59,
+        "other_fp": 34,
+        "precision": 0.676,
+        "recall": 0.894,
+        "f1": 0.7698,
+        "precision_excl_ruby": 0.8509,
+        "f1_excl_ruby": 0.8719,
+        "mean_matched_iou": 0.8063
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.3,
+    "box_thresh": 0.2,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 108,
+        "fn": 21,
+        "ruby_fp": 89,
+        "other_fp": 19,
+        "precision": 0.6447,
+        "recall": 0.9032,
+        "f1": 0.7524,
+        "precision_excl_ruby": 0.9116,
+        "f1_excl_ruby": 0.9074,
+        "mean_matched_iou": 0.7841
+      },
+      "full": {
+        "tp": 194,
+        "fp": 96,
+        "fn": 23,
+        "ruby_fp": 59,
+        "other_fp": 37,
+        "precision": 0.669,
+        "recall": 0.894,
+        "f1": 0.7653,
+        "precision_excl_ruby": 0.8398,
+        "f1_excl_ruby": 0.8661,
+        "mean_matched_iou": 0.8104
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.3,
+    "box_thresh": 0.2,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 106,
+        "fn": 20,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6502,
+        "recall": 0.9078,
+        "f1": 0.7577,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.8148
+      },
+      "full": {
+        "tp": 193,
+        "fp": 97,
+        "fn": 24,
+        "ruby_fp": 60,
+        "other_fp": 37,
+        "precision": 0.6655,
+        "recall": 0.8894,
+        "f1": 0.7613,
+        "precision_excl_ruby": 0.8391,
+        "f1_excl_ruby": 0.8635,
+        "mean_matched_iou": 0.804
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.3,
+    "box_thresh": 0.25,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 105,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.65,
+        "recall": 0.8986,
+        "f1": 0.7544,
+        "precision_excl_ruby": 0.9155,
+        "f1_excl_ruby": 0.907,
+        "mean_matched_iou": 0.6916
+      },
+      "full": {
+        "tp": 191,
+        "fp": 92,
+        "fn": 26,
+        "ruby_fp": 56,
+        "other_fp": 36,
+        "precision": 0.6749,
+        "recall": 0.8802,
+        "f1": 0.764,
+        "precision_excl_ruby": 0.8414,
+        "f1_excl_ruby": 0.8604,
+        "mean_matched_iou": 0.7924
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.3,
+    "box_thresh": 0.25,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 106,
+        "fn": 21,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.649,
+        "recall": 0.9032,
+        "f1": 0.7553,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.7415
+      },
+      "full": {
+        "tp": 194,
+        "fp": 93,
+        "fn": 23,
+        "ruby_fp": 59,
+        "other_fp": 34,
+        "precision": 0.676,
+        "recall": 0.894,
+        "f1": 0.7698,
+        "precision_excl_ruby": 0.8509,
+        "f1_excl_ruby": 0.8719,
+        "mean_matched_iou": 0.8063
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.3,
+    "box_thresh": 0.25,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 108,
+        "fn": 21,
+        "ruby_fp": 89,
+        "other_fp": 19,
+        "precision": 0.6447,
+        "recall": 0.9032,
+        "f1": 0.7524,
+        "precision_excl_ruby": 0.9116,
+        "f1_excl_ruby": 0.9074,
+        "mean_matched_iou": 0.7841
+      },
+      "full": {
+        "tp": 194,
+        "fp": 96,
+        "fn": 23,
+        "ruby_fp": 59,
+        "other_fp": 37,
+        "precision": 0.669,
+        "recall": 0.894,
+        "f1": 0.7653,
+        "precision_excl_ruby": 0.8398,
+        "f1_excl_ruby": 0.8661,
+        "mean_matched_iou": 0.8104
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.3,
+    "box_thresh": 0.25,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 106,
+        "fn": 20,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6502,
+        "recall": 0.9078,
+        "f1": 0.7577,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.8148
+      },
+      "full": {
+        "tp": 193,
+        "fp": 97,
+        "fn": 24,
+        "ruby_fp": 60,
+        "other_fp": 37,
+        "precision": 0.6655,
+        "recall": 0.8894,
+        "f1": 0.7613,
+        "precision_excl_ruby": 0.8391,
+        "f1_excl_ruby": 0.8635,
+        "mean_matched_iou": 0.804
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.3,
+    "box_thresh": 0.3,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 105,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.65,
+        "recall": 0.8986,
+        "f1": 0.7544,
+        "precision_excl_ruby": 0.9155,
+        "f1_excl_ruby": 0.907,
+        "mean_matched_iou": 0.6916
+      },
+      "full": {
+        "tp": 191,
+        "fp": 92,
+        "fn": 26,
+        "ruby_fp": 56,
+        "other_fp": 36,
+        "precision": 0.6749,
+        "recall": 0.8802,
+        "f1": 0.764,
+        "precision_excl_ruby": 0.8414,
+        "f1_excl_ruby": 0.8604,
+        "mean_matched_iou": 0.7924
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.3,
+    "box_thresh": 0.3,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 106,
+        "fn": 21,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.649,
+        "recall": 0.9032,
+        "f1": 0.7553,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.7415
+      },
+      "full": {
+        "tp": 194,
+        "fp": 93,
+        "fn": 23,
+        "ruby_fp": 59,
+        "other_fp": 34,
+        "precision": 0.676,
+        "recall": 0.894,
+        "f1": 0.7698,
+        "precision_excl_ruby": 0.8509,
+        "f1_excl_ruby": 0.8719,
+        "mean_matched_iou": 0.8063
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.3,
+    "box_thresh": 0.3,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 108,
+        "fn": 21,
+        "ruby_fp": 89,
+        "other_fp": 19,
+        "precision": 0.6447,
+        "recall": 0.9032,
+        "f1": 0.7524,
+        "precision_excl_ruby": 0.9116,
+        "f1_excl_ruby": 0.9074,
+        "mean_matched_iou": 0.7841
+      },
+      "full": {
+        "tp": 194,
+        "fp": 96,
+        "fn": 23,
+        "ruby_fp": 59,
+        "other_fp": 37,
+        "precision": 0.669,
+        "recall": 0.894,
+        "f1": 0.7653,
+        "precision_excl_ruby": 0.8398,
+        "f1_excl_ruby": 0.8661,
+        "mean_matched_iou": 0.8104
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.3,
+    "box_thresh": 0.3,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 106,
+        "fn": 20,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6502,
+        "recall": 0.9078,
+        "f1": 0.7577,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.8148
+      },
+      "full": {
+        "tp": 193,
+        "fp": 97,
+        "fn": 24,
+        "ruby_fp": 60,
+        "other_fp": 37,
+        "precision": 0.6655,
+        "recall": 0.8894,
+        "f1": 0.7613,
+        "precision_excl_ruby": 0.8391,
+        "f1_excl_ruby": 0.8635,
+        "mean_matched_iou": 0.804
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.3,
+    "box_thresh": 0.4,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 105,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.65,
+        "recall": 0.8986,
+        "f1": 0.7544,
+        "precision_excl_ruby": 0.9155,
+        "f1_excl_ruby": 0.907,
+        "mean_matched_iou": 0.6916
+      },
+      "full": {
+        "tp": 191,
+        "fp": 92,
+        "fn": 26,
+        "ruby_fp": 56,
+        "other_fp": 36,
+        "precision": 0.6749,
+        "recall": 0.8802,
+        "f1": 0.764,
+        "precision_excl_ruby": 0.8414,
+        "f1_excl_ruby": 0.8604,
+        "mean_matched_iou": 0.7924
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.3,
+    "box_thresh": 0.4,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 106,
+        "fn": 21,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.649,
+        "recall": 0.9032,
+        "f1": 0.7553,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.7415
+      },
+      "full": {
+        "tp": 194,
+        "fp": 93,
+        "fn": 23,
+        "ruby_fp": 59,
+        "other_fp": 34,
+        "precision": 0.676,
+        "recall": 0.894,
+        "f1": 0.7698,
+        "precision_excl_ruby": 0.8509,
+        "f1_excl_ruby": 0.8719,
+        "mean_matched_iou": 0.8063
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.3,
+    "box_thresh": 0.4,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 108,
+        "fn": 21,
+        "ruby_fp": 89,
+        "other_fp": 19,
+        "precision": 0.6447,
+        "recall": 0.9032,
+        "f1": 0.7524,
+        "precision_excl_ruby": 0.9116,
+        "f1_excl_ruby": 0.9074,
+        "mean_matched_iou": 0.7841
+      },
+      "full": {
+        "tp": 194,
+        "fp": 96,
+        "fn": 23,
+        "ruby_fp": 59,
+        "other_fp": 37,
+        "precision": 0.669,
+        "recall": 0.894,
+        "f1": 0.7653,
+        "precision_excl_ruby": 0.8398,
+        "f1_excl_ruby": 0.8661,
+        "mean_matched_iou": 0.8104
+      }
+    }
+  },
+  {
+    "scale": 960,
+    "thresh": 0.3,
+    "box_thresh": 0.4,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 106,
+        "fn": 20,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6502,
+        "recall": 0.9078,
+        "f1": 0.7577,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.8148
+      },
+      "full": {
+        "tp": 193,
+        "fp": 97,
+        "fn": 24,
+        "ruby_fp": 60,
+        "other_fp": 37,
+        "precision": 0.6655,
+        "recall": 0.8894,
+        "f1": 0.7613,
+        "precision_excl_ruby": 0.8391,
+        "f1_excl_ruby": 0.8635,
+        "mean_matched_iou": 0.804
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.1,
+    "box_thresh": 0.2,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 104,
+        "fn": 21,
+        "ruby_fp": 86,
+        "other_fp": 18,
+        "precision": 0.6533,
+        "recall": 0.9032,
+        "f1": 0.7582,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.7117
+      },
+      "full": {
+        "tp": 195,
+        "fp": 127,
+        "fn": 22,
+        "ruby_fp": 86,
+        "other_fp": 41,
+        "precision": 0.6056,
+        "recall": 0.8986,
+        "f1": 0.7236,
+        "precision_excl_ruby": 0.8263,
+        "f1_excl_ruby": 0.8609,
+        "mean_matched_iou": 0.7889
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.1,
+    "box_thresh": 0.2,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 104,
+        "fn": 19,
+        "ruby_fp": 87,
+        "other_fp": 17,
+        "precision": 0.6556,
+        "recall": 0.9124,
+        "f1": 0.763,
+        "precision_excl_ruby": 0.9209,
+        "f1_excl_ruby": 0.9167,
+        "mean_matched_iou": 0.7571
+      },
+      "full": {
+        "tp": 195,
+        "fp": 133,
+        "fn": 22,
+        "ruby_fp": 89,
+        "other_fp": 44,
+        "precision": 0.5945,
+        "recall": 0.8986,
+        "f1": 0.7156,
+        "precision_excl_ruby": 0.8159,
+        "f1_excl_ruby": 0.8553,
+        "mean_matched_iou": 0.814
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.1,
+    "box_thresh": 0.2,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 103,
+        "fn": 19,
+        "ruby_fp": 87,
+        "other_fp": 16,
+        "precision": 0.6578,
+        "recall": 0.9124,
+        "f1": 0.7645,
+        "precision_excl_ruby": 0.9252,
+        "f1_excl_ruby": 0.9188,
+        "mean_matched_iou": 0.8005
+      },
+      "full": {
+        "tp": 193,
+        "fp": 138,
+        "fn": 24,
+        "ruby_fp": 92,
+        "other_fp": 46,
+        "precision": 0.5831,
+        "recall": 0.8894,
+        "f1": 0.7044,
+        "precision_excl_ruby": 0.8075,
+        "f1_excl_ruby": 0.8465,
+        "mean_matched_iou": 0.8275
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.1,
+    "box_thresh": 0.2,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 102,
+        "fn": 19,
+        "ruby_fp": 86,
+        "other_fp": 16,
+        "precision": 0.66,
+        "recall": 0.9124,
+        "f1": 0.766,
+        "precision_excl_ruby": 0.9252,
+        "f1_excl_ruby": 0.9188,
+        "mean_matched_iou": 0.8268
+      },
+      "full": {
+        "tp": 193,
+        "fp": 140,
+        "fn": 24,
+        "ruby_fp": 95,
+        "other_fp": 45,
+        "precision": 0.5796,
+        "recall": 0.8894,
+        "f1": 0.7018,
+        "precision_excl_ruby": 0.8109,
+        "f1_excl_ruby": 0.8484,
+        "mean_matched_iou": 0.8273
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.1,
+    "box_thresh": 0.25,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 104,
+        "fn": 21,
+        "ruby_fp": 86,
+        "other_fp": 18,
+        "precision": 0.6533,
+        "recall": 0.9032,
+        "f1": 0.7582,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.7117
+      },
+      "full": {
+        "tp": 195,
+        "fp": 125,
+        "fn": 22,
+        "ruby_fp": 86,
+        "other_fp": 39,
+        "precision": 0.6094,
+        "recall": 0.8986,
+        "f1": 0.7263,
+        "precision_excl_ruby": 0.8333,
+        "f1_excl_ruby": 0.8647,
+        "mean_matched_iou": 0.7889
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.1,
+    "box_thresh": 0.25,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 104,
+        "fn": 19,
+        "ruby_fp": 87,
+        "other_fp": 17,
+        "precision": 0.6556,
+        "recall": 0.9124,
+        "f1": 0.763,
+        "precision_excl_ruby": 0.9209,
+        "f1_excl_ruby": 0.9167,
+        "mean_matched_iou": 0.7571
+      },
+      "full": {
+        "tp": 195,
+        "fp": 130,
+        "fn": 22,
+        "ruby_fp": 89,
+        "other_fp": 41,
+        "precision": 0.6,
+        "recall": 0.8986,
+        "f1": 0.7196,
+        "precision_excl_ruby": 0.8263,
+        "f1_excl_ruby": 0.8609,
+        "mean_matched_iou": 0.814
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.1,
+    "box_thresh": 0.25,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 103,
+        "fn": 19,
+        "ruby_fp": 87,
+        "other_fp": 16,
+        "precision": 0.6578,
+        "recall": 0.9124,
+        "f1": 0.7645,
+        "precision_excl_ruby": 0.9252,
+        "f1_excl_ruby": 0.9188,
+        "mean_matched_iou": 0.8005
+      },
+      "full": {
+        "tp": 193,
+        "fp": 133,
+        "fn": 24,
+        "ruby_fp": 91,
+        "other_fp": 42,
+        "precision": 0.592,
+        "recall": 0.8894,
+        "f1": 0.7109,
+        "precision_excl_ruby": 0.8213,
+        "f1_excl_ruby": 0.854,
+        "mean_matched_iou": 0.8275
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.1,
+    "box_thresh": 0.25,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 102,
+        "fn": 19,
+        "ruby_fp": 86,
+        "other_fp": 16,
+        "precision": 0.66,
+        "recall": 0.9124,
+        "f1": 0.766,
+        "precision_excl_ruby": 0.9252,
+        "f1_excl_ruby": 0.9188,
+        "mean_matched_iou": 0.8268
+      },
+      "full": {
+        "tp": 193,
+        "fp": 135,
+        "fn": 24,
+        "ruby_fp": 94,
+        "other_fp": 41,
+        "precision": 0.5884,
+        "recall": 0.8894,
+        "f1": 0.7083,
+        "precision_excl_ruby": 0.8248,
+        "f1_excl_ruby": 0.8559,
+        "mean_matched_iou": 0.8273
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.1,
+    "box_thresh": 0.3,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 104,
+        "fn": 21,
+        "ruby_fp": 86,
+        "other_fp": 18,
+        "precision": 0.6533,
+        "recall": 0.9032,
+        "f1": 0.7582,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.7117
+      },
+      "full": {
+        "tp": 195,
+        "fp": 123,
+        "fn": 22,
+        "ruby_fp": 86,
+        "other_fp": 37,
+        "precision": 0.6132,
+        "recall": 0.8986,
+        "f1": 0.729,
+        "precision_excl_ruby": 0.8405,
+        "f1_excl_ruby": 0.8686,
+        "mean_matched_iou": 0.7889
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.1,
+    "box_thresh": 0.3,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 104,
+        "fn": 19,
+        "ruby_fp": 87,
+        "other_fp": 17,
+        "precision": 0.6556,
+        "recall": 0.9124,
+        "f1": 0.763,
+        "precision_excl_ruby": 0.9209,
+        "f1_excl_ruby": 0.9167,
+        "mean_matched_iou": 0.7571
+      },
+      "full": {
+        "tp": 195,
+        "fp": 128,
+        "fn": 22,
+        "ruby_fp": 89,
+        "other_fp": 39,
+        "precision": 0.6037,
+        "recall": 0.8986,
+        "f1": 0.7222,
+        "precision_excl_ruby": 0.8333,
+        "f1_excl_ruby": 0.8647,
+        "mean_matched_iou": 0.814
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.1,
+    "box_thresh": 0.3,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 103,
+        "fn": 19,
+        "ruby_fp": 87,
+        "other_fp": 16,
+        "precision": 0.6578,
+        "recall": 0.9124,
+        "f1": 0.7645,
+        "precision_excl_ruby": 0.9252,
+        "f1_excl_ruby": 0.9188,
+        "mean_matched_iou": 0.8005
+      },
+      "full": {
+        "tp": 193,
+        "fp": 131,
+        "fn": 24,
+        "ruby_fp": 91,
+        "other_fp": 40,
+        "precision": 0.5957,
+        "recall": 0.8894,
+        "f1": 0.7135,
+        "precision_excl_ruby": 0.8283,
+        "f1_excl_ruby": 0.8578,
+        "mean_matched_iou": 0.8275
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.1,
+    "box_thresh": 0.3,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 102,
+        "fn": 19,
+        "ruby_fp": 86,
+        "other_fp": 16,
+        "precision": 0.66,
+        "recall": 0.9124,
+        "f1": 0.766,
+        "precision_excl_ruby": 0.9252,
+        "f1_excl_ruby": 0.9188,
+        "mean_matched_iou": 0.8268
+      },
+      "full": {
+        "tp": 193,
+        "fp": 133,
+        "fn": 24,
+        "ruby_fp": 94,
+        "other_fp": 39,
+        "precision": 0.592,
+        "recall": 0.8894,
+        "f1": 0.7109,
+        "precision_excl_ruby": 0.8319,
+        "f1_excl_ruby": 0.8597,
+        "mean_matched_iou": 0.8273
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.1,
+    "box_thresh": 0.4,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 102,
+        "fn": 21,
+        "ruby_fp": 85,
+        "other_fp": 17,
+        "precision": 0.6577,
+        "recall": 0.9032,
+        "f1": 0.7612,
+        "precision_excl_ruby": 0.9202,
+        "f1_excl_ruby": 0.9116,
+        "mean_matched_iou": 0.7117
+      },
+      "full": {
+        "tp": 195,
+        "fp": 117,
+        "fn": 22,
+        "ruby_fp": 83,
+        "other_fp": 34,
+        "precision": 0.625,
+        "recall": 0.8986,
+        "f1": 0.7372,
+        "precision_excl_ruby": 0.8515,
+        "f1_excl_ruby": 0.8744,
+        "mean_matched_iou": 0.7889
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.1,
+    "box_thresh": 0.4,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 102,
+        "fn": 19,
+        "ruby_fp": 86,
+        "other_fp": 16,
+        "precision": 0.66,
+        "recall": 0.9124,
+        "f1": 0.766,
+        "precision_excl_ruby": 0.9252,
+        "f1_excl_ruby": 0.9188,
+        "mean_matched_iou": 0.7571
+      },
+      "full": {
+        "tp": 195,
+        "fp": 121,
+        "fn": 22,
+        "ruby_fp": 85,
+        "other_fp": 36,
+        "precision": 0.6171,
+        "recall": 0.8986,
+        "f1": 0.7317,
+        "precision_excl_ruby": 0.8442,
+        "f1_excl_ruby": 0.8705,
+        "mean_matched_iou": 0.814
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.1,
+    "box_thresh": 0.4,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 101,
+        "fn": 19,
+        "ruby_fp": 86,
+        "other_fp": 15,
+        "precision": 0.6622,
+        "recall": 0.9124,
+        "f1": 0.7674,
+        "precision_excl_ruby": 0.9296,
+        "f1_excl_ruby": 0.9209,
+        "mean_matched_iou": 0.8005
+      },
+      "full": {
+        "tp": 193,
+        "fp": 123,
+        "fn": 24,
+        "ruby_fp": 86,
+        "other_fp": 37,
+        "precision": 0.6108,
+        "recall": 0.8894,
+        "f1": 0.7242,
+        "precision_excl_ruby": 0.8391,
+        "f1_excl_ruby": 0.8635,
+        "mean_matched_iou": 0.8275
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.1,
+    "box_thresh": 0.4,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 100,
+        "fn": 19,
+        "ruby_fp": 85,
+        "other_fp": 15,
+        "precision": 0.6644,
+        "recall": 0.9124,
+        "f1": 0.7689,
+        "precision_excl_ruby": 0.9296,
+        "f1_excl_ruby": 0.9209,
+        "mean_matched_iou": 0.8268
+      },
+      "full": {
+        "tp": 193,
+        "fp": 125,
+        "fn": 24,
+        "ruby_fp": 89,
+        "other_fp": 36,
+        "precision": 0.6069,
+        "recall": 0.8894,
+        "f1": 0.7215,
+        "precision_excl_ruby": 0.8428,
+        "f1_excl_ruby": 0.8655,
+        "mean_matched_iou": 0.8273
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.15,
+    "box_thresh": 0.2,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 106,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 19,
+        "precision": 0.6478,
+        "recall": 0.8986,
+        "f1": 0.7529,
+        "precision_excl_ruby": 0.9112,
+        "f1_excl_ruby": 0.9049,
+        "mean_matched_iou": 0.7048
+      },
+      "full": {
+        "tp": 195,
+        "fp": 124,
+        "fn": 22,
+        "ruby_fp": 84,
+        "other_fp": 40,
+        "precision": 0.6113,
+        "recall": 0.8986,
+        "f1": 0.7276,
+        "precision_excl_ruby": 0.8298,
+        "f1_excl_ruby": 0.8628,
+        "mean_matched_iou": 0.7844
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.15,
+    "box_thresh": 0.2,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 104,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 17,
+        "precision": 0.6545,
+        "recall": 0.9078,
+        "f1": 0.7606,
+        "precision_excl_ruby": 0.9206,
+        "f1_excl_ruby": 0.9142,
+        "mean_matched_iou": 0.7508
+      },
+      "full": {
+        "tp": 196,
+        "fp": 130,
+        "fn": 21,
+        "ruby_fp": 88,
+        "other_fp": 42,
+        "precision": 0.6012,
+        "recall": 0.9032,
+        "f1": 0.7219,
+        "precision_excl_ruby": 0.8235,
+        "f1_excl_ruby": 0.8615,
+        "mean_matched_iou": 0.8121
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.15,
+    "box_thresh": 0.2,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7948
+      },
+      "full": {
+        "tp": 195,
+        "fp": 135,
+        "fn": 22,
+        "ruby_fp": 92,
+        "other_fp": 43,
+        "precision": 0.5909,
+        "recall": 0.8986,
+        "f1": 0.713,
+        "precision_excl_ruby": 0.8193,
+        "f1_excl_ruby": 0.8571,
+        "mean_matched_iou": 0.8257
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.15,
+    "box_thresh": 0.2,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 102,
+        "fn": 19,
+        "ruby_fp": 84,
+        "other_fp": 18,
+        "precision": 0.66,
+        "recall": 0.9124,
+        "f1": 0.766,
+        "precision_excl_ruby": 0.9167,
+        "f1_excl_ruby": 0.9145,
+        "mean_matched_iou": 0.8208
+      },
+      "full": {
+        "tp": 194,
+        "fp": 139,
+        "fn": 23,
+        "ruby_fp": 94,
+        "other_fp": 45,
+        "precision": 0.5826,
+        "recall": 0.894,
+        "f1": 0.7055,
+        "precision_excl_ruby": 0.8117,
+        "f1_excl_ruby": 0.8509,
+        "mean_matched_iou": 0.8293
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.15,
+    "box_thresh": 0.25,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 106,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 19,
+        "precision": 0.6478,
+        "recall": 0.8986,
+        "f1": 0.7529,
+        "precision_excl_ruby": 0.9112,
+        "f1_excl_ruby": 0.9049,
+        "mean_matched_iou": 0.7048
+      },
+      "full": {
+        "tp": 195,
+        "fp": 124,
+        "fn": 22,
+        "ruby_fp": 84,
+        "other_fp": 40,
+        "precision": 0.6113,
+        "recall": 0.8986,
+        "f1": 0.7276,
+        "precision_excl_ruby": 0.8298,
+        "f1_excl_ruby": 0.8628,
+        "mean_matched_iou": 0.7844
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.15,
+    "box_thresh": 0.25,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 104,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 17,
+        "precision": 0.6545,
+        "recall": 0.9078,
+        "f1": 0.7606,
+        "precision_excl_ruby": 0.9206,
+        "f1_excl_ruby": 0.9142,
+        "mean_matched_iou": 0.7508
+      },
+      "full": {
+        "tp": 196,
+        "fp": 130,
+        "fn": 21,
+        "ruby_fp": 88,
+        "other_fp": 42,
+        "precision": 0.6012,
+        "recall": 0.9032,
+        "f1": 0.7219,
+        "precision_excl_ruby": 0.8235,
+        "f1_excl_ruby": 0.8615,
+        "mean_matched_iou": 0.8121
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.15,
+    "box_thresh": 0.25,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7948
+      },
+      "full": {
+        "tp": 195,
+        "fp": 135,
+        "fn": 22,
+        "ruby_fp": 92,
+        "other_fp": 43,
+        "precision": 0.5909,
+        "recall": 0.8986,
+        "f1": 0.713,
+        "precision_excl_ruby": 0.8193,
+        "f1_excl_ruby": 0.8571,
+        "mean_matched_iou": 0.8257
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.15,
+    "box_thresh": 0.25,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 102,
+        "fn": 19,
+        "ruby_fp": 84,
+        "other_fp": 18,
+        "precision": 0.66,
+        "recall": 0.9124,
+        "f1": 0.766,
+        "precision_excl_ruby": 0.9167,
+        "f1_excl_ruby": 0.9145,
+        "mean_matched_iou": 0.8208
+      },
+      "full": {
+        "tp": 194,
+        "fp": 138,
+        "fn": 23,
+        "ruby_fp": 94,
+        "other_fp": 44,
+        "precision": 0.5843,
+        "recall": 0.894,
+        "f1": 0.7067,
+        "precision_excl_ruby": 0.8151,
+        "f1_excl_ruby": 0.8527,
+        "mean_matched_iou": 0.8293
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.15,
+    "box_thresh": 0.3,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 106,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 19,
+        "precision": 0.6478,
+        "recall": 0.8986,
+        "f1": 0.7529,
+        "precision_excl_ruby": 0.9112,
+        "f1_excl_ruby": 0.9049,
+        "mean_matched_iou": 0.7048
+      },
+      "full": {
+        "tp": 195,
+        "fp": 123,
+        "fn": 22,
+        "ruby_fp": 84,
+        "other_fp": 39,
+        "precision": 0.6132,
+        "recall": 0.8986,
+        "f1": 0.729,
+        "precision_excl_ruby": 0.8333,
+        "f1_excl_ruby": 0.8647,
+        "mean_matched_iou": 0.7844
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.15,
+    "box_thresh": 0.3,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 104,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 17,
+        "precision": 0.6545,
+        "recall": 0.9078,
+        "f1": 0.7606,
+        "precision_excl_ruby": 0.9206,
+        "f1_excl_ruby": 0.9142,
+        "mean_matched_iou": 0.7508
+      },
+      "full": {
+        "tp": 196,
+        "fp": 128,
+        "fn": 21,
+        "ruby_fp": 87,
+        "other_fp": 41,
+        "precision": 0.6049,
+        "recall": 0.9032,
+        "f1": 0.7246,
+        "precision_excl_ruby": 0.827,
+        "f1_excl_ruby": 0.8634,
+        "mean_matched_iou": 0.8121
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.15,
+    "box_thresh": 0.3,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7948
+      },
+      "full": {
+        "tp": 195,
+        "fp": 132,
+        "fn": 22,
+        "ruby_fp": 91,
+        "other_fp": 41,
+        "precision": 0.5963,
+        "recall": 0.8986,
+        "f1": 0.7169,
+        "precision_excl_ruby": 0.8263,
+        "f1_excl_ruby": 0.8609,
+        "mean_matched_iou": 0.8257
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.15,
+    "box_thresh": 0.3,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 102,
+        "fn": 19,
+        "ruby_fp": 84,
+        "other_fp": 18,
+        "precision": 0.66,
+        "recall": 0.9124,
+        "f1": 0.766,
+        "precision_excl_ruby": 0.9167,
+        "f1_excl_ruby": 0.9145,
+        "mean_matched_iou": 0.8208
+      },
+      "full": {
+        "tp": 194,
+        "fp": 134,
+        "fn": 23,
+        "ruby_fp": 93,
+        "other_fp": 41,
+        "precision": 0.5915,
+        "recall": 0.894,
+        "f1": 0.7119,
+        "precision_excl_ruby": 0.8255,
+        "f1_excl_ruby": 0.8584,
+        "mean_matched_iou": 0.8293
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.15,
+    "box_thresh": 0.4,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 104,
+        "fn": 22,
+        "ruby_fp": 86,
+        "other_fp": 18,
+        "precision": 0.6522,
+        "recall": 0.8986,
+        "f1": 0.7558,
+        "precision_excl_ruby": 0.9155,
+        "f1_excl_ruby": 0.907,
+        "mean_matched_iou": 0.7048
+      },
+      "full": {
+        "tp": 195,
+        "fp": 120,
+        "fn": 22,
+        "ruby_fp": 83,
+        "other_fp": 37,
+        "precision": 0.619,
+        "recall": 0.8986,
+        "f1": 0.7331,
+        "precision_excl_ruby": 0.8405,
+        "f1_excl_ruby": 0.8686,
+        "mean_matched_iou": 0.7844
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.15,
+    "box_thresh": 0.4,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 102,
+        "fn": 20,
+        "ruby_fp": 86,
+        "other_fp": 16,
+        "precision": 0.6589,
+        "recall": 0.9078,
+        "f1": 0.7636,
+        "precision_excl_ruby": 0.9249,
+        "f1_excl_ruby": 0.9163,
+        "mean_matched_iou": 0.7508
+      },
+      "full": {
+        "tp": 196,
+        "fp": 125,
+        "fn": 21,
+        "ruby_fp": 86,
+        "other_fp": 39,
+        "precision": 0.6106,
+        "recall": 0.9032,
+        "f1": 0.7286,
+        "precision_excl_ruby": 0.834,
+        "f1_excl_ruby": 0.8673,
+        "mean_matched_iou": 0.8121
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.15,
+    "box_thresh": 0.4,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 103,
+        "fn": 20,
+        "ruby_fp": 86,
+        "other_fp": 17,
+        "precision": 0.6567,
+        "recall": 0.9078,
+        "f1": 0.7621,
+        "precision_excl_ruby": 0.9206,
+        "f1_excl_ruby": 0.9142,
+        "mean_matched_iou": 0.7948
+      },
+      "full": {
+        "tp": 195,
+        "fp": 128,
+        "fn": 22,
+        "ruby_fp": 89,
+        "other_fp": 39,
+        "precision": 0.6037,
+        "recall": 0.8986,
+        "f1": 0.7222,
+        "precision_excl_ruby": 0.8333,
+        "f1_excl_ruby": 0.8647,
+        "mean_matched_iou": 0.8257
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.15,
+    "box_thresh": 0.4,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 100,
+        "fn": 19,
+        "ruby_fp": 83,
+        "other_fp": 17,
+        "precision": 0.6644,
+        "recall": 0.9124,
+        "f1": 0.7689,
+        "precision_excl_ruby": 0.9209,
+        "f1_excl_ruby": 0.9167,
+        "mean_matched_iou": 0.8208
+      },
+      "full": {
+        "tp": 194,
+        "fp": 130,
+        "fn": 23,
+        "ruby_fp": 91,
+        "other_fp": 39,
+        "precision": 0.5988,
+        "recall": 0.894,
+        "f1": 0.7172,
+        "precision_excl_ruby": 0.8326,
+        "f1_excl_ruby": 0.8622,
+        "mean_matched_iou": 0.8293
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.2,
+    "box_thresh": 0.2,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 103,
+        "fn": 21,
+        "ruby_fp": 85,
+        "other_fp": 18,
+        "precision": 0.6555,
+        "recall": 0.9032,
+        "f1": 0.7597,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.6986
+      },
+      "full": {
+        "tp": 195,
+        "fp": 119,
+        "fn": 22,
+        "ruby_fp": 79,
+        "other_fp": 40,
+        "precision": 0.621,
+        "recall": 0.8986,
+        "f1": 0.7345,
+        "precision_excl_ruby": 0.8298,
+        "f1_excl_ruby": 0.8628,
+        "mean_matched_iou": 0.7828
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.2,
+    "box_thresh": 0.2,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7459
+      },
+      "full": {
+        "tp": 197,
+        "fp": 129,
+        "fn": 20,
+        "ruby_fp": 85,
+        "other_fp": 44,
+        "precision": 0.6043,
+        "recall": 0.9078,
+        "f1": 0.7256,
+        "precision_excl_ruby": 0.8174,
+        "f1_excl_ruby": 0.8603,
+        "mean_matched_iou": 0.8096
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.2,
+    "box_thresh": 0.2,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7895
+      },
+      "full": {
+        "tp": 197,
+        "fp": 131,
+        "fn": 20,
+        "ruby_fp": 90,
+        "other_fp": 41,
+        "precision": 0.6006,
+        "recall": 0.9078,
+        "f1": 0.7229,
+        "precision_excl_ruby": 0.8277,
+        "f1_excl_ruby": 0.8659,
+        "mean_matched_iou": 0.8246
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.2,
+    "box_thresh": 0.2,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 103,
+        "fn": 19,
+        "ruby_fp": 85,
+        "other_fp": 18,
+        "precision": 0.6578,
+        "recall": 0.9124,
+        "f1": 0.7645,
+        "precision_excl_ruby": 0.9167,
+        "f1_excl_ruby": 0.9145,
+        "mean_matched_iou": 0.8197
+      },
+      "full": {
+        "tp": 197,
+        "fp": 133,
+        "fn": 20,
+        "ruby_fp": 91,
+        "other_fp": 42,
+        "precision": 0.597,
+        "recall": 0.9078,
+        "f1": 0.7203,
+        "precision_excl_ruby": 0.8243,
+        "f1_excl_ruby": 0.864,
+        "mean_matched_iou": 0.8253
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.2,
+    "box_thresh": 0.25,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 103,
+        "fn": 21,
+        "ruby_fp": 85,
+        "other_fp": 18,
+        "precision": 0.6555,
+        "recall": 0.9032,
+        "f1": 0.7597,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.6986
+      },
+      "full": {
+        "tp": 195,
+        "fp": 119,
+        "fn": 22,
+        "ruby_fp": 79,
+        "other_fp": 40,
+        "precision": 0.621,
+        "recall": 0.8986,
+        "f1": 0.7345,
+        "precision_excl_ruby": 0.8298,
+        "f1_excl_ruby": 0.8628,
+        "mean_matched_iou": 0.7828
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.2,
+    "box_thresh": 0.25,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7459
+      },
+      "full": {
+        "tp": 197,
+        "fp": 129,
+        "fn": 20,
+        "ruby_fp": 85,
+        "other_fp": 44,
+        "precision": 0.6043,
+        "recall": 0.9078,
+        "f1": 0.7256,
+        "precision_excl_ruby": 0.8174,
+        "f1_excl_ruby": 0.8603,
+        "mean_matched_iou": 0.8096
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.2,
+    "box_thresh": 0.25,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7895
+      },
+      "full": {
+        "tp": 197,
+        "fp": 131,
+        "fn": 20,
+        "ruby_fp": 90,
+        "other_fp": 41,
+        "precision": 0.6006,
+        "recall": 0.9078,
+        "f1": 0.7229,
+        "precision_excl_ruby": 0.8277,
+        "f1_excl_ruby": 0.8659,
+        "mean_matched_iou": 0.8246
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.2,
+    "box_thresh": 0.25,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 103,
+        "fn": 19,
+        "ruby_fp": 85,
+        "other_fp": 18,
+        "precision": 0.6578,
+        "recall": 0.9124,
+        "f1": 0.7645,
+        "precision_excl_ruby": 0.9167,
+        "f1_excl_ruby": 0.9145,
+        "mean_matched_iou": 0.8197
+      },
+      "full": {
+        "tp": 197,
+        "fp": 133,
+        "fn": 20,
+        "ruby_fp": 91,
+        "other_fp": 42,
+        "precision": 0.597,
+        "recall": 0.9078,
+        "f1": 0.7203,
+        "precision_excl_ruby": 0.8243,
+        "f1_excl_ruby": 0.864,
+        "mean_matched_iou": 0.8253
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.2,
+    "box_thresh": 0.3,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 103,
+        "fn": 21,
+        "ruby_fp": 85,
+        "other_fp": 18,
+        "precision": 0.6555,
+        "recall": 0.9032,
+        "f1": 0.7597,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.6986
+      },
+      "full": {
+        "tp": 195,
+        "fp": 118,
+        "fn": 22,
+        "ruby_fp": 78,
+        "other_fp": 40,
+        "precision": 0.623,
+        "recall": 0.8986,
+        "f1": 0.7358,
+        "precision_excl_ruby": 0.8298,
+        "f1_excl_ruby": 0.8628,
+        "mean_matched_iou": 0.7828
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.2,
+    "box_thresh": 0.3,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7459
+      },
+      "full": {
+        "tp": 197,
+        "fp": 128,
+        "fn": 20,
+        "ruby_fp": 84,
+        "other_fp": 44,
+        "precision": 0.6062,
+        "recall": 0.9078,
+        "f1": 0.7269,
+        "precision_excl_ruby": 0.8174,
+        "f1_excl_ruby": 0.8603,
+        "mean_matched_iou": 0.8096
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.2,
+    "box_thresh": 0.3,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7895
+      },
+      "full": {
+        "tp": 197,
+        "fp": 129,
+        "fn": 20,
+        "ruby_fp": 89,
+        "other_fp": 40,
+        "precision": 0.6043,
+        "recall": 0.9078,
+        "f1": 0.7256,
+        "precision_excl_ruby": 0.8312,
+        "f1_excl_ruby": 0.8678,
+        "mean_matched_iou": 0.8246
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.2,
+    "box_thresh": 0.3,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 103,
+        "fn": 19,
+        "ruby_fp": 85,
+        "other_fp": 18,
+        "precision": 0.6578,
+        "recall": 0.9124,
+        "f1": 0.7645,
+        "precision_excl_ruby": 0.9167,
+        "f1_excl_ruby": 0.9145,
+        "mean_matched_iou": 0.8197
+      },
+      "full": {
+        "tp": 197,
+        "fp": 131,
+        "fn": 20,
+        "ruby_fp": 90,
+        "other_fp": 41,
+        "precision": 0.6006,
+        "recall": 0.9078,
+        "f1": 0.7229,
+        "precision_excl_ruby": 0.8277,
+        "f1_excl_ruby": 0.8659,
+        "mean_matched_iou": 0.8253
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.2,
+    "box_thresh": 0.4,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 103,
+        "fn": 21,
+        "ruby_fp": 85,
+        "other_fp": 18,
+        "precision": 0.6555,
+        "recall": 0.9032,
+        "f1": 0.7597,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.6986
+      },
+      "full": {
+        "tp": 195,
+        "fp": 114,
+        "fn": 22,
+        "ruby_fp": 78,
+        "other_fp": 36,
+        "precision": 0.6311,
+        "recall": 0.8986,
+        "f1": 0.7414,
+        "precision_excl_ruby": 0.8442,
+        "f1_excl_ruby": 0.8705,
+        "mean_matched_iou": 0.7828
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.2,
+    "box_thresh": 0.4,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7459
+      },
+      "full": {
+        "tp": 197,
+        "fp": 122,
+        "fn": 20,
+        "ruby_fp": 84,
+        "other_fp": 38,
+        "precision": 0.6176,
+        "recall": 0.9078,
+        "f1": 0.7351,
+        "precision_excl_ruby": 0.8383,
+        "f1_excl_ruby": 0.8717,
+        "mean_matched_iou": 0.8096
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.2,
+    "box_thresh": 0.4,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7895
+      },
+      "full": {
+        "tp": 197,
+        "fp": 123,
+        "fn": 20,
+        "ruby_fp": 88,
+        "other_fp": 35,
+        "precision": 0.6156,
+        "recall": 0.9078,
+        "f1": 0.7337,
+        "precision_excl_ruby": 0.8491,
+        "f1_excl_ruby": 0.8775,
+        "mean_matched_iou": 0.8246
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.2,
+    "box_thresh": 0.4,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 103,
+        "fn": 19,
+        "ruby_fp": 85,
+        "other_fp": 18,
+        "precision": 0.6578,
+        "recall": 0.9124,
+        "f1": 0.7645,
+        "precision_excl_ruby": 0.9167,
+        "f1_excl_ruby": 0.9145,
+        "mean_matched_iou": 0.8197
+      },
+      "full": {
+        "tp": 197,
+        "fp": 125,
+        "fn": 20,
+        "ruby_fp": 89,
+        "other_fp": 36,
+        "precision": 0.6118,
+        "recall": 0.9078,
+        "f1": 0.731,
+        "precision_excl_ruby": 0.8455,
+        "f1_excl_ruby": 0.8756,
+        "mean_matched_iou": 0.8253
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.3,
+    "box_thresh": 0.2,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 106,
+        "fn": 22,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6478,
+        "recall": 0.8986,
+        "f1": 0.7529,
+        "precision_excl_ruby": 0.9155,
+        "f1_excl_ruby": 0.907,
+        "mean_matched_iou": 0.6917
+      },
+      "full": {
+        "tp": 195,
+        "fp": 114,
+        "fn": 22,
+        "ruby_fp": 77,
+        "other_fp": 37,
+        "precision": 0.6311,
+        "recall": 0.8986,
+        "f1": 0.7414,
+        "precision_excl_ruby": 0.8405,
+        "f1_excl_ruby": 0.8686,
+        "mean_matched_iou": 0.7719
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.3,
+    "box_thresh": 0.2,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 107,
+        "fn": 21,
+        "ruby_fp": 89,
+        "other_fp": 18,
+        "precision": 0.6469,
+        "recall": 0.9032,
+        "f1": 0.7538,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.7415
+      },
+      "full": {
+        "tp": 196,
+        "fp": 118,
+        "fn": 21,
+        "ruby_fp": 82,
+        "other_fp": 36,
+        "precision": 0.6242,
+        "recall": 0.9032,
+        "f1": 0.7382,
+        "precision_excl_ruby": 0.8448,
+        "f1_excl_ruby": 0.8731,
+        "mean_matched_iou": 0.8054
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.3,
+    "box_thresh": 0.2,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 109,
+        "fn": 21,
+        "ruby_fp": 90,
+        "other_fp": 19,
+        "precision": 0.6426,
+        "recall": 0.9032,
+        "f1": 0.751,
+        "precision_excl_ruby": 0.9116,
+        "f1_excl_ruby": 0.9074,
+        "mean_matched_iou": 0.7842
+      },
+      "full": {
+        "tp": 196,
+        "fp": 124,
+        "fn": 21,
+        "ruby_fp": 84,
+        "other_fp": 40,
+        "precision": 0.6125,
+        "recall": 0.9032,
+        "f1": 0.73,
+        "precision_excl_ruby": 0.8305,
+        "f1_excl_ruby": 0.8653,
+        "mean_matched_iou": 0.8218
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.3,
+    "box_thresh": 0.2,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 106,
+        "fn": 20,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6502,
+        "recall": 0.9078,
+        "f1": 0.7577,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.8149
+      },
+      "full": {
+        "tp": 198,
+        "fp": 125,
+        "fn": 19,
+        "ruby_fp": 87,
+        "other_fp": 38,
+        "precision": 0.613,
+        "recall": 0.9124,
+        "f1": 0.7333,
+        "precision_excl_ruby": 0.839,
+        "f1_excl_ruby": 0.8742,
+        "mean_matched_iou": 0.8239
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.3,
+    "box_thresh": 0.25,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 106,
+        "fn": 22,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6478,
+        "recall": 0.8986,
+        "f1": 0.7529,
+        "precision_excl_ruby": 0.9155,
+        "f1_excl_ruby": 0.907,
+        "mean_matched_iou": 0.6917
+      },
+      "full": {
+        "tp": 195,
+        "fp": 114,
+        "fn": 22,
+        "ruby_fp": 77,
+        "other_fp": 37,
+        "precision": 0.6311,
+        "recall": 0.8986,
+        "f1": 0.7414,
+        "precision_excl_ruby": 0.8405,
+        "f1_excl_ruby": 0.8686,
+        "mean_matched_iou": 0.7719
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.3,
+    "box_thresh": 0.25,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 107,
+        "fn": 21,
+        "ruby_fp": 89,
+        "other_fp": 18,
+        "precision": 0.6469,
+        "recall": 0.9032,
+        "f1": 0.7538,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.7415
+      },
+      "full": {
+        "tp": 196,
+        "fp": 118,
+        "fn": 21,
+        "ruby_fp": 82,
+        "other_fp": 36,
+        "precision": 0.6242,
+        "recall": 0.9032,
+        "f1": 0.7382,
+        "precision_excl_ruby": 0.8448,
+        "f1_excl_ruby": 0.8731,
+        "mean_matched_iou": 0.8054
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.3,
+    "box_thresh": 0.25,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 109,
+        "fn": 21,
+        "ruby_fp": 90,
+        "other_fp": 19,
+        "precision": 0.6426,
+        "recall": 0.9032,
+        "f1": 0.751,
+        "precision_excl_ruby": 0.9116,
+        "f1_excl_ruby": 0.9074,
+        "mean_matched_iou": 0.7842
+      },
+      "full": {
+        "tp": 196,
+        "fp": 124,
+        "fn": 21,
+        "ruby_fp": 84,
+        "other_fp": 40,
+        "precision": 0.6125,
+        "recall": 0.9032,
+        "f1": 0.73,
+        "precision_excl_ruby": 0.8305,
+        "f1_excl_ruby": 0.8653,
+        "mean_matched_iou": 0.8218
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.3,
+    "box_thresh": 0.25,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 106,
+        "fn": 20,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6502,
+        "recall": 0.9078,
+        "f1": 0.7577,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.8149
+      },
+      "full": {
+        "tp": 198,
+        "fp": 125,
+        "fn": 19,
+        "ruby_fp": 87,
+        "other_fp": 38,
+        "precision": 0.613,
+        "recall": 0.9124,
+        "f1": 0.7333,
+        "precision_excl_ruby": 0.839,
+        "f1_excl_ruby": 0.8742,
+        "mean_matched_iou": 0.8239
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.3,
+    "box_thresh": 0.3,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 106,
+        "fn": 22,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6478,
+        "recall": 0.8986,
+        "f1": 0.7529,
+        "precision_excl_ruby": 0.9155,
+        "f1_excl_ruby": 0.907,
+        "mean_matched_iou": 0.6917
+      },
+      "full": {
+        "tp": 195,
+        "fp": 114,
+        "fn": 22,
+        "ruby_fp": 77,
+        "other_fp": 37,
+        "precision": 0.6311,
+        "recall": 0.8986,
+        "f1": 0.7414,
+        "precision_excl_ruby": 0.8405,
+        "f1_excl_ruby": 0.8686,
+        "mean_matched_iou": 0.7719
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.3,
+    "box_thresh": 0.3,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 107,
+        "fn": 21,
+        "ruby_fp": 89,
+        "other_fp": 18,
+        "precision": 0.6469,
+        "recall": 0.9032,
+        "f1": 0.7538,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.7415
+      },
+      "full": {
+        "tp": 196,
+        "fp": 118,
+        "fn": 21,
+        "ruby_fp": 82,
+        "other_fp": 36,
+        "precision": 0.6242,
+        "recall": 0.9032,
+        "f1": 0.7382,
+        "precision_excl_ruby": 0.8448,
+        "f1_excl_ruby": 0.8731,
+        "mean_matched_iou": 0.8054
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.3,
+    "box_thresh": 0.3,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 109,
+        "fn": 21,
+        "ruby_fp": 90,
+        "other_fp": 19,
+        "precision": 0.6426,
+        "recall": 0.9032,
+        "f1": 0.751,
+        "precision_excl_ruby": 0.9116,
+        "f1_excl_ruby": 0.9074,
+        "mean_matched_iou": 0.7842
+      },
+      "full": {
+        "tp": 196,
+        "fp": 124,
+        "fn": 21,
+        "ruby_fp": 84,
+        "other_fp": 40,
+        "precision": 0.6125,
+        "recall": 0.9032,
+        "f1": 0.73,
+        "precision_excl_ruby": 0.8305,
+        "f1_excl_ruby": 0.8653,
+        "mean_matched_iou": 0.8218
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.3,
+    "box_thresh": 0.3,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 106,
+        "fn": 20,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6502,
+        "recall": 0.9078,
+        "f1": 0.7577,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.8149
+      },
+      "full": {
+        "tp": 198,
+        "fp": 125,
+        "fn": 19,
+        "ruby_fp": 87,
+        "other_fp": 38,
+        "precision": 0.613,
+        "recall": 0.9124,
+        "f1": 0.7333,
+        "precision_excl_ruby": 0.839,
+        "f1_excl_ruby": 0.8742,
+        "mean_matched_iou": 0.8239
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.3,
+    "box_thresh": 0.4,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 105,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.65,
+        "recall": 0.8986,
+        "f1": 0.7544,
+        "precision_excl_ruby": 0.9155,
+        "f1_excl_ruby": 0.907,
+        "mean_matched_iou": 0.6917
+      },
+      "full": {
+        "tp": 195,
+        "fp": 113,
+        "fn": 22,
+        "ruby_fp": 76,
+        "other_fp": 37,
+        "precision": 0.6331,
+        "recall": 0.8986,
+        "f1": 0.7429,
+        "precision_excl_ruby": 0.8405,
+        "f1_excl_ruby": 0.8686,
+        "mean_matched_iou": 0.7719
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.3,
+    "box_thresh": 0.4,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 106,
+        "fn": 21,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.649,
+        "recall": 0.9032,
+        "f1": 0.7553,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.7415
+      },
+      "full": {
+        "tp": 196,
+        "fp": 117,
+        "fn": 21,
+        "ruby_fp": 81,
+        "other_fp": 36,
+        "precision": 0.6262,
+        "recall": 0.9032,
+        "f1": 0.7396,
+        "precision_excl_ruby": 0.8448,
+        "f1_excl_ruby": 0.8731,
+        "mean_matched_iou": 0.8054
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.3,
+    "box_thresh": 0.4,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 108,
+        "fn": 21,
+        "ruby_fp": 89,
+        "other_fp": 19,
+        "precision": 0.6447,
+        "recall": 0.9032,
+        "f1": 0.7524,
+        "precision_excl_ruby": 0.9116,
+        "f1_excl_ruby": 0.9074,
+        "mean_matched_iou": 0.7842
+      },
+      "full": {
+        "tp": 196,
+        "fp": 123,
+        "fn": 21,
+        "ruby_fp": 83,
+        "other_fp": 40,
+        "precision": 0.6144,
+        "recall": 0.9032,
+        "f1": 0.7313,
+        "precision_excl_ruby": 0.8305,
+        "f1_excl_ruby": 0.8653,
+        "mean_matched_iou": 0.8218
+      }
+    }
+  },
+  {
+    "scale": 1280,
+    "thresh": 0.3,
+    "box_thresh": 0.4,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 106,
+        "fn": 20,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6502,
+        "recall": 0.9078,
+        "f1": 0.7577,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.8149
+      },
+      "full": {
+        "tp": 198,
+        "fp": 124,
+        "fn": 19,
+        "ruby_fp": 86,
+        "other_fp": 38,
+        "precision": 0.6149,
+        "recall": 0.9124,
+        "f1": 0.7347,
+        "precision_excl_ruby": 0.839,
+        "f1_excl_ruby": 0.8742,
+        "mean_matched_iou": 0.8239
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.1,
+    "box_thresh": 0.2,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 104,
+        "fn": 21,
+        "ruby_fp": 86,
+        "other_fp": 18,
+        "precision": 0.6533,
+        "recall": 0.9032,
+        "f1": 0.7582,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.7116
+      },
+      "full": {
+        "tp": 194,
+        "fp": 121,
+        "fn": 23,
+        "ruby_fp": 87,
+        "other_fp": 34,
+        "precision": 0.6159,
+        "recall": 0.894,
+        "f1": 0.7293,
+        "precision_excl_ruby": 0.8509,
+        "f1_excl_ruby": 0.8719,
+        "mean_matched_iou": 0.7731
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.1,
+    "box_thresh": 0.2,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 104,
+        "fn": 19,
+        "ruby_fp": 87,
+        "other_fp": 17,
+        "precision": 0.6556,
+        "recall": 0.9124,
+        "f1": 0.763,
+        "precision_excl_ruby": 0.9209,
+        "f1_excl_ruby": 0.9167,
+        "mean_matched_iou": 0.7569
+      },
+      "full": {
+        "tp": 195,
+        "fp": 124,
+        "fn": 22,
+        "ruby_fp": 88,
+        "other_fp": 36,
+        "precision": 0.6113,
+        "recall": 0.8986,
+        "f1": 0.7276,
+        "precision_excl_ruby": 0.8442,
+        "f1_excl_ruby": 0.8705,
+        "mean_matched_iou": 0.8
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.1,
+    "box_thresh": 0.2,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 103,
+        "fn": 19,
+        "ruby_fp": 87,
+        "other_fp": 16,
+        "precision": 0.6578,
+        "recall": 0.9124,
+        "f1": 0.7645,
+        "precision_excl_ruby": 0.9252,
+        "f1_excl_ruby": 0.9188,
+        "mean_matched_iou": 0.8003
+      },
+      "full": {
+        "tp": 194,
+        "fp": 130,
+        "fn": 23,
+        "ruby_fp": 94,
+        "other_fp": 36,
+        "precision": 0.5988,
+        "recall": 0.894,
+        "f1": 0.7172,
+        "precision_excl_ruby": 0.8435,
+        "f1_excl_ruby": 0.868,
+        "mean_matched_iou": 0.8171
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.1,
+    "box_thresh": 0.2,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 102,
+        "fn": 19,
+        "ruby_fp": 86,
+        "other_fp": 16,
+        "precision": 0.66,
+        "recall": 0.9124,
+        "f1": 0.766,
+        "precision_excl_ruby": 0.9252,
+        "f1_excl_ruby": 0.9188,
+        "mean_matched_iou": 0.8267
+      },
+      "full": {
+        "tp": 191,
+        "fp": 136,
+        "fn": 26,
+        "ruby_fp": 96,
+        "other_fp": 40,
+        "precision": 0.5841,
+        "recall": 0.8802,
+        "f1": 0.7022,
+        "precision_excl_ruby": 0.8268,
+        "f1_excl_ruby": 0.8527,
+        "mean_matched_iou": 0.8292
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.1,
+    "box_thresh": 0.25,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 104,
+        "fn": 21,
+        "ruby_fp": 86,
+        "other_fp": 18,
+        "precision": 0.6533,
+        "recall": 0.9032,
+        "f1": 0.7582,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.7116
+      },
+      "full": {
+        "tp": 194,
+        "fp": 121,
+        "fn": 23,
+        "ruby_fp": 87,
+        "other_fp": 34,
+        "precision": 0.6159,
+        "recall": 0.894,
+        "f1": 0.7293,
+        "precision_excl_ruby": 0.8509,
+        "f1_excl_ruby": 0.8719,
+        "mean_matched_iou": 0.7731
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.1,
+    "box_thresh": 0.25,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 104,
+        "fn": 19,
+        "ruby_fp": 87,
+        "other_fp": 17,
+        "precision": 0.6556,
+        "recall": 0.9124,
+        "f1": 0.763,
+        "precision_excl_ruby": 0.9209,
+        "f1_excl_ruby": 0.9167,
+        "mean_matched_iou": 0.7569
+      },
+      "full": {
+        "tp": 195,
+        "fp": 123,
+        "fn": 22,
+        "ruby_fp": 88,
+        "other_fp": 35,
+        "precision": 0.6132,
+        "recall": 0.8986,
+        "f1": 0.729,
+        "precision_excl_ruby": 0.8478,
+        "f1_excl_ruby": 0.8725,
+        "mean_matched_iou": 0.8
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.1,
+    "box_thresh": 0.25,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 103,
+        "fn": 19,
+        "ruby_fp": 87,
+        "other_fp": 16,
+        "precision": 0.6578,
+        "recall": 0.9124,
+        "f1": 0.7645,
+        "precision_excl_ruby": 0.9252,
+        "f1_excl_ruby": 0.9188,
+        "mean_matched_iou": 0.8003
+      },
+      "full": {
+        "tp": 194,
+        "fp": 129,
+        "fn": 23,
+        "ruby_fp": 94,
+        "other_fp": 35,
+        "precision": 0.6006,
+        "recall": 0.894,
+        "f1": 0.7185,
+        "precision_excl_ruby": 0.8472,
+        "f1_excl_ruby": 0.87,
+        "mean_matched_iou": 0.8171
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.1,
+    "box_thresh": 0.25,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 102,
+        "fn": 19,
+        "ruby_fp": 86,
+        "other_fp": 16,
+        "precision": 0.66,
+        "recall": 0.9124,
+        "f1": 0.766,
+        "precision_excl_ruby": 0.9252,
+        "f1_excl_ruby": 0.9188,
+        "mean_matched_iou": 0.8267
+      },
+      "full": {
+        "tp": 191,
+        "fp": 135,
+        "fn": 26,
+        "ruby_fp": 96,
+        "other_fp": 39,
+        "precision": 0.5859,
+        "recall": 0.8802,
+        "f1": 0.7035,
+        "precision_excl_ruby": 0.8304,
+        "f1_excl_ruby": 0.8546,
+        "mean_matched_iou": 0.8292
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.1,
+    "box_thresh": 0.3,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 104,
+        "fn": 21,
+        "ruby_fp": 86,
+        "other_fp": 18,
+        "precision": 0.6533,
+        "recall": 0.9032,
+        "f1": 0.7582,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.7116
+      },
+      "full": {
+        "tp": 194,
+        "fp": 120,
+        "fn": 23,
+        "ruby_fp": 86,
+        "other_fp": 34,
+        "precision": 0.6178,
+        "recall": 0.894,
+        "f1": 0.7307,
+        "precision_excl_ruby": 0.8509,
+        "f1_excl_ruby": 0.8719,
+        "mean_matched_iou": 0.7731
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.1,
+    "box_thresh": 0.3,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 104,
+        "fn": 19,
+        "ruby_fp": 87,
+        "other_fp": 17,
+        "precision": 0.6556,
+        "recall": 0.9124,
+        "f1": 0.763,
+        "precision_excl_ruby": 0.9209,
+        "f1_excl_ruby": 0.9167,
+        "mean_matched_iou": 0.7569
+      },
+      "full": {
+        "tp": 195,
+        "fp": 122,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 35,
+        "precision": 0.6151,
+        "recall": 0.8986,
+        "f1": 0.7303,
+        "precision_excl_ruby": 0.8478,
+        "f1_excl_ruby": 0.8725,
+        "mean_matched_iou": 0.8
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.1,
+    "box_thresh": 0.3,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 103,
+        "fn": 19,
+        "ruby_fp": 87,
+        "other_fp": 16,
+        "precision": 0.6578,
+        "recall": 0.9124,
+        "f1": 0.7645,
+        "precision_excl_ruby": 0.9252,
+        "f1_excl_ruby": 0.9188,
+        "mean_matched_iou": 0.8003
+      },
+      "full": {
+        "tp": 194,
+        "fp": 128,
+        "fn": 23,
+        "ruby_fp": 93,
+        "other_fp": 35,
+        "precision": 0.6025,
+        "recall": 0.894,
+        "f1": 0.7199,
+        "precision_excl_ruby": 0.8472,
+        "f1_excl_ruby": 0.87,
+        "mean_matched_iou": 0.8171
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.1,
+    "box_thresh": 0.3,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 102,
+        "fn": 19,
+        "ruby_fp": 86,
+        "other_fp": 16,
+        "precision": 0.66,
+        "recall": 0.9124,
+        "f1": 0.766,
+        "precision_excl_ruby": 0.9252,
+        "f1_excl_ruby": 0.9188,
+        "mean_matched_iou": 0.8267
+      },
+      "full": {
+        "tp": 191,
+        "fp": 134,
+        "fn": 26,
+        "ruby_fp": 95,
+        "other_fp": 39,
+        "precision": 0.5877,
+        "recall": 0.8802,
+        "f1": 0.7048,
+        "precision_excl_ruby": 0.8304,
+        "f1_excl_ruby": 0.8546,
+        "mean_matched_iou": 0.8292
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.1,
+    "box_thresh": 0.4,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 102,
+        "fn": 21,
+        "ruby_fp": 85,
+        "other_fp": 17,
+        "precision": 0.6577,
+        "recall": 0.9032,
+        "f1": 0.7612,
+        "precision_excl_ruby": 0.9202,
+        "f1_excl_ruby": 0.9116,
+        "mean_matched_iou": 0.7116
+      },
+      "full": {
+        "tp": 194,
+        "fp": 114,
+        "fn": 23,
+        "ruby_fp": 86,
+        "other_fp": 28,
+        "precision": 0.6299,
+        "recall": 0.894,
+        "f1": 0.739,
+        "precision_excl_ruby": 0.8739,
+        "f1_excl_ruby": 0.8838,
+        "mean_matched_iou": 0.7731
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.1,
+    "box_thresh": 0.4,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 102,
+        "fn": 19,
+        "ruby_fp": 86,
+        "other_fp": 16,
+        "precision": 0.66,
+        "recall": 0.9124,
+        "f1": 0.766,
+        "precision_excl_ruby": 0.9252,
+        "f1_excl_ruby": 0.9188,
+        "mean_matched_iou": 0.7569
+      },
+      "full": {
+        "tp": 195,
+        "fp": 116,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 29,
+        "precision": 0.627,
+        "recall": 0.8986,
+        "f1": 0.7386,
+        "precision_excl_ruby": 0.8705,
+        "f1_excl_ruby": 0.8844,
+        "mean_matched_iou": 0.8
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.1,
+    "box_thresh": 0.4,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 101,
+        "fn": 19,
+        "ruby_fp": 86,
+        "other_fp": 15,
+        "precision": 0.6622,
+        "recall": 0.9124,
+        "f1": 0.7674,
+        "precision_excl_ruby": 0.9296,
+        "f1_excl_ruby": 0.9209,
+        "mean_matched_iou": 0.8003
+      },
+      "full": {
+        "tp": 194,
+        "fp": 122,
+        "fn": 23,
+        "ruby_fp": 93,
+        "other_fp": 29,
+        "precision": 0.6139,
+        "recall": 0.894,
+        "f1": 0.728,
+        "precision_excl_ruby": 0.87,
+        "f1_excl_ruby": 0.8818,
+        "mean_matched_iou": 0.8171
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.1,
+    "box_thresh": 0.4,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 100,
+        "fn": 19,
+        "ruby_fp": 85,
+        "other_fp": 15,
+        "precision": 0.6644,
+        "recall": 0.9124,
+        "f1": 0.7689,
+        "precision_excl_ruby": 0.9296,
+        "f1_excl_ruby": 0.9209,
+        "mean_matched_iou": 0.8267
+      },
+      "full": {
+        "tp": 191,
+        "fp": 127,
+        "fn": 26,
+        "ruby_fp": 94,
+        "other_fp": 33,
+        "precision": 0.6006,
+        "recall": 0.8802,
+        "f1": 0.714,
+        "precision_excl_ruby": 0.8527,
+        "f1_excl_ruby": 0.8662,
+        "mean_matched_iou": 0.8292
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.15,
+    "box_thresh": 0.2,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 106,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 19,
+        "precision": 0.6478,
+        "recall": 0.8986,
+        "f1": 0.7529,
+        "precision_excl_ruby": 0.9112,
+        "f1_excl_ruby": 0.9049,
+        "mean_matched_iou": 0.7047
+      },
+      "full": {
+        "tp": 194,
+        "fp": 121,
+        "fn": 23,
+        "ruby_fp": 87,
+        "other_fp": 34,
+        "precision": 0.6159,
+        "recall": 0.894,
+        "f1": 0.7293,
+        "precision_excl_ruby": 0.8509,
+        "f1_excl_ruby": 0.8719,
+        "mean_matched_iou": 0.7687
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.15,
+    "box_thresh": 0.2,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 104,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 17,
+        "precision": 0.6545,
+        "recall": 0.9078,
+        "f1": 0.7606,
+        "precision_excl_ruby": 0.9206,
+        "f1_excl_ruby": 0.9142,
+        "mean_matched_iou": 0.7506
+      },
+      "full": {
+        "tp": 195,
+        "fp": 123,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 36,
+        "precision": 0.6132,
+        "recall": 0.8986,
+        "f1": 0.729,
+        "precision_excl_ruby": 0.8442,
+        "f1_excl_ruby": 0.8705,
+        "mean_matched_iou": 0.7962
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.15,
+    "box_thresh": 0.2,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7947
+      },
+      "full": {
+        "tp": 195,
+        "fp": 128,
+        "fn": 22,
+        "ruby_fp": 92,
+        "other_fp": 36,
+        "precision": 0.6037,
+        "recall": 0.8986,
+        "f1": 0.7222,
+        "precision_excl_ruby": 0.8442,
+        "f1_excl_ruby": 0.8705,
+        "mean_matched_iou": 0.8181
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.15,
+    "box_thresh": 0.2,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 102,
+        "fn": 19,
+        "ruby_fp": 84,
+        "other_fp": 18,
+        "precision": 0.66,
+        "recall": 0.9124,
+        "f1": 0.766,
+        "precision_excl_ruby": 0.9167,
+        "f1_excl_ruby": 0.9145,
+        "mean_matched_iou": 0.8207
+      },
+      "full": {
+        "tp": 192,
+        "fp": 133,
+        "fn": 25,
+        "ruby_fp": 93,
+        "other_fp": 40,
+        "precision": 0.5908,
+        "recall": 0.8848,
+        "f1": 0.7085,
+        "precision_excl_ruby": 0.8276,
+        "f1_excl_ruby": 0.8552,
+        "mean_matched_iou": 0.8291
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.15,
+    "box_thresh": 0.25,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 106,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 19,
+        "precision": 0.6478,
+        "recall": 0.8986,
+        "f1": 0.7529,
+        "precision_excl_ruby": 0.9112,
+        "f1_excl_ruby": 0.9049,
+        "mean_matched_iou": 0.7047
+      },
+      "full": {
+        "tp": 194,
+        "fp": 119,
+        "fn": 23,
+        "ruby_fp": 86,
+        "other_fp": 33,
+        "precision": 0.6198,
+        "recall": 0.894,
+        "f1": 0.7321,
+        "precision_excl_ruby": 0.8546,
+        "f1_excl_ruby": 0.8739,
+        "mean_matched_iou": 0.7687
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.15,
+    "box_thresh": 0.25,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 104,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 17,
+        "precision": 0.6545,
+        "recall": 0.9078,
+        "f1": 0.7606,
+        "precision_excl_ruby": 0.9206,
+        "f1_excl_ruby": 0.9142,
+        "mean_matched_iou": 0.7506
+      },
+      "full": {
+        "tp": 195,
+        "fp": 121,
+        "fn": 22,
+        "ruby_fp": 86,
+        "other_fp": 35,
+        "precision": 0.6171,
+        "recall": 0.8986,
+        "f1": 0.7317,
+        "precision_excl_ruby": 0.8478,
+        "f1_excl_ruby": 0.8725,
+        "mean_matched_iou": 0.7962
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.15,
+    "box_thresh": 0.25,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7947
+      },
+      "full": {
+        "tp": 195,
+        "fp": 126,
+        "fn": 22,
+        "ruby_fp": 91,
+        "other_fp": 35,
+        "precision": 0.6075,
+        "recall": 0.8986,
+        "f1": 0.7249,
+        "precision_excl_ruby": 0.8478,
+        "f1_excl_ruby": 0.8725,
+        "mean_matched_iou": 0.8181
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.15,
+    "box_thresh": 0.25,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 102,
+        "fn": 19,
+        "ruby_fp": 84,
+        "other_fp": 18,
+        "precision": 0.66,
+        "recall": 0.9124,
+        "f1": 0.766,
+        "precision_excl_ruby": 0.9167,
+        "f1_excl_ruby": 0.9145,
+        "mean_matched_iou": 0.8207
+      },
+      "full": {
+        "tp": 192,
+        "fp": 131,
+        "fn": 25,
+        "ruby_fp": 92,
+        "other_fp": 39,
+        "precision": 0.5944,
+        "recall": 0.8848,
+        "f1": 0.7111,
+        "precision_excl_ruby": 0.8312,
+        "f1_excl_ruby": 0.8571,
+        "mean_matched_iou": 0.8291
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.15,
+    "box_thresh": 0.3,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 106,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 19,
+        "precision": 0.6478,
+        "recall": 0.8986,
+        "f1": 0.7529,
+        "precision_excl_ruby": 0.9112,
+        "f1_excl_ruby": 0.9049,
+        "mean_matched_iou": 0.7047
+      },
+      "full": {
+        "tp": 194,
+        "fp": 119,
+        "fn": 23,
+        "ruby_fp": 86,
+        "other_fp": 33,
+        "precision": 0.6198,
+        "recall": 0.894,
+        "f1": 0.7321,
+        "precision_excl_ruby": 0.8546,
+        "f1_excl_ruby": 0.8739,
+        "mean_matched_iou": 0.7687
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.15,
+    "box_thresh": 0.3,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 104,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 17,
+        "precision": 0.6545,
+        "recall": 0.9078,
+        "f1": 0.7606,
+        "precision_excl_ruby": 0.9206,
+        "f1_excl_ruby": 0.9142,
+        "mean_matched_iou": 0.7506
+      },
+      "full": {
+        "tp": 195,
+        "fp": 121,
+        "fn": 22,
+        "ruby_fp": 86,
+        "other_fp": 35,
+        "precision": 0.6171,
+        "recall": 0.8986,
+        "f1": 0.7317,
+        "precision_excl_ruby": 0.8478,
+        "f1_excl_ruby": 0.8725,
+        "mean_matched_iou": 0.7962
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.15,
+    "box_thresh": 0.3,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7947
+      },
+      "full": {
+        "tp": 195,
+        "fp": 126,
+        "fn": 22,
+        "ruby_fp": 91,
+        "other_fp": 35,
+        "precision": 0.6075,
+        "recall": 0.8986,
+        "f1": 0.7249,
+        "precision_excl_ruby": 0.8478,
+        "f1_excl_ruby": 0.8725,
+        "mean_matched_iou": 0.8181
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.15,
+    "box_thresh": 0.3,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 102,
+        "fn": 19,
+        "ruby_fp": 84,
+        "other_fp": 18,
+        "precision": 0.66,
+        "recall": 0.9124,
+        "f1": 0.766,
+        "precision_excl_ruby": 0.9167,
+        "f1_excl_ruby": 0.9145,
+        "mean_matched_iou": 0.8207
+      },
+      "full": {
+        "tp": 192,
+        "fp": 131,
+        "fn": 25,
+        "ruby_fp": 92,
+        "other_fp": 39,
+        "precision": 0.5944,
+        "recall": 0.8848,
+        "f1": 0.7111,
+        "precision_excl_ruby": 0.8312,
+        "f1_excl_ruby": 0.8571,
+        "mean_matched_iou": 0.8291
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.15,
+    "box_thresh": 0.4,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 104,
+        "fn": 22,
+        "ruby_fp": 86,
+        "other_fp": 18,
+        "precision": 0.6522,
+        "recall": 0.8986,
+        "f1": 0.7558,
+        "precision_excl_ruby": 0.9155,
+        "f1_excl_ruby": 0.907,
+        "mean_matched_iou": 0.7047
+      },
+      "full": {
+        "tp": 194,
+        "fp": 115,
+        "fn": 23,
+        "ruby_fp": 86,
+        "other_fp": 29,
+        "precision": 0.6278,
+        "recall": 0.894,
+        "f1": 0.7376,
+        "precision_excl_ruby": 0.87,
+        "f1_excl_ruby": 0.8818,
+        "mean_matched_iou": 0.7687
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.15,
+    "box_thresh": 0.4,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 102,
+        "fn": 20,
+        "ruby_fp": 86,
+        "other_fp": 16,
+        "precision": 0.6589,
+        "recall": 0.9078,
+        "f1": 0.7636,
+        "precision_excl_ruby": 0.9249,
+        "f1_excl_ruby": 0.9163,
+        "mean_matched_iou": 0.7506
+      },
+      "full": {
+        "tp": 195,
+        "fp": 117,
+        "fn": 22,
+        "ruby_fp": 86,
+        "other_fp": 31,
+        "precision": 0.625,
+        "recall": 0.8986,
+        "f1": 0.7372,
+        "precision_excl_ruby": 0.8628,
+        "f1_excl_ruby": 0.8804,
+        "mean_matched_iou": 0.7962
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.15,
+    "box_thresh": 0.4,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 103,
+        "fn": 20,
+        "ruby_fp": 86,
+        "other_fp": 17,
+        "precision": 0.6567,
+        "recall": 0.9078,
+        "f1": 0.7621,
+        "precision_excl_ruby": 0.9206,
+        "f1_excl_ruby": 0.9142,
+        "mean_matched_iou": 0.7947
+      },
+      "full": {
+        "tp": 195,
+        "fp": 121,
+        "fn": 22,
+        "ruby_fp": 90,
+        "other_fp": 31,
+        "precision": 0.6171,
+        "recall": 0.8986,
+        "f1": 0.7317,
+        "precision_excl_ruby": 0.8628,
+        "f1_excl_ruby": 0.8804,
+        "mean_matched_iou": 0.8181
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.15,
+    "box_thresh": 0.4,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 100,
+        "fn": 19,
+        "ruby_fp": 83,
+        "other_fp": 17,
+        "precision": 0.6644,
+        "recall": 0.9124,
+        "f1": 0.7689,
+        "precision_excl_ruby": 0.9209,
+        "f1_excl_ruby": 0.9167,
+        "mean_matched_iou": 0.8207
+      },
+      "full": {
+        "tp": 192,
+        "fp": 126,
+        "fn": 25,
+        "ruby_fp": 91,
+        "other_fp": 35,
+        "precision": 0.6038,
+        "recall": 0.8848,
+        "f1": 0.7178,
+        "precision_excl_ruby": 0.8458,
+        "f1_excl_ruby": 0.8649,
+        "mean_matched_iou": 0.8291
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.2,
+    "box_thresh": 0.2,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 103,
+        "fn": 21,
+        "ruby_fp": 85,
+        "other_fp": 18,
+        "precision": 0.6555,
+        "recall": 0.9032,
+        "f1": 0.7597,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.6985
+      },
+      "full": {
+        "tp": 194,
+        "fp": 122,
+        "fn": 23,
+        "ruby_fp": 89,
+        "other_fp": 33,
+        "precision": 0.6139,
+        "recall": 0.894,
+        "f1": 0.728,
+        "precision_excl_ruby": 0.8546,
+        "f1_excl_ruby": 0.8739,
+        "mean_matched_iou": 0.7647
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.2,
+    "box_thresh": 0.2,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7459
+      },
+      "full": {
+        "tp": 195,
+        "fp": 123,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 36,
+        "precision": 0.6132,
+        "recall": 0.8986,
+        "f1": 0.729,
+        "precision_excl_ruby": 0.8442,
+        "f1_excl_ruby": 0.8705,
+        "mean_matched_iou": 0.7938
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.2,
+    "box_thresh": 0.2,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7895
+      },
+      "full": {
+        "tp": 195,
+        "fp": 123,
+        "fn": 22,
+        "ruby_fp": 91,
+        "other_fp": 32,
+        "precision": 0.6132,
+        "recall": 0.8986,
+        "f1": 0.729,
+        "precision_excl_ruby": 0.859,
+        "f1_excl_ruby": 0.8784,
+        "mean_matched_iou": 0.8163
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.2,
+    "box_thresh": 0.2,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 103,
+        "fn": 19,
+        "ruby_fp": 85,
+        "other_fp": 18,
+        "precision": 0.6578,
+        "recall": 0.9124,
+        "f1": 0.7645,
+        "precision_excl_ruby": 0.9167,
+        "f1_excl_ruby": 0.9145,
+        "mean_matched_iou": 0.8196
+      },
+      "full": {
+        "tp": 192,
+        "fp": 132,
+        "fn": 25,
+        "ruby_fp": 96,
+        "other_fp": 36,
+        "precision": 0.5926,
+        "recall": 0.8848,
+        "f1": 0.7098,
+        "precision_excl_ruby": 0.8421,
+        "f1_excl_ruby": 0.8629,
+        "mean_matched_iou": 0.8273
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.2,
+    "box_thresh": 0.25,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 103,
+        "fn": 21,
+        "ruby_fp": 85,
+        "other_fp": 18,
+        "precision": 0.6555,
+        "recall": 0.9032,
+        "f1": 0.7597,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.6985
+      },
+      "full": {
+        "tp": 194,
+        "fp": 122,
+        "fn": 23,
+        "ruby_fp": 89,
+        "other_fp": 33,
+        "precision": 0.6139,
+        "recall": 0.894,
+        "f1": 0.728,
+        "precision_excl_ruby": 0.8546,
+        "f1_excl_ruby": 0.8739,
+        "mean_matched_iou": 0.7647
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.2,
+    "box_thresh": 0.25,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7459
+      },
+      "full": {
+        "tp": 195,
+        "fp": 123,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 36,
+        "precision": 0.6132,
+        "recall": 0.8986,
+        "f1": 0.729,
+        "precision_excl_ruby": 0.8442,
+        "f1_excl_ruby": 0.8705,
+        "mean_matched_iou": 0.7938
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.2,
+    "box_thresh": 0.25,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7895
+      },
+      "full": {
+        "tp": 195,
+        "fp": 123,
+        "fn": 22,
+        "ruby_fp": 91,
+        "other_fp": 32,
+        "precision": 0.6132,
+        "recall": 0.8986,
+        "f1": 0.729,
+        "precision_excl_ruby": 0.859,
+        "f1_excl_ruby": 0.8784,
+        "mean_matched_iou": 0.8163
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.2,
+    "box_thresh": 0.25,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 103,
+        "fn": 19,
+        "ruby_fp": 85,
+        "other_fp": 18,
+        "precision": 0.6578,
+        "recall": 0.9124,
+        "f1": 0.7645,
+        "precision_excl_ruby": 0.9167,
+        "f1_excl_ruby": 0.9145,
+        "mean_matched_iou": 0.8196
+      },
+      "full": {
+        "tp": 192,
+        "fp": 132,
+        "fn": 25,
+        "ruby_fp": 96,
+        "other_fp": 36,
+        "precision": 0.5926,
+        "recall": 0.8848,
+        "f1": 0.7098,
+        "precision_excl_ruby": 0.8421,
+        "f1_excl_ruby": 0.8629,
+        "mean_matched_iou": 0.8273
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.2,
+    "box_thresh": 0.3,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 103,
+        "fn": 21,
+        "ruby_fp": 85,
+        "other_fp": 18,
+        "precision": 0.6555,
+        "recall": 0.9032,
+        "f1": 0.7597,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.6985
+      },
+      "full": {
+        "tp": 194,
+        "fp": 120,
+        "fn": 23,
+        "ruby_fp": 88,
+        "other_fp": 32,
+        "precision": 0.6178,
+        "recall": 0.894,
+        "f1": 0.7307,
+        "precision_excl_ruby": 0.8584,
+        "f1_excl_ruby": 0.8758,
+        "mean_matched_iou": 0.7647
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.2,
+    "box_thresh": 0.3,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7459
+      },
+      "full": {
+        "tp": 195,
+        "fp": 121,
+        "fn": 22,
+        "ruby_fp": 86,
+        "other_fp": 35,
+        "precision": 0.6171,
+        "recall": 0.8986,
+        "f1": 0.7317,
+        "precision_excl_ruby": 0.8478,
+        "f1_excl_ruby": 0.8725,
+        "mean_matched_iou": 0.7938
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.2,
+    "box_thresh": 0.3,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7895
+      },
+      "full": {
+        "tp": 195,
+        "fp": 121,
+        "fn": 22,
+        "ruby_fp": 90,
+        "other_fp": 31,
+        "precision": 0.6171,
+        "recall": 0.8986,
+        "f1": 0.7317,
+        "precision_excl_ruby": 0.8628,
+        "f1_excl_ruby": 0.8804,
+        "mean_matched_iou": 0.8163
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.2,
+    "box_thresh": 0.3,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 103,
+        "fn": 19,
+        "ruby_fp": 85,
+        "other_fp": 18,
+        "precision": 0.6578,
+        "recall": 0.9124,
+        "f1": 0.7645,
+        "precision_excl_ruby": 0.9167,
+        "f1_excl_ruby": 0.9145,
+        "mean_matched_iou": 0.8196
+      },
+      "full": {
+        "tp": 192,
+        "fp": 130,
+        "fn": 25,
+        "ruby_fp": 95,
+        "other_fp": 35,
+        "precision": 0.5963,
+        "recall": 0.8848,
+        "f1": 0.7124,
+        "precision_excl_ruby": 0.8458,
+        "f1_excl_ruby": 0.8649,
+        "mean_matched_iou": 0.8273
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.2,
+    "box_thresh": 0.4,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 103,
+        "fn": 21,
+        "ruby_fp": 85,
+        "other_fp": 18,
+        "precision": 0.6555,
+        "recall": 0.9032,
+        "f1": 0.7597,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.6985
+      },
+      "full": {
+        "tp": 194,
+        "fp": 117,
+        "fn": 23,
+        "ruby_fp": 87,
+        "other_fp": 30,
+        "precision": 0.6238,
+        "recall": 0.894,
+        "f1": 0.7348,
+        "precision_excl_ruby": 0.8661,
+        "f1_excl_ruby": 0.8798,
+        "mean_matched_iou": 0.7647
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.2,
+    "box_thresh": 0.4,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7459
+      },
+      "full": {
+        "tp": 195,
+        "fp": 118,
+        "fn": 22,
+        "ruby_fp": 85,
+        "other_fp": 33,
+        "precision": 0.623,
+        "recall": 0.8986,
+        "f1": 0.7358,
+        "precision_excl_ruby": 0.8553,
+        "f1_excl_ruby": 0.8764,
+        "mean_matched_iou": 0.7938
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.2,
+    "box_thresh": 0.4,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 105,
+        "fn": 20,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.6523,
+        "recall": 0.9078,
+        "f1": 0.7592,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.7895
+      },
+      "full": {
+        "tp": 195,
+        "fp": 118,
+        "fn": 22,
+        "ruby_fp": 88,
+        "other_fp": 30,
+        "precision": 0.623,
+        "recall": 0.8986,
+        "f1": 0.7358,
+        "precision_excl_ruby": 0.8667,
+        "f1_excl_ruby": 0.8824,
+        "mean_matched_iou": 0.8163
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.2,
+    "box_thresh": 0.4,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 198,
+        "fp": 103,
+        "fn": 19,
+        "ruby_fp": 85,
+        "other_fp": 18,
+        "precision": 0.6578,
+        "recall": 0.9124,
+        "f1": 0.7645,
+        "precision_excl_ruby": 0.9167,
+        "f1_excl_ruby": 0.9145,
+        "mean_matched_iou": 0.8196
+      },
+      "full": {
+        "tp": 192,
+        "fp": 127,
+        "fn": 25,
+        "ruby_fp": 93,
+        "other_fp": 34,
+        "precision": 0.6019,
+        "recall": 0.8848,
+        "f1": 0.7164,
+        "precision_excl_ruby": 0.8496,
+        "f1_excl_ruby": 0.8668,
+        "mean_matched_iou": 0.8273
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.3,
+    "box_thresh": 0.2,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 106,
+        "fn": 22,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6478,
+        "recall": 0.8986,
+        "f1": 0.7529,
+        "precision_excl_ruby": 0.9155,
+        "f1_excl_ruby": 0.907,
+        "mean_matched_iou": 0.6916
+      },
+      "full": {
+        "tp": 195,
+        "fp": 119,
+        "fn": 22,
+        "ruby_fp": 88,
+        "other_fp": 31,
+        "precision": 0.621,
+        "recall": 0.8986,
+        "f1": 0.7345,
+        "precision_excl_ruby": 0.8628,
+        "f1_excl_ruby": 0.8804,
+        "mean_matched_iou": 0.7554
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.3,
+    "box_thresh": 0.2,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 107,
+        "fn": 21,
+        "ruby_fp": 89,
+        "other_fp": 18,
+        "precision": 0.6469,
+        "recall": 0.9032,
+        "f1": 0.7538,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.7414
+      },
+      "full": {
+        "tp": 195,
+        "fp": 121,
+        "fn": 22,
+        "ruby_fp": 90,
+        "other_fp": 31,
+        "precision": 0.6171,
+        "recall": 0.8986,
+        "f1": 0.7317,
+        "precision_excl_ruby": 0.8628,
+        "f1_excl_ruby": 0.8804,
+        "mean_matched_iou": 0.7902
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.3,
+    "box_thresh": 0.2,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 109,
+        "fn": 21,
+        "ruby_fp": 90,
+        "other_fp": 19,
+        "precision": 0.6426,
+        "recall": 0.9032,
+        "f1": 0.751,
+        "precision_excl_ruby": 0.9116,
+        "f1_excl_ruby": 0.9074,
+        "mean_matched_iou": 0.7841
+      },
+      "full": {
+        "tp": 194,
+        "fp": 125,
+        "fn": 23,
+        "ruby_fp": 92,
+        "other_fp": 33,
+        "precision": 0.6082,
+        "recall": 0.894,
+        "f1": 0.7239,
+        "precision_excl_ruby": 0.8546,
+        "f1_excl_ruby": 0.8739,
+        "mean_matched_iou": 0.8106
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.3,
+    "box_thresh": 0.2,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 106,
+        "fn": 20,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6502,
+        "recall": 0.9078,
+        "f1": 0.7577,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.8148
+      },
+      "full": {
+        "tp": 193,
+        "fp": 129,
+        "fn": 24,
+        "ruby_fp": 92,
+        "other_fp": 37,
+        "precision": 0.5994,
+        "recall": 0.8894,
+        "f1": 0.7161,
+        "precision_excl_ruby": 0.8391,
+        "f1_excl_ruby": 0.8635,
+        "mean_matched_iou": 0.8261
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.3,
+    "box_thresh": 0.25,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 106,
+        "fn": 22,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6478,
+        "recall": 0.8986,
+        "f1": 0.7529,
+        "precision_excl_ruby": 0.9155,
+        "f1_excl_ruby": 0.907,
+        "mean_matched_iou": 0.6916
+      },
+      "full": {
+        "tp": 195,
+        "fp": 119,
+        "fn": 22,
+        "ruby_fp": 88,
+        "other_fp": 31,
+        "precision": 0.621,
+        "recall": 0.8986,
+        "f1": 0.7345,
+        "precision_excl_ruby": 0.8628,
+        "f1_excl_ruby": 0.8804,
+        "mean_matched_iou": 0.7554
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.3,
+    "box_thresh": 0.25,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 107,
+        "fn": 21,
+        "ruby_fp": 89,
+        "other_fp": 18,
+        "precision": 0.6469,
+        "recall": 0.9032,
+        "f1": 0.7538,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.7414
+      },
+      "full": {
+        "tp": 195,
+        "fp": 121,
+        "fn": 22,
+        "ruby_fp": 90,
+        "other_fp": 31,
+        "precision": 0.6171,
+        "recall": 0.8986,
+        "f1": 0.7317,
+        "precision_excl_ruby": 0.8628,
+        "f1_excl_ruby": 0.8804,
+        "mean_matched_iou": 0.7902
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.3,
+    "box_thresh": 0.25,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 109,
+        "fn": 21,
+        "ruby_fp": 90,
+        "other_fp": 19,
+        "precision": 0.6426,
+        "recall": 0.9032,
+        "f1": 0.751,
+        "precision_excl_ruby": 0.9116,
+        "f1_excl_ruby": 0.9074,
+        "mean_matched_iou": 0.7841
+      },
+      "full": {
+        "tp": 194,
+        "fp": 125,
+        "fn": 23,
+        "ruby_fp": 92,
+        "other_fp": 33,
+        "precision": 0.6082,
+        "recall": 0.894,
+        "f1": 0.7239,
+        "precision_excl_ruby": 0.8546,
+        "f1_excl_ruby": 0.8739,
+        "mean_matched_iou": 0.8106
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.3,
+    "box_thresh": 0.25,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 106,
+        "fn": 20,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6502,
+        "recall": 0.9078,
+        "f1": 0.7577,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.8148
+      },
+      "full": {
+        "tp": 193,
+        "fp": 129,
+        "fn": 24,
+        "ruby_fp": 92,
+        "other_fp": 37,
+        "precision": 0.5994,
+        "recall": 0.8894,
+        "f1": 0.7161,
+        "precision_excl_ruby": 0.8391,
+        "f1_excl_ruby": 0.8635,
+        "mean_matched_iou": 0.8261
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.3,
+    "box_thresh": 0.3,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 106,
+        "fn": 22,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6478,
+        "recall": 0.8986,
+        "f1": 0.7529,
+        "precision_excl_ruby": 0.9155,
+        "f1_excl_ruby": 0.907,
+        "mean_matched_iou": 0.6916
+      },
+      "full": {
+        "tp": 195,
+        "fp": 119,
+        "fn": 22,
+        "ruby_fp": 88,
+        "other_fp": 31,
+        "precision": 0.621,
+        "recall": 0.8986,
+        "f1": 0.7345,
+        "precision_excl_ruby": 0.8628,
+        "f1_excl_ruby": 0.8804,
+        "mean_matched_iou": 0.7554
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.3,
+    "box_thresh": 0.3,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 107,
+        "fn": 21,
+        "ruby_fp": 89,
+        "other_fp": 18,
+        "precision": 0.6469,
+        "recall": 0.9032,
+        "f1": 0.7538,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.7414
+      },
+      "full": {
+        "tp": 195,
+        "fp": 121,
+        "fn": 22,
+        "ruby_fp": 90,
+        "other_fp": 31,
+        "precision": 0.6171,
+        "recall": 0.8986,
+        "f1": 0.7317,
+        "precision_excl_ruby": 0.8628,
+        "f1_excl_ruby": 0.8804,
+        "mean_matched_iou": 0.7902
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.3,
+    "box_thresh": 0.3,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 109,
+        "fn": 21,
+        "ruby_fp": 90,
+        "other_fp": 19,
+        "precision": 0.6426,
+        "recall": 0.9032,
+        "f1": 0.751,
+        "precision_excl_ruby": 0.9116,
+        "f1_excl_ruby": 0.9074,
+        "mean_matched_iou": 0.7841
+      },
+      "full": {
+        "tp": 194,
+        "fp": 125,
+        "fn": 23,
+        "ruby_fp": 92,
+        "other_fp": 33,
+        "precision": 0.6082,
+        "recall": 0.894,
+        "f1": 0.7239,
+        "precision_excl_ruby": 0.8546,
+        "f1_excl_ruby": 0.8739,
+        "mean_matched_iou": 0.8106
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.3,
+    "box_thresh": 0.3,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 106,
+        "fn": 20,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6502,
+        "recall": 0.9078,
+        "f1": 0.7577,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.8148
+      },
+      "full": {
+        "tp": 193,
+        "fp": 129,
+        "fn": 24,
+        "ruby_fp": 92,
+        "other_fp": 37,
+        "precision": 0.5994,
+        "recall": 0.8894,
+        "f1": 0.7161,
+        "precision_excl_ruby": 0.8391,
+        "f1_excl_ruby": 0.8635,
+        "mean_matched_iou": 0.8261
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.3,
+    "box_thresh": 0.4,
+    "unclip": 1.2,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 195,
+        "fp": 105,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 18,
+        "precision": 0.65,
+        "recall": 0.8986,
+        "f1": 0.7544,
+        "precision_excl_ruby": 0.9155,
+        "f1_excl_ruby": 0.907,
+        "mean_matched_iou": 0.6916
+      },
+      "full": {
+        "tp": 195,
+        "fp": 118,
+        "fn": 22,
+        "ruby_fp": 87,
+        "other_fp": 31,
+        "precision": 0.623,
+        "recall": 0.8986,
+        "f1": 0.7358,
+        "precision_excl_ruby": 0.8628,
+        "f1_excl_ruby": 0.8804,
+        "mean_matched_iou": 0.7554
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.3,
+    "box_thresh": 0.4,
+    "unclip": 1.4,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 106,
+        "fn": 21,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.649,
+        "recall": 0.9032,
+        "f1": 0.7553,
+        "precision_excl_ruby": 0.9159,
+        "f1_excl_ruby": 0.9095,
+        "mean_matched_iou": 0.7414
+      },
+      "full": {
+        "tp": 195,
+        "fp": 120,
+        "fn": 22,
+        "ruby_fp": 89,
+        "other_fp": 31,
+        "precision": 0.619,
+        "recall": 0.8986,
+        "f1": 0.7331,
+        "precision_excl_ruby": 0.8628,
+        "f1_excl_ruby": 0.8804,
+        "mean_matched_iou": 0.7902
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.3,
+    "box_thresh": 0.4,
+    "unclip": 1.6,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 196,
+        "fp": 108,
+        "fn": 21,
+        "ruby_fp": 89,
+        "other_fp": 19,
+        "precision": 0.6447,
+        "recall": 0.9032,
+        "f1": 0.7524,
+        "precision_excl_ruby": 0.9116,
+        "f1_excl_ruby": 0.9074,
+        "mean_matched_iou": 0.7841
+      },
+      "full": {
+        "tp": 194,
+        "fp": 124,
+        "fn": 23,
+        "ruby_fp": 91,
+        "other_fp": 33,
+        "precision": 0.6101,
+        "recall": 0.894,
+        "f1": 0.7252,
+        "precision_excl_ruby": 0.8546,
+        "f1_excl_ruby": 0.8739,
+        "mean_matched_iou": 0.8106
+      }
+    }
+  },
+  {
+    "scale": 1600,
+    "thresh": 0.3,
+    "box_thresh": 0.4,
+    "unclip": 1.8,
+    "min_short_side": 6,
+    "min_line_px": 12.0,
+    "metrics": {
+      "gt-crop": {
+        "tp": 197,
+        "fp": 106,
+        "fn": 20,
+        "ruby_fp": 88,
+        "other_fp": 18,
+        "precision": 0.6502,
+        "recall": 0.9078,
+        "f1": 0.7577,
+        "precision_excl_ruby": 0.9163,
+        "f1_excl_ruby": 0.912,
+        "mean_matched_iou": 0.8148
+      },
+      "full": {
+        "tp": 193,
+        "fp": 128,
+        "fn": 24,
+        "ruby_fp": 91,
+        "other_fp": 37,
+        "precision": 0.6012,
+        "recall": 0.8894,
+        "f1": 0.7175,
+        "precision_excl_ruby": 0.8391,
+        "f1_excl_ruby": 0.8635,
+        "mean_matched_iou": 0.8261
+      }
+    }
+  }
+]

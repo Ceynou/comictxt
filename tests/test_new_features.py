@@ -141,12 +141,10 @@ def test_cli_reorder_flags():
     assert cfg.pipeline.reorder_lines is True
 
 
-def test_cli_offline_and_ppocr_flags():
-    args = build_parser().parse_args(
-        ["infer", "x.png", "--offline", "--rec-backend", "ppocr"])
+def test_cli_offline_flag():
+    args = build_parser().parse_args(["infer", "x.png", "--offline"])
     cfg = _build_config(args)
     assert cfg.general.offline is True
-    assert cfg.rec.backend == "ppocr"
 
 
 def test_cli_config_subcommand_paths_and_init(tmp_path, monkeypatch):

@@ -12,9 +12,10 @@ def test_resolve_torch_snapshot():
 
 def test_torch_config_defaults():
     cfg = ComictxtConfig()
-    assert cfg.rec.backend == "ppocr"
-    cfg2 = cfg.with_overrides({"rec.backend": "onnx", "rec.device": "cpu"})
-    assert cfg2.rec.backend == "onnx"
+    assert cfg.rec.torch_revision == "main"
+    assert cfg.rec.max_num_patches == 512
+    cfg2 = cfg.with_overrides({"rec.max_num_patches": 256, "rec.device": "cpu"})
+    assert cfg2.rec.max_num_patches == 256
 
 
 def test_torch_recognizer_interface():
@@ -35,18 +36,16 @@ def test_torch_transcribes_synthetic_crop():
 
 
 def test_resolve_torch_revision_pinning(monkeypatch):
-    """The resolver must pin the requested revision, not the newest snapshot.
-
-    Downloading another branch (e.g. nova-alpha) used to silently re-pin
-    the default model via the mtime heuristic.
-    """
+    """The resolver must pin the requested revision, not the newest snapshot."""
     from pathlib import Path
 
     base = Path(resolve_rec_torch(""))  # any cached snapshot root
+    repo = base.parent.parent
+    assert repo.name == "models--JustANormalTinkerer--hayai-ocr-v2.5-nova"
     monkeypatch.setenv("HF_HUB_OFFLINE", "1")
-    snap = resolve_rec_torch("", revision="nova-alpha")
-    assert snap.parent.parent == base.parent.parent  # same repo
-    ref = (snap.parent.parent / "refs" / "nova-alpha").read_text().strip()
+    snap = resolve_rec_torch("", revision="main")
+    assert snap.parent.parent == repo
+    ref = (repo / "refs" / "main").read_text().strip()
     assert snap.name == ref
     # unknown revision falls back to the newest complete snapshot
     fallback = resolve_rec_torch("", revision="no-such-branch")

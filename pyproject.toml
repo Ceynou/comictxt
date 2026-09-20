@@ -1,7 +1,7 @@
 [project]
 name = "comictxt"
-version = "0.5.0"
-description = "Manga/comic OCR: AnimeText region detection + PP-OCRv6 line detection + Hayai recognition, with owocr-compatible JSON and websocket server"
+version = "0.7.0"
+description = "Manga/comic OCR: AnimeText region detection + PP-OCRv6 line detection + Hayai OCR v2.5 Nova recognition, with owocr-compatible JSON and websocket server"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
@@ -10,7 +10,6 @@ dependencies = [
     "pillow-jxl-plugin",
     "opencv-python-headless",
     "onnxruntime",
-    "tokenizers",
     "pyclipper",
     "websockets",
     "pydantic>=2.0",

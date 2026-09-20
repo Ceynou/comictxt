@@ -52,7 +52,20 @@ def _load_effective_config(args, create_user_config: bool = False) -> ComictxtCo
                     "Could not write user config at %s; using built-in defaults",
                     user_config_path(),
                 )
-        cfg = ComictxtConfig.from_toml(found) if found is not None else ComictxtConfig()
+        if found is not None:
+            try:
+                cfg = ComictxtConfig.from_toml(found)
+            except Exception as e:  # noqa: BLE001 - stale user config after upgrade
+                # e.g. keys removed in a newer version; never crash on it.
+                log.warning(
+                    "User config %s is incompatible with this version (%s); "
+                    "using built-in defaults. Refresh it with: "
+                    "comictxt config --init --force",
+                    found, e,
+                )
+                cfg = ComictxtConfig()
+        else:
+            cfg = ComictxtConfig()
     overrides: dict = {}
     for item in getattr(args, "set", None) or []:
         if "=" not in item:
@@ -68,8 +81,6 @@ def _load_effective_config(args, create_user_config: bool = False) -> ComictxtCo
         "region_model_size": "region.model_size",
         "region_conf": "region.conf",
         "region_imgsz": "region.imgsz",
-        "precision": "rec.precision",
-        "rec_backend": "rec.backend",
         "workers": "general.workers",
         "workers_mode": "general.workers_mode",
         "no_lines": "lines.enable_line_stage",
@@ -436,8 +447,6 @@ def build_parser() -> argparse.ArgumentParser:
     pi.add_argument("--region-model-size", choices=["n", "s", "m", "l", "x"], default=None)
     pi.add_argument("--region-conf", type=float, default=None)
     pi.add_argument("--region-imgsz", type=int, default=None)
-    pi.add_argument("--precision", choices=["fp32", "fp16", "quant"], default=None)
-    pi.add_argument("--rec-backend", choices=["onnx", "torch", "ppocr"], default=None)
     pi.add_argument("--workers", type=int, default=None, help="Batch/region parallel workers (default: auto)")
     pi.add_argument("--workers-mode", choices=["threads", "processes"], default=None)
     pi.add_argument("--no-lines", action="store_true", help="Skip line detection; recognize each region directly")

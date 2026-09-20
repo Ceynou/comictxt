@@ -1,20 +1,12 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "references": {
-    "koharu_det": {
-      "path": "/home/user/.cache/huggingface/hub/models--mayocream--koharu-layout-rfdetr-seg-2xl-1152",
-      "description": "koharu huggingface folder"
-    },
     "ppocrv6_det": {
       "path": "/home/user/.cache/huggingface/hub/models--Kellenok--PP-OCRv6_manga",
       "description": "ppocrv6 manga huggingface folder"
     },
-    "hayaiocr_onnx_rec": {
-      "path": "/home/user/.cache/huggingface/hub/models--JustANormalTinkerer--hayai-ocr-v2-onnx",
-      "description": "hayai ocr onnx huggingface folder"
-    },
     "hayaiocr_rec": {
-      "path": "/home/user/.cache/huggingface/hub/models--JustANormalTinkerer--hayai-ocr-v2",
+      "path": "/home/user/.cache/huggingface/hub/models--JustANormalTinkerer--hayai-ocr-v2.5-nova",
       "description": "hayai ocr huggingface folder"
     },
     "animetext_det": {

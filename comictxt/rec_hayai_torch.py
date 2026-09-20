@@ -1,10 +1,10 @@
-"""Hayai OCR v2 PyTorch recognizer (@hayaiocr_rec).
+"""Hayai OCR v2.5 Nova recognizer (PyTorch, @hayaiocr_rec).
 
-Loads JustANormalTinkerer/hayai-ocr-v2 with trust_remote_code and exposes
-the same ocr_pil() interface as the ONNX backend. Image preprocessing uses
-the real SigLIP2 NaFlex AutoProcessor (resolved from the local HF cache),
-exactly as the model card prescribes — the processor pads to max_num_patches
-with an attention mask, which the vision encoder and 2D mRoPE require.
+Loads JustANormalTinkerer/hayai-ocr-v2.5-nova with trust_remote_code and
+exposes a simple ocr_pil() interface. Image preprocessing uses the real
+SigLIP2 NaFlex AutoProcessor (resolved from the local HF cache), exactly as
+the model card prescribes — the processor pads to max_num_patches with an
+attention mask, which the vision encoder and 2D mRoPE require.
 """
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ from PIL import Image
 
 
 class TorchHayaiRecognizer:
-    """PyTorch HayaiModel with greedy generation."""
+    """PyTorch HayaiModel (v2.5 Nova) with greedy generation."""
 
     def __init__(
         self,
@@ -26,7 +26,7 @@ class TorchHayaiRecognizer:
         device: str = "cpu",
         dtype: str = "float32",
         max_new_tokens: int = 128,
-        max_num_patches: int = 256,
+        max_num_patches: int = 384,
         offline: bool = False,
     ) -> None:
         if dtype not in ("float32", "float16"):
@@ -66,7 +66,7 @@ class TorchHayaiRecognizer:
             )
         except Exception as e:
             raise RuntimeError(
-                f"Failed to load torch Hayai model from {self.model_path} "
+                f"Failed to load torch Hayai v2.5-nova model from {self.model_path} "
                 f"(offline={local_only}). If you are offline, ensure the snapshot "
                 f"dir holds model.safetensors/tokenizer.json/modeling_hayai.py "
                 f"or set rec.torch_model explicitly. Original error: {e}"
@@ -172,13 +172,13 @@ def resolve_rec_processor(explicit: str = "") -> Path:
 
 
 def resolve_rec_torch(explicit: str = "", revision: str = "main") -> Path:
-    """Resolve the PyTorch Hayai snapshot dir for a repo ``revision``.
+    """Resolve the PyTorch Hayai v2.5-nova snapshot dir for a repo ``revision``.
 
     Resolution order: explicit path > local snapshot for the revision's
     commit (``refs/<revision>``) > download of that revision (unless
     offline) > newest complete README-bearing snapshot. The mtime
-    heuristic alone is not deterministic — downloading another branch
-    (e.g. ``nova-alpha``) silently re-pinned the default model.
+    heuristic alone is not deterministic across repos, so the exact
+    revision commit is always preferred when cached.
     """
     if explicit:
         p = Path(explicit)
@@ -203,13 +203,13 @@ def resolve_rec_torch(explicit: str = "", revision: str = "main") -> Path:
         roots.append(Path(os.environ["HF_HOME"]) / "hub")
     base = None
     for root in roots:
-        cand = root / "models--JustANormalTinkerer--hayai-ocr-v2"
+        cand = root / "models--JustANormalTinkerer--hayai-ocr-v2.5-nova"
         if cand.is_dir():
             base = cand
             break
     if base is None:
         raise FileNotFoundError(
-            "Could not find hayai-ocr-v2 in HF cache. Set rec.torch_model explicitly."
+            "Could not find hayai-ocr-v2.5-nova in HF cache. Set rec.torch_model explicitly."
         )
 
     # exact snapshot for the requested revision, when cached
@@ -226,7 +226,7 @@ def resolve_rec_torch(explicit: str = "", revision: str = "main") -> Path:
                 from huggingface_hub import snapshot_download
 
                 snap = Path(snapshot_download(
-                    "JustANormalTinkerer/hayai-ocr-v2", revision=revision))
+                    "JustANormalTinkerer/hayai-ocr-v2.5-nova", revision=revision))
                 if complete(snap):
                     return snap
             except Exception:  # noqa: BLE001 - offline / network failure: fall through
@@ -236,7 +236,7 @@ def resolve_rec_torch(explicit: str = "", revision: str = "main") -> Path:
     cands = [d for d in snaps.iterdir() if d.is_dir() and complete(d)] if snaps.is_dir() else []
     if not cands:
         raise FileNotFoundError(
-            "No complete hayai-ocr-v2 snapshot in HF cache. Set rec.torch_model explicitly."
+            "No complete hayai-ocr-v2.5-nova snapshot in HF cache. Set rec.torch_model explicitly."
         )
     cands.sort(key=lambda d: ((d / "README.md").exists(), d.stat().st_mtime), reverse=True)
     return cands[0]

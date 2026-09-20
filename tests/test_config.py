@@ -5,25 +5,24 @@ from comictxt.config import ComictxtConfig, parse_override_value
 
 def test_defaults():
     cfg = ComictxtConfig()
-    assert cfg.region.model_size == "x"
+    assert cfg.region.model_size == "m"
     assert cfg.region.backend == "ultralytics"
-    assert cfg.region.conf == 0.16
+    assert cfg.region.conf == 0.40
     assert cfg.region.imgsz == 640
     assert cfg.region.iou == 0.7
     assert cfg.region.contain_action == "merge"
     assert cfg.lines.enable_line_stage is True
-    assert cfg.lines.thresh == 0.15
-    assert cfg.lines.unclip_ratio == 1.4
+    assert cfg.lines.thresh == 0.20
+    assert cfg.lines.unclip_ratio == 1.8
     assert cfg.lines.det_margin == 16
     assert cfg.lines.det_min_side == 480
-    assert cfg.lines.min_short_side == 6
+    assert cfg.lines.min_short_side == 18
     assert cfg.lines.min_line_px == 12.0
     assert cfg.lines.box_pad == 4.0
-    assert cfg.rec.line_pad == 2
+    assert cfg.rec.line_pad == 0
     assert cfg.lines.furigana_size_ratio == 0.75
-    assert cfg.rec.precision == "fp32"
-    assert cfg.rec.backend == "ppocr"
-    assert cfg.rec.ppocr_trim is True
+    assert cfg.rec.max_num_patches == 512
+    assert cfg.rec.torch_revision == "main"
     assert cfg.preprocess.enable is False
     assert cfg.server.port == 7331
 
@@ -50,7 +49,7 @@ def test_from_toml(tmp_path):
     assert cfg.region.conf == 0.1
     assert cfg.server.port == 9999
     # unspecified sections keep defaults
-    assert cfg.lines.thresh == 0.15
+    assert cfg.lines.thresh == 0.20
 
 
 def test_parse_override_value():

@@ -1,0 +1,133 @@
+{
+  "pages": [
+    {
+      "page": "009",
+      "gt_blocks": 9,
+      "pred_blocks": 9,
+      "matched": 9,
+      "precision": 1.0,
+      "recall": 1.0,
+      "vertical_acc": 1.0,
+      "mean_cer": 0.0
+    },
+    {
+      "page": "009b",
+      "gt_blocks": 6,
+      "pred_blocks": 6,
+      "matched": 6,
+      "precision": 1.0,
+      "recall": 1.0,
+      "vertical_acc": 1.0,
+      "mean_cer": 0.0
+    },
+    {
+      "page": "010",
+      "gt_blocks": 4,
+      "pred_blocks": 5,
+      "matched": 4,
+      "precision": 0.8,
+      "recall": 1.0,
+      "vertical_acc": 1.0,
+      "mean_cer": 0.125
+    },
+    {
+      "page": "027",
+      "gt_blocks": 7,
+      "pred_blocks": 7,
+      "matched": 6,
+      "precision": 0.8571,
+      "recall": 0.8571,
+      "vertical_acc": 1.0,
+      "mean_cer": 0.0
+    },
+    {
+      "page": "029",
+      "gt_blocks": 2,
+      "pred_blocks": 2,
+      "matched": 1,
+      "precision": 0.5,
+      "recall": 0.5,
+      "vertical_acc": 1.0,
+      "mean_cer": 0.4545
+    },
+    {
+      "page": "032",
+      "gt_blocks": 6,
+      "pred_blocks": 6,
+      "matched": 6,
+      "precision": 1.0,
+      "recall": 1.0,
+      "vertical_acc": 1.0,
+      "mean_cer": 0.1513
+    },
+    {
+      "page": "035",
+      "gt_blocks": 8,
+      "pred_blocks": 10,
+      "matched": 8,
+      "precision": 0.8,
+      "recall": 1.0,
+      "vertical_acc": 1.0,
+      "mean_cer": 0.1819
+    },
+    {
+      "page": "036",
+      "gt_blocks": 14,
+      "pred_blocks": 18,
+      "matched": 14,
+      "precision": 0.7778,
+      "recall": 1.0,
+      "vertical_acc": 1.0,
+      "mean_cer": 0.0694
+    },
+    {
+      "page": "083",
+      "gt_blocks": 16,
+      "pred_blocks": 13,
+      "matched": 11,
+      "precision": 0.8462,
+      "recall": 0.6875,
+      "vertical_acc": 1.0,
+      "mean_cer": 0.1135
+    },
+    {
+      "page": "131",
+      "gt_blocks": 10,
+      "pred_blocks": 10,
+      "matched": 10,
+      "precision": 1.0,
+      "recall": 1.0,
+      "vertical_acc": 1.0,
+      "mean_cer": 0.0821
+    },
+    {
+      "page": "p_062",
+      "gt_blocks": 10,
+      "pred_blocks": 12,
+      "matched": 10,
+      "precision": 0.8333,
+      "recall": 1.0,
+      "vertical_acc": 0.9,
+      "mean_cer": 0.1064
+    },
+    {
+      "page": "p_073",
+      "gt_blocks": 17,
+      "pred_blocks": 16,
+      "matched": 15,
+      "precision": 0.9375,
+      "recall": 0.8824,
+      "vertical_acc": 1.0,
+      "mean_cer": 0.1083
+    }
+  ],
+  "total": {
+    "precision": 0.8772,
+    "recall": 0.9174,
+    "vertical_acc": 0.99,
+    "mean_cer": 0.0905,
+    "matched": 100,
+    "pred_blocks": 114,
+    "gt_blocks": 109
+  }
+}
